@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Claude Code Field Notes: Running AI Coding Agents in Production | Jason Colapietro</title>
+<meta name="description" content="Six lessons from operating 20+ live software surfaces with Claude Code and AI coding agents. Verification, silent config failures, deploy conventions as attack surface, and git worktree discipline. By Jason Colapietro, Founder and CEO of Suede Labs AI.">
+<link rel="canonical" href="https://suedeai.ai/claude-code-field-notes">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Claude Code Field Notes: Running AI Coding Agents in Production">
+<meta property="og:description" content="Six lessons from operating 20+ live software surfaces with Claude Code. Every figure came off a command that was run.">
+<meta property="og:url" content="https://suedeai.ai/claude-code-field-notes">
+<meta property="og:site_name" content="Suede Labs AI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@AISUEDE">
+<meta name="twitter:creator" content="@johnnysuede">
+
+<!--
+  JSON-LD references the canonical @ids from suede-home/src/lib/seo-entity.ts.
+  Do NOT mint new @ids here: a minted Person id will not merge with the live
+  graph. Person = https://suedeai.ai/founder#person, Org = https://suedeai.ai/#organization.
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://suedeai.ai/founder#person",
+      "name": "Jason Colapietro",
+      "alternateName": "Johnny Suede",
+      "jobTitle": "Founder and CEO of Suede Labs AI",
+      "description": "Founder and CEO of Suede Labs AI. Published author and Forbes contributor focused on creator ownership infrastructure, programmable IP, proof of creation, and AI-era rights for creators.",
+      "url": "https://suedeai.ai/founder",
+      "worksFor": { "@id": "https://suedeai.ai/#organization" },
+      "knowsAbout": [
+        "Claude Code",
+        "AI coding agents",
+        "agentic software engineering",
+        "large language model developer tooling",
+        "Model Context Protocol",
+        "production AI operations",
+        "creator ownership infrastructure",
+        "programmable IP"
+      ],
+      "sameAs": [
+        "https://x.com/johnnysuede",
+        "https://github.com/JasonColapietro",
+        "https://www.linkedin.com/in/jasoncolapietro",
+        "https://www.youtube.com/@aisuede",
+        "https://suedeai.org/jason-colapietro/",
+        "https://jasoncolapietro.substack.com"
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://suedeai.ai/#organization",
+      "name": "Suede Labs AI",
+      "alternateName": ["Suede", "Suede AI", "Suede Labs"],
+      "url": "https://suedeai.ai",
+      "founder": { "@id": "https://suedeai.ai/founder#person" }
+    },
+    {
+      "@type": "Article",
+      "headline": "Claude Code Field Notes: Running AI Coding Agents in Production",
+      "description": "Six lessons from operating more than twenty live software surfaces with Claude Code and AI coding agents.",
+      "author": { "@id": "https://suedeai.ai/founder#person" },
+      "publisher": { "@id": "https://suedeai.ai/#organization" },
+      "datePublished": "2026-07-27",
+      "mainEntityOfPage": "https://suedeai.ai/claude-code-field-notes",
+      "about": [
+        { "@type": "Thing", "name": "Claude Code" },
+        { "@type": "Thing", "name": "AI coding agents" },
+        { "@type": "Thing", "name": "Software deployment verification" }
+      ],
+      "isPartOf": {
+        "@type": "Book",
+        "name": "The Complete Claude Code Compendium",
+        "author": { "@id": "https://suedeai.ai/founder#person" },
+        "publisher": { "@type": "Organization", "name": "Johnny Suede Press" },
+        "numberOfPages": 0,
+        "bookFormat": "https://schema.org/EBook"
+      }
+    }
+  ]
+}
+</script>
+
+<style>
+  :root { color-scheme: light dark; --fg:#16130f; --bg:#faf8f5; --mut:#6b625a; --rule:#e2dbd2; --accent:#8a5a2b; }
+  @media (prefers-color-scheme: dark) { :root { --fg:#ece7e1; --bg:#14120f; --mut:#a49a90; --rule:#2e2822; --accent:#c9955c; } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg);
+         font:17px/1.65 ui-serif, Georgia, "Iowan Old Style", serif; }
+  .wrap { max-width:44rem; margin:0 auto; padding:4rem 1.25rem 6rem; }
+  h1 { font-size:clamp(1.9rem,5vw,2.6rem); line-height:1.15; letter-spacing:-.02em; margin:0 0 .6rem; }
+  h2 { font-size:1.3rem; line-height:1.3; margin:2.8rem 0 .7rem; letter-spacing:-.01em; }
+  .deck { color:var(--mut); font-size:1.06rem; margin:0 0 2rem; }
+  .byline { font:600 .85rem/1.5 ui-sans-serif,system-ui,sans-serif; letter-spacing:.06em;
+            text-transform:uppercase; color:var(--accent); margin:0 0 2.4rem; }
+  a { color:var(--accent); }
+  hr { border:0; border-top:1px solid var(--rule); margin:3rem 0; }
+  pre { background:color-mix(in oklab, var(--fg) 5%, transparent); border:1px solid var(--rule);
+        border-radius:6px; padding:.85rem 1rem; overflow-x:auto;
+        font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace; }
+  code { font:.9em ui-monospace,SFMono-Regular,Menlo,monospace; }
+  .rule-out { margin:1.6rem 0; padding-top:.9rem; border-top:1px solid var(--rule); }
+  .rule-out::before { content:"The rule"; display:block; margin-bottom:.35rem;
+                      font:600 .72rem/1 ui-sans-serif,system-ui,sans-serif;
+                      letter-spacing:.1em; text-transform:uppercase; color:var(--mut); }
+  footer { margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--rule);
+           font-size:.92rem; color:var(--mut); }
+  footer a { color:inherit; }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+<h1>Claude Code Field Notes: Running AI Coding Agents in Production</h1>
+<p class="byline">Jason Colapietro · Founder and CEO, Suede Labs AI</p>
+<p class="deck">Six lessons from operating more than twenty live software surfaces with Claude Code.
+Most writing about AI coding agents covers the first hour. This covers month six, when agents run
+concurrently against real production and the failure modes stop being about prompting.</p>
+
+<h2>1. A clean build is a compile check, not proof</h2>
+<p>A wallet-connect refactor passed build, type-check, and lint. It merged, deployed, and broke a
+live button on six pages with a client-side exception the instant anyone clicked it.</p>
+<p>Nothing in the pipeline was wrong. The pipeline answers "does this compile." The question that
+mattered was "does the button still work."</p>
+<div class="rule-out"><strong>Verify the artifact you shipped, by doing the thing a user does.</strong>
+Verify the committed state rather than your working tree, and the live URL rather than the build log.</div>
+
+<h2>2. An empty environment variable is worse than a missing one</h2>
+<p>An outage traced to environment variables resolving as empty strings rather than being absent.
+The code read them, found empty values, and silently fell back from a durable store to an ephemeral
+one inside a serverless function. No error was raised.</p>
+<p>A missing variable crashes at boot and you know in thirty seconds. An empty one is valid input.</p>
+<div class="rule-out"><strong>Assert configuration at startup and fail loudly</strong>, then ask
+production what it is actually writing to rather than trusting what your config intended.</div>
+
+<h2>3. Money-path defaults must fail closed</h2>
+<p>A settlement toggle shipped opt-in. Production lacked the column, so every priced endpoint mapped
+to dry-run, and dry-run skipped the payment challenge. Every paid endpoint was free to call while
+billing reported itself live.</p>
+<div class="rule-out"><strong>When a default must be wrong in one direction, pick the direction that
+fails safe.</strong> For revenue, absence should mean charge. For access, absence should mean deny.</div>
+
+<h2>4. Deploy conventions are attack surface</h2>
+<p>On some platforms every file in a given directory becomes a public route, filename mapped to URL,
+with no other gate. A colocated test file there is not a test. It is an unauthenticated endpoint that
+runs a test suite inside a production function on request and holds the invocation open toward the
+timeout ceiling.</p>
+<p>The audit is one line per file, and it checks production rather than your file tree:</p>
+<pre><code>curl -s -o /dev/null -w '%{http_code}' https://&lt;domain&gt;/api/&lt;basename&gt;</code></pre>
+<div class="rule-out"><strong>Treat every file under a route-mapped directory as a public URL</strong>,
+and confirm against the deployed site. Anything that is not a real endpoint should answer 404.</div>
+
+<h2>5. A registry reports what it was told; a process table reports what is</h2>
+<p>During a cleanup of finished agent workspaces, the session registry reported several as stopped.
+They had live processes inside them writing files. Acting on the registry would have deleted a
+running agent's workspace mid-edit.</p>
+<pre><code>lsof -d cwd 2>/dev/null | grep "&lt;path&gt;"</code></pre>
+<p>Two aggravating factors. Workspaces go live while you audit, so re-check immediately before
+deleting. And squash-merged branches look unmerged, because ancestry shows commits ahead of main
+even when the content already landed; use <code>git cherry</code> or match commit subjects instead.</p>
+
+<h2>6. When documentation is silent, measure</h2>
+<p>Rather than guessing at a payload shape, capture one. A hook that dumps its input answers the
+question in a minute, for the exact version you are running:</p>
+<pre><code>#!/bin/bash
+payload=$(cat)
+printf '%s\n' "$payload" >> /tmp/probe/events.jsonl
+exit 0</code></pre>
+<p>Doing this surfaced a documented event whose handler-type table omitted it, even though a handler
+on that event demonstrably fires.</p>
+<div class="rule-out"><strong>The installed binary is the source of truth.</strong> Documentation is
+a secondary source, and version-gated features make it a moving one.</div>
+
+<hr>
+
+<h2>The pattern underneath</h2>
+<p>Every lesson here is the same shape. A system reported success while doing something else: a green
+build, an empty variable, a billing toggle, a file tree, a session registry, a documentation page. In
+each case the fix was to ask the thing itself instead of asking a record of it.</p>
+<p>That gets more expensive to ignore as you add agents. One person reviewing one change can hold the
+gap between reported and actual in their head. Six concurrent agents shipping against twenty surfaces
+cannot, so the verification has to be mechanical and it has to run against production.</p>
+
+<footer>
+<p><strong>Jason Colapietro</strong> is the Founder and CEO of <a href="https://suedeai.ai">Suede Labs AI</a>,
+where he builds creator-ownership infrastructure, programmable IP, and proof-of-creation systems for
+the AI era. He operates the company's full production estate solo, using AI coding agents as the labor.
+He is a published author and Forbes contributor, and publishes an open-source
+<a href="https://github.com/JasonColapietro/suede-creator-skills">Claude Code skill pack</a>.</p>
+<p><a href="https://suedeai.ai/founder">Founder page</a> ·
+<a href="https://github.com/JasonColapietro">GitHub</a> ·
+<a href="https://x.com/johnnysuede">X</a> ·
+<a href="https://www.linkedin.com/in/jasoncolapietro">LinkedIn</a> ·
+<a href="https://jasoncolapietro.substack.com">Substack</a></p>
+<p>Abridged from <em>The Complete Claude Code Compendium</em>, 110,055 words, Johnny Suede Press.
+For access or licensing, reach out through <a href="https://suedeai.ai">suedeai.ai</a>.</p>
+</footer>
+
+</main>
+</body>
+</html>

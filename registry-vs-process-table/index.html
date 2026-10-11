@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>A registry reports what it was told; a process table reports what is | Claude Code Field Notes</title>
+<meta name="description" content="A session registry reported live agent workspaces as not running. Ask the operating system with lsof, and re-check immediately before deleting anything.">
+<link rel="canonical" href="https://claude.suedeai.ai/registry-vs-process-table/">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="A registry reports what it was told; a process table reports what is">
+<meta property="og:description" content="A session registry reported live agent workspaces as not running. Ask the operating system with lsof, and re-check immediately before deleting anything.">
+<meta property="og:url" content="https://claude.suedeai.ai/registry-vs-process-table/">
+<meta property="og:site_name" content="Suede Labs AI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@AISUEDE">
+<meta name="twitter:creator" content="@johnnysuede">
+
+<!--
+  JSON-LD references the canonical @ids from suede-home/src/lib/seo-entity.ts.
+  Do NOT mint new @ids here: a minted Person id will not merge with the live
+  graph. Person = https://suedeai.ai/founder#person, Org = https://suedeai.ai/#organization.
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://suedeai.ai/founder#person",
+      "name": "Jason Colapietro",
+      "url": "https://suedeai.ai/founder"
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://suedeai.ai/#organization",
+      "name": "Suede Labs AI",
+      "url": "https://suedeai.ai"
+    },
+    {
+      "@type": "Article",
+      "@id": "https://claude.suedeai.ai/registry-vs-process-table/#article",
+      "headline": "A registry reports what it was told; a process table reports what is",
+      "description": "A session registry reported live agent workspaces as not running. Ask the operating system with lsof, and re-check immediately before deleting anything.",
+      "author": {
+        "@id": "https://suedeai.ai/founder#person"
+      },
+      "publisher": {
+        "@id": "https://suedeai.ai/#organization"
+      },
+      "datePublished": "2026-07-27",
+      "mainEntityOfPage": "https://claude.suedeai.ai/registry-vs-process-table/",
+      "url": "https://claude.suedeai.ai/registry-vs-process-table/",
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Claude Code"
+        },
+        {
+          "@type": "Thing",
+          "name": "AI coding agents"
+        },
+        {
+          "@type": "Thing",
+          "name": "Git worktrees"
+        }
+      ],
+      "isPartOf": {
+        "@id": "https://claude.suedeai.ai/#article"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Claude Code Field Notes",
+          "item": "https://claude.suedeai.ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "A registry reports what it was told; a process table reports what is",
+          "item": "https://claude.suedeai.ai/registry-vs-process-table/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+  :root { color-scheme: light dark; --fg:#16130f; --bg:#faf8f5; --mut:#6b625a; --rule:#e2dbd2; --accent:#8a5a2b; }
+  @media (prefers-color-scheme: dark) { :root { --fg:#ece7e1; --bg:#14120f; --mut:#a49a90; --rule:#2e2822; --accent:#c9955c; } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg);
+         font:17px/1.65 ui-serif, Georgia, "Iowan Old Style", serif; }
+  .wrap { max-width:44rem; margin:0 auto; padding:4rem 1.25rem 6rem; }
+  h1 { font-size:clamp(1.9rem,5vw,2.6rem); line-height:1.15; letter-spacing:-.02em; margin:0 0 .6rem; }
+  h2 { font-size:1.3rem; line-height:1.3; margin:2.8rem 0 .7rem; letter-spacing:-.01em; }
+  .deck { color:var(--mut); font-size:1.06rem; margin:0 0 2rem; }
+  .byline { font:600 .85rem/1.5 ui-sans-serif,system-ui,sans-serif; letter-spacing:.06em;
+            text-transform:uppercase; color:var(--accent); margin:0 0 2.4rem; }
+  .crumbs { font:600 .78rem/1.5 ui-sans-serif,system-ui,sans-serif; letter-spacing:.06em;
+            text-transform:uppercase; color:var(--mut); margin:0 0 1.4rem; }
+  .crumbs a { text-decoration:none; }
+  a { color:var(--accent); }
+  hr { border:0; border-top:1px solid var(--rule); margin:3rem 0; }
+  pre { background:color-mix(in oklab, var(--fg) 5%, transparent); border:1px solid var(--rule);
+        border-radius:6px; padding:.85rem 1rem; overflow-x:auto;
+        font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace; }
+  code { font:.9em ui-monospace,SFMono-Regular,Menlo,monospace; }
+  .related ul { padding-left:1.2rem; }
+  .related li { margin:0 0 .6rem; }
+  .lesson-nav { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem 2rem;
+                margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--rule);
+                font:.95rem/1.45 ui-sans-serif,system-ui,sans-serif; }
+  .lesson-nav a { text-decoration:none; max-width:20rem; }
+  .lesson-nav .next { margin-left:auto; text-align:right; }
+  .lesson-nav span { display:block; font:600 .72rem/1.4 ui-sans-serif,system-ui,sans-serif;
+                     letter-spacing:.1em; text-transform:uppercase; color:var(--mut); }
+  footer { margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--rule);
+           font-size:.92rem; color:var(--mut); }
+  footer a { color:inherit; }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+<p class="crumbs"><a href="/">Claude Code Field Notes</a> · Lesson 5 of 6</p>
+<article>
+<h1>A registry reports what it was told; a process table reports what is</h1>
+<p class="byline">Jason Colapietro · Founder and CEO, Suede Labs AI</p>
+<p class="deck">Lesson 5 of six in <a href="/">Claude Code Field Notes: Running AI Coding Agents in Production</a>, drawn from operating more
+than twenty live software surfaces with Claude Code.</p>
+
+<p>During a cleanup of finished agent workspaces, the session registry reported several as not running.
+They had live processes inside them with child processes actively writing files. Acting on the
+registry would have deleted a running agent's workspace mid-edit.</p>
+<p>The check that works asks the operating system, not the bookkeeping:</p>
+<pre><code>lsof -d cwd 2>/dev/null | grep "&lt;path&gt;"</code></pre>
+<p>Two things make this worse than it sounds. <strong>Workspaces go live while you audit them</strong>, so a
+directory that was idle ten minutes ago is not evidence about now; re-check immediately before
+deleting. And <strong>squash-merged branches look unmerged</strong>: commit ancestry shows work ahead of main
+even when the content already landed, because main moved on. Use <code>git cherry</code> or match commit
+subjects rather than trusting ancestry, or you will keep dead workspaces and, worse, convince
+yourself that merged work was lost.</p>
+</article>
+
+<section class="related" aria-labelledby="related">
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="https://skills.suedeai.ai/skills/suede-agent-teams.html">Agent Teams Skill: Parallel Lanes Without Collisions</a>: wires complex changes into coordinated agent lanes with WIP collision detection, rollback trees, and a handoff that won't close without evidence.</li>
+<li><a href="https://agents.suedeai.ai/">AI Agent Builder &amp; Workflow Automation</a>: build AI agents visually, test workflows, and inspect every run.</li>
+<li><a href="https://seo.suedeai.ai/managed-ai-agent-maintenance">Managed AI Agent Maintenance Services</a>: keeps an operational AI agent aligned with the business by reviewing runs, tuning prompts and routing, and maintaining clear operating notes.</li>
+</ul>
+</section>
+
+<nav class="lesson-nav" aria-label="Lessons">
+<a class="prev" rel="prev" href="/deploy-conventions-are-attack-surface/"><span>Previous: lesson 4</span>Deploy conventions are attack surface</a>
+<a class="next" rel="next" href="/when-documentation-is-silent-measure/"><span>Next: lesson 6</span>When documentation is silent, measure</a>
+</nav>
+
+<footer>
+<p><strong>Jason Colapietro</strong> is the Founder and CEO of <a href="https://suedeai.ai">Suede Labs AI</a>,
+where he builds creator-ownership infrastructure, programmable IP, and proof-of-creation systems for
+the AI era. He operates the company's full production estate solo, using AI coding agents as the labor.
+He is a published author and Forbes contributor, and publishes an open-source
+<a href="https://github.com/JasonColapietro/suede-creator-skills">Claude Code skill pack</a>.</p>
+<p><a href="https://suedeai.ai/founder">Founder page</a> ·
+<a href="https://github.com/JasonColapietro">GitHub</a> ·
+<a href="https://x.com/johnnysuede">X</a> ·
+<a href="https://jasoncolapietro.substack.com">Substack</a></p>
+<p>Abridged from <em>The Complete Claude Code Compendium</em>, 110,055 words, Johnny Suede Press.
+For access or licensing, reach out through <a href="https://suedeai.ai">suedeai.ai</a>.</p>
+</footer>
+
+</main>
+</body>
+</html>

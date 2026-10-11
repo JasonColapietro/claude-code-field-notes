@@ -9,6 +9,9 @@ production surfaces and the failure modes stop being about prompting.
 These are abridged notes from *The Complete Claude Code Compendium*, a 110,000-word operator's
 manual. Every figure below came off a command that was run or a file that was read.
 
+Read online at [claude.suedeai.ai](https://claude.suedeai.ai), where each of the six lessons also has
+its own page.
+
 ---
 
 ## 1. A clean build is a compile check, not proof

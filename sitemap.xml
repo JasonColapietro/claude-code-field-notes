@@ -3,4 +3,22 @@
   <url>
     <loc>https://claude.suedeai.ai/</loc>
   </url>
+  <url>
+    <loc>https://claude.suedeai.ai/clean-build-is-not-proof/</loc>
+  </url>
+  <url>
+    <loc>https://claude.suedeai.ai/empty-environment-variables/</loc>
+  </url>
+  <url>
+    <loc>https://claude.suedeai.ai/money-path-defaults-fail-closed/</loc>
+  </url>
+  <url>
+    <loc>https://claude.suedeai.ai/deploy-conventions-are-attack-surface/</loc>
+  </url>
+  <url>
+    <loc>https://claude.suedeai.ai/registry-vs-process-table/</loc>
+  </url>
+  <url>
+    <loc>https://claude.suedeai.ai/when-documentation-is-silent-measure/</loc>
+  </url>
 </urlset>

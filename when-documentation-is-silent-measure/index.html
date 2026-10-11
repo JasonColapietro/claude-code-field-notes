@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>When documentation is silent, measure | Claude Code Field Notes</title>
+<meta name="description" content="Capture a payload instead of guessing at its shape. A hook that logs its input answers in a minute, and the installed binary is the source of truth.">
+<link rel="canonical" href="https://claude.suedeai.ai/when-documentation-is-silent-measure/">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="When documentation is silent, measure">
+<meta property="og:description" content="Capture a payload instead of guessing at its shape. A hook that logs its input answers in a minute, and the installed binary is the source of truth.">
+<meta property="og:url" content="https://claude.suedeai.ai/when-documentation-is-silent-measure/">
+<meta property="og:site_name" content="Suede Labs AI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@AISUEDE">
+<meta name="twitter:creator" content="@johnnysuede">
+
+<!--
+  JSON-LD references the canonical @ids from suede-home/src/lib/seo-entity.ts.
+  Do NOT mint new @ids here: a minted Person id will not merge with the live
+  graph. Person = https://suedeai.ai/founder#person, Org = https://suedeai.ai/#organization.
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://suedeai.ai/founder#person",
+      "name": "Jason Colapietro",
+      "url": "https://suedeai.ai/founder"
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://suedeai.ai/#organization",
+      "name": "Suede Labs AI",
+      "url": "https://suedeai.ai"
+    },
+    {
+      "@type": "Article",
+      "@id": "https://claude.suedeai.ai/when-documentation-is-silent-measure/#article",
+      "headline": "When documentation is silent, measure",
+      "description": "Capture a payload instead of guessing at its shape. A hook that logs its input answers in a minute, and the installed binary is the source of truth.",
+      "author": {
+        "@id": "https://suedeai.ai/founder#person"
+      },
+      "publisher": {
+        "@id": "https://suedeai.ai/#organization"
+      },
+      "datePublished": "2026-07-27",
+      "mainEntityOfPage": "https://claude.suedeai.ai/when-documentation-is-silent-measure/",
+      "url": "https://claude.suedeai.ai/when-documentation-is-silent-measure/",
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Claude Code"
+        },
+        {
+          "@type": "Thing",
+          "name": "AI coding agents"
+        },
+        {
+          "@type": "Thing",
+          "name": "Claude Code hooks"
+        }
+      ],
+      "isPartOf": {
+        "@id": "https://claude.suedeai.ai/#article"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Claude Code Field Notes",
+          "item": "https://claude.suedeai.ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "When documentation is silent, measure",
+          "item": "https://claude.suedeai.ai/when-documentation-is-silent-measure/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+  :root { color-scheme: light dark; --fg:#16130f; --bg:#faf8f5; --mut:#6b625a; --rule:#e2dbd2; --accent:#8a5a2b; }
+  @media (prefers-color-scheme: dark) { :root { --fg:#ece7e1; --bg:#14120f; --mut:#a49a90; --rule:#2e2822; --accent:#c9955c; } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg);
+         font:17px/1.65 ui-serif, Georgia, "Iowan Old Style", serif; }
+  .wrap { max-width:44rem; margin:0 auto; padding:4rem 1.25rem 6rem; }
+  h1 { font-size:clamp(1.9rem,5vw,2.6rem); line-height:1.15; letter-spacing:-.02em; margin:0 0 .6rem; }
+  h2 { font-size:1.3rem; line-height:1.3; margin:2.8rem 0 .7rem; letter-spacing:-.01em; }
+  .deck { color:var(--mut); font-size:1.06rem; margin:0 0 2rem; }
+  .byline { font:600 .85rem/1.5 ui-sans-serif,system-ui,sans-serif; letter-spacing:.06em;
+            text-transform:uppercase; color:var(--accent); margin:0 0 2.4rem; }
+  .crumbs { font:600 .78rem/1.5 ui-sans-serif,system-ui,sans-serif; letter-spacing:.06em;
+            text-transform:uppercase; color:var(--mut); margin:0 0 1.4rem; }
+  .crumbs a { text-decoration:none; }
+  a { color:var(--accent); }
+  hr { border:0; border-top:1px solid var(--rule); margin:3rem 0; }
+  pre { background:color-mix(in oklab, var(--fg) 5%, transparent); border:1px solid var(--rule);
+        border-radius:6px; padding:.85rem 1rem; overflow-x:auto;
+        font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace; }
+  code { font:.9em ui-monospace,SFMono-Regular,Menlo,monospace; }
+  .related ul { padding-left:1.2rem; }
+  .related li { margin:0 0 .6rem; }
+  .lesson-nav { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem 2rem;
+                margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--rule);
+                font:.95rem/1.45 ui-sans-serif,system-ui,sans-serif; }
+  .lesson-nav a { text-decoration:none; max-width:20rem; }
+  .lesson-nav .next { margin-left:auto; text-align:right; }
+  .lesson-nav span { display:block; font:600 .72rem/1.4 ui-sans-serif,system-ui,sans-serif;
+                     letter-spacing:.1em; text-transform:uppercase; color:var(--mut); }
+  footer { margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--rule);
+           font-size:.92rem; color:var(--mut); }
+  footer a { color:inherit; }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+<p class="crumbs"><a href="/">Claude Code Field Notes</a> · Lesson 6 of 6</p>
+<article>
+<h1>When documentation is silent, measure</h1>
+<p class="byline">Jason Colapietro · Founder and CEO, Suede Labs AI</p>
+<p class="deck">Lesson 6 of six in <a href="/">Claude Code Field Notes: Running AI Coding Agents in Production</a>, drawn from operating more
+than twenty live software surfaces with Claude Code.</p>
+
+<p>Documentation for agent tooling ages faster than it is written. Rather than guessing at a payload
+shape, capture one. A hook that dumps its input to disk answers the question in a minute, for the
+exact version you are running:</p>
+<pre><code>#!/bin/bash
+payload=$(cat)
+printf '%s\n' "$payload" >> /tmp/probe/events.jsonl
+exit 0</code></pre>
+<p>Point every event you care about at that script, run one throwaway session, and read the log. Doing
+this surfaced a documented event whose handler-type table omitted it, even though a handler on that
+event demonstrably fires. <strong>The installed binary is the source of truth. Documentation is a
+secondary source, and version-gated features make it a moving one.</strong></p>
+</article>
+
+<section class="related" aria-labelledby="related">
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="https://skills.suedeai.ai/">Claude Code Skills &amp; Codex Skills: Suede Creator Skills</a>: free, open-source Claude Code and Codex skills for SEO, AI search visibility, conversion copy, marketing, and business operations.</li>
+<li><a href="https://skills.suedeai.ai/skills/suede-mcp-qa.html">MCP Server Testing Skill: Full JSON-RPC Lifecycle QA</a>: runs the whole JSON-RPC lifecycle against the live Suede Skills MCP server and checks the answers against the source.</li>
+<li><a href="https://agents.suedeai.ai/docs/mcp">Use your agents as MCP tools</a>: call published Suede agents as MCP tools through one endpoint.</li>
+</ul>
+</section>
+
+<nav class="lesson-nav" aria-label="Lessons">
+<a class="prev" rel="prev" href="/registry-vs-process-table/"><span>Previous: lesson 5</span>A registry reports what it was told; a process table reports what is</a>
+<a class="next" href="/"><span>Overview</span>All six lessons</a>
+</nav>
+
+<footer>
+<p><strong>Jason Colapietro</strong> is the Founder and CEO of <a href="https://suedeai.ai">Suede Labs AI</a>,
+where he builds creator-ownership infrastructure, programmable IP, and proof-of-creation systems for
+the AI era. He operates the company's full production estate solo, using AI coding agents as the labor.
+He is a published author and Forbes contributor, and publishes an open-source
+<a href="https://github.com/JasonColapietro/suede-creator-skills">Claude Code skill pack</a>.</p>
+<p><a href="https://suedeai.ai/founder">Founder page</a> ·
+<a href="https://github.com/JasonColapietro">GitHub</a> ·
+<a href="https://x.com/johnnysuede">X</a> ·
+<a href="https://jasoncolapietro.substack.com">Substack</a></p>
+<p>Abridged from <em>The Complete Claude Code Compendium</em>, 110,055 words, Johnny Suede Press.
+For access or licensing, reach out through <a href="https://suedeai.ai">suedeai.ai</a>.</p>
+</footer>
+
+</main>
+</body>
+</html>

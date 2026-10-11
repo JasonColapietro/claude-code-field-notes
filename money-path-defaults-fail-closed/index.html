@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Money-path defaults must fail closed | Claude Code Field Notes</title>
+<meta name="description" content="A settlement toggle shipped opt-in, and every paid endpoint became free to call while billing reported itself live. Choose the default that fails safe.">
+<link rel="canonical" href="https://claude.suedeai.ai/money-path-defaults-fail-closed/">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Money-path defaults must fail closed">
+<meta property="og:description" content="A settlement toggle shipped opt-in, and every paid endpoint became free to call while billing reported itself live. Choose the default that fails safe.">
+<meta property="og:url" content="https://claude.suedeai.ai/money-path-defaults-fail-closed/">
+<meta property="og:site_name" content="Suede Labs AI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@AISUEDE">
+<meta name="twitter:creator" content="@johnnysuede">
+
+<!--
+  JSON-LD references the canonical @ids from suede-home/src/lib/seo-entity.ts.
+  Do NOT mint new @ids here: a minted Person id will not merge with the live
+  graph. Person = https://suedeai.ai/founder#person, Org = https://suedeai.ai/#organization.
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://suedeai.ai/founder#person",
+      "name": "Jason Colapietro",
+      "url": "https://suedeai.ai/founder"
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://suedeai.ai/#organization",
+      "name": "Suede Labs AI",
+      "url": "https://suedeai.ai"
+    },
+    {
+      "@type": "Article",
+      "@id": "https://claude.suedeai.ai/money-path-defaults-fail-closed/#article",
+      "headline": "Money-path defaults must fail closed",
+      "description": "A settlement toggle shipped opt-in, and every paid endpoint became free to call while billing reported itself live. Choose the default that fails safe.",
+      "author": {
+        "@id": "https://suedeai.ai/founder#person"
+      },
+      "publisher": {
+        "@id": "https://suedeai.ai/#organization"
+      },
+      "datePublished": "2026-07-27",
+      "mainEntityOfPage": "https://claude.suedeai.ai/money-path-defaults-fail-closed/",
+      "url": "https://claude.suedeai.ai/money-path-defaults-fail-closed/",
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Claude Code"
+        },
+        {
+          "@type": "Thing",
+          "name": "AI coding agents"
+        },
+        {
+          "@type": "Thing",
+          "name": "Fail-safe defaults"
+        }
+      ],
+      "isPartOf": {
+        "@id": "https://claude.suedeai.ai/#article"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Claude Code Field Notes",
+          "item": "https://claude.suedeai.ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Money-path defaults must fail closed",
+          "item": "https://claude.suedeai.ai/money-path-defaults-fail-closed/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+  :root { color-scheme: light dark; --fg:#16130f; --bg:#faf8f5; --mut:#6b625a; --rule:#e2dbd2; --accent:#8a5a2b; }
+  @media (prefers-color-scheme: dark) { :root { --fg:#ece7e1; --bg:#14120f; --mut:#a49a90; --rule:#2e2822; --accent:#c9955c; } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg);
+         font:17px/1.65 ui-serif, Georgia, "Iowan Old Style", serif; }
+  .wrap { max-width:44rem; margin:0 auto; padding:4rem 1.25rem 6rem; }
+  h1 { font-size:clamp(1.9rem,5vw,2.6rem); line-height:1.15; letter-spacing:-.02em; margin:0 0 .6rem; }
+  h2 { font-size:1.3rem; line-height:1.3; margin:2.8rem 0 .7rem; letter-spacing:-.01em; }
+  .deck { color:var(--mut); font-size:1.06rem; margin:0 0 2rem; }
+  .byline { font:600 .85rem/1.5 ui-sans-serif,system-ui,sans-serif; letter-spacing:.06em;
+            text-transform:uppercase; color:var(--accent); margin:0 0 2.4rem; }
+  .crumbs { font:600 .78rem/1.5 ui-sans-serif,system-ui,sans-serif; letter-spacing:.06em;
+            text-transform:uppercase; color:var(--mut); margin:0 0 1.4rem; }
+  .crumbs a { text-decoration:none; }
+  a { color:var(--accent); }
+  hr { border:0; border-top:1px solid var(--rule); margin:3rem 0; }
+  pre { background:color-mix(in oklab, var(--fg) 5%, transparent); border:1px solid var(--rule);
+        border-radius:6px; padding:.85rem 1rem; overflow-x:auto;
+        font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace; }
+  code { font:.9em ui-monospace,SFMono-Regular,Menlo,monospace; }
+  .related ul { padding-left:1.2rem; }
+  .related li { margin:0 0 .6rem; }
+  .lesson-nav { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem 2rem;
+                margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--rule);
+                font:.95rem/1.45 ui-sans-serif,system-ui,sans-serif; }
+  .lesson-nav a { text-decoration:none; max-width:20rem; }
+  .lesson-nav .next { margin-left:auto; text-align:right; }
+  .lesson-nav span { display:block; font:600 .72rem/1.4 ui-sans-serif,system-ui,sans-serif;
+                     letter-spacing:.1em; text-transform:uppercase; color:var(--mut); }
+  footer { margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--rule);
+           font-size:.92rem; color:var(--mut); }
+  footer a { color:inherit; }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+<p class="crumbs"><a href="/">Claude Code Field Notes</a> · Lesson 3 of 6</p>
+<article>
+<h1>Money-path defaults must fail closed</h1>
+<p class="byline">Jason Colapietro · Founder and CEO, Suede Labs AI</p>
+<p class="deck">Lesson 3 of six in <a href="/">Claude Code Field Notes: Running AI Coding Agents in Production</a>, drawn from operating more
+than twenty live software surfaces with Claude Code.</p>
+
+<p>A settlement toggle shipped opt-in, defaulting to false. Production was missing the column entirely,
+so every priced endpoint mapped to dry-run, and dry-run skipped the payment challenge. The result:
+every paid endpoint was free to call, while the billing system reported itself live.</p>
+<p>The fix inverted the default. Missing or null now means charge; only an explicit toggle disables it.</p>
+<p>The generalization applies past payments to any control whose failure is expensive: <strong>when a default
+must be wrong in one direction, choose the direction that fails safe.</strong> For revenue, absence should
+mean charge. For access, absence should mean deny.</p>
+</article>
+
+<section class="related" aria-labelledby="related">
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="https://skills.suedeai.ai/skills/suede-code-grader.html">Code Grader Skill: A Blunt A-F Ship Verdict</a>: grades seven lanes on evidence, from correctness and security through tests and deploy readiness; auth, payment, migration, and public-API surfaces carry grade caps of their own.</li>
+<li><a href="https://seo.suedeai.ai/custom-ai-agent-development">Custom AI Agent Development Services</a>: a custom AI agent built around your operation, with defined tools, approval rules, evaluation cases, and a clear handoff to the team.</li>
+</ul>
+</section>
+
+<nav class="lesson-nav" aria-label="Lessons">
+<a class="prev" rel="prev" href="/empty-environment-variables/"><span>Previous: lesson 2</span>An empty environment variable is worse than a missing one</a>
+<a class="next" rel="next" href="/deploy-conventions-are-attack-surface/"><span>Next: lesson 4</span>Deploy conventions are attack surface</a>
+</nav>
+
+<footer>
+<p><strong>Jason Colapietro</strong> is the Founder and CEO of <a href="https://suedeai.ai">Suede Labs AI</a>,
+where he builds creator-ownership infrastructure, programmable IP, and proof-of-creation systems for
+the AI era. He operates the company's full production estate solo, using AI coding agents as the labor.
+He is a published author and Forbes contributor, and publishes an open-source
+<a href="https://github.com/JasonColapietro/suede-creator-skills">Claude Code skill pack</a>.</p>
+<p><a href="https://suedeai.ai/founder">Founder page</a> ·
+<a href="https://github.com/JasonColapietro">GitHub</a> ·
+<a href="https://x.com/johnnysuede">X</a> ·
+<a href="https://jasoncolapietro.substack.com">Substack</a></p>
+<p>Abridged from <em>The Complete Claude Code Compendium</em>, 110,055 words, Johnny Suede Press.
+For access or licensing, reach out through <a href="https://suedeai.ai">suedeai.ai</a>.</p>
+</footer>
+
+</main>
+</body>
+</html>

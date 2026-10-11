@@ -64,6 +64,7 @@
     },
     {
       "@type": "Article",
+      "@id": "https://claude.suedeai.ai/#article",
       "headline": "Claude Code Field Notes: Running AI Coding Agents in Production",
       "description": "Six lessons from operating more than twenty live software surfaces with Claude Code and AI coding agents.",
       "author": { "@id": "https://suedeai.ai/founder#person" },
@@ -74,6 +75,14 @@
         { "@type": "Thing", "name": "Claude Code" },
         { "@type": "Thing", "name": "AI coding agents" },
         { "@type": "Thing", "name": "Software deployment verification" }
+      ],
+      "hasPart": [
+        { "@type": "Article", "@id": "https://claude.suedeai.ai/clean-build-is-not-proof/#article", "headline": "A clean build is a compile check, not proof", "url": "https://claude.suedeai.ai/clean-build-is-not-proof/" },
+        { "@type": "Article", "@id": "https://claude.suedeai.ai/empty-environment-variables/#article", "headline": "An empty environment variable is worse than a missing one", "url": "https://claude.suedeai.ai/empty-environment-variables/" },
+        { "@type": "Article", "@id": "https://claude.suedeai.ai/money-path-defaults-fail-closed/#article", "headline": "Money-path defaults must fail closed", "url": "https://claude.suedeai.ai/money-path-defaults-fail-closed/" },
+        { "@type": "Article", "@id": "https://claude.suedeai.ai/deploy-conventions-are-attack-surface/#article", "headline": "Deploy conventions are attack surface", "url": "https://claude.suedeai.ai/deploy-conventions-are-attack-surface/" },
+        { "@type": "Article", "@id": "https://claude.suedeai.ai/registry-vs-process-table/#article", "headline": "A registry reports what it was told; a process table reports what is", "url": "https://claude.suedeai.ai/registry-vs-process-table/" },
+        { "@type": "Article", "@id": "https://claude.suedeai.ai/when-documentation-is-silent-measure/#article", "headline": "When documentation is silent, measure", "url": "https://claude.suedeai.ai/when-documentation-is-silent-measure/" }
       ],
       "isPartOf": {
         "@type": "Book",
@@ -110,6 +119,11 @@
   .rule-out::before { content:"The rule"; display:block; margin-bottom:.35rem;
                       font:600 .72rem/1 ui-sans-serif,system-ui,sans-serif;
                       letter-spacing:.1em; text-transform:uppercase; color:var(--mut); }
+  .toc { margin:0 0 2.4rem; padding:1rem 0 .4rem; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
+  .toc h2 { margin:0 0 .4rem; font:600 .72rem/1.4 ui-sans-serif,system-ui,sans-serif;
+            letter-spacing:.1em; text-transform:uppercase; color:var(--mut); }
+  .toc ol { margin:0 0 .6rem; padding-left:1.4rem; }
+  .more { font:.95rem/1.5 ui-sans-serif,system-ui,sans-serif; }
   footer { margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--rule);
            font-size:.92rem; color:var(--mut); }
   footer a { color:inherit; }
@@ -124,6 +138,18 @@
 Most writing about AI coding agents covers the first hour. This covers month six, when agents run
 concurrently against real production and the failure modes stop being about prompting.</p>
 
+<nav class="toc" aria-labelledby="lessons">
+<h2 id="lessons">The six lessons</h2>
+<ol>
+<li><a href="/clean-build-is-not-proof/">A clean build is a compile check, not proof</a></li>
+<li><a href="/empty-environment-variables/">An empty environment variable is worse than a missing one</a></li>
+<li><a href="/money-path-defaults-fail-closed/">Money-path defaults must fail closed</a></li>
+<li><a href="/deploy-conventions-are-attack-surface/">Deploy conventions are attack surface</a></li>
+<li><a href="/registry-vs-process-table/">A registry reports what it was told; a process table reports what is</a></li>
+<li><a href="/when-documentation-is-silent-measure/">When documentation is silent, measure</a></li>
+</ol>
+</nav>
+
 <h2>1. A clean build is a compile check, not proof</h2>
 <p>A wallet-connect refactor passed build, type-check, and lint. It merged, deployed, and broke a
 live button on six pages with a client-side exception the instant anyone clicked it.</p>
@@ -131,6 +157,7 @@ live button on six pages with a client-side exception the instant anyone clicked
 mattered was "does the button still work."</p>
 <div class="rule-out"><strong>Verify the artifact you shipped, by doing the thing a user does.</strong>
 Verify the committed state rather than your working tree, and the live URL rather than the build log.</div>
+<p class="more"><a href="/clean-build-is-not-proof/">Read lesson 1 in full</a></p>
 
 <h2>2. An empty environment variable is worse than a missing one</h2>
 <p>An outage traced to environment variables resolving as empty strings rather than being absent.
@@ -139,6 +166,7 @@ one inside a serverless function. No error was raised.</p>
 <p>A missing variable crashes at boot and you know in thirty seconds. An empty one is valid input.</p>
 <div class="rule-out"><strong>Assert configuration at startup and fail loudly</strong>, then ask
 production what it is actually writing to rather than trusting what your config intended.</div>
+<p class="more"><a href="/empty-environment-variables/">Read lesson 2 in full</a></p>
 
 <h2>3. Money-path defaults must fail closed</h2>
 <p>A settlement toggle shipped opt-in. Production lacked the column, so every priced endpoint mapped
@@ -146,6 +174,7 @@ to dry-run, and dry-run skipped the payment challenge. Every paid endpoint was f
 billing reported itself live.</p>
 <div class="rule-out"><strong>When a default must be wrong in one direction, pick the direction that
 fails safe.</strong> For revenue, absence should mean charge. For access, absence should mean deny.</div>
+<p class="more"><a href="/money-path-defaults-fail-closed/">Read lesson 3 in full</a></p>
 
 <h2>4. Deploy conventions are attack surface</h2>
 <p>On some platforms every file in a given directory becomes a public route, filename mapped to URL,
@@ -156,6 +185,7 @@ timeout ceiling.</p>
 <pre><code>curl -s -o /dev/null -w '%{http_code}' https://&lt;domain&gt;/api/&lt;basename&gt;</code></pre>
 <div class="rule-out"><strong>Treat every file under a route-mapped directory as a public URL</strong>,
 and confirm against the deployed site. Anything that is not a real endpoint should answer 404.</div>
+<p class="more"><a href="/deploy-conventions-are-attack-surface/">Read lesson 4 in full</a></p>
 
 <h2>5. A registry reports what it was told; a process table reports what is</h2>
 <p>During a cleanup of finished agent workspaces, the session registry reported several as stopped.
@@ -165,6 +195,7 @@ running agent's workspace mid-edit.</p>
 <p>Two aggravating factors. Workspaces go live while you audit, so re-check immediately before
 deleting. And squash-merged branches look unmerged, because ancestry shows commits ahead of main
 even when the content already landed; use <code>git cherry</code> or match commit subjects instead.</p>
+<p class="more"><a href="/registry-vs-process-table/">Read lesson 5 in full</a></p>
 
 <h2>6. When documentation is silent, measure</h2>
 <p>Rather than guessing at a payload shape, capture one. A hook that dumps its input answers the
@@ -177,6 +208,7 @@ exit 0</code></pre>
 on that event demonstrably fires.</p>
 <div class="rule-out"><strong>The installed binary is the source of truth.</strong> Documentation is
 a secondary source, and version-gated features make it a moving one.</div>
+<p class="more"><a href="/when-documentation-is-silent-measure/">Read lesson 6 in full</a></p>
 
 <hr>
 

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>A clean build is a compile check, not proof | Claude Code Field Notes</title>
+<meta name="description" content="A wallet-connect refactor passed build, type-check, and lint, then broke a live button. Verify the artifact you shipped by doing the thing a user does.">
+<link rel="canonical" href="https://claude.suedeai.ai/clean-build-is-not-proof/">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="A clean build is a compile check, not proof">
+<meta property="og:description" content="A wallet-connect refactor passed build, type-check, and lint, then broke a live button. Verify the artifact you shipped by doing the thing a user does.">
+<meta property="og:url" content="https://claude.suedeai.ai/clean-build-is-not-proof/">
+<meta property="og:site_name" content="Suede Labs AI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@AISUEDE">
+<meta name="twitter:creator" content="@johnnysuede">
+
+<!--
+  JSON-LD references the canonical @ids from suede-home/src/lib/seo-entity.ts.
+  Do NOT mint new @ids here: a minted Person id will not merge with the live
+  graph. Person = https://suedeai.ai/founder#person, Org = https://suedeai.ai/#organization.
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://suedeai.ai/founder#person",
+      "name": "Jason Colapietro",
+      "url": "https://suedeai.ai/founder"
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://suedeai.ai/#organization",
+      "name": "Suede Labs AI",
+      "url": "https://suedeai.ai"
+    },
+    {
+      "@type": "Article",
+      "@id": "https://claude.suedeai.ai/clean-build-is-not-proof/#article",
+      "headline": "A clean build is a compile check, not proof",
+      "description": "A wallet-connect refactor passed build, type-check, and lint, then broke a live button. Verify the artifact you shipped by doing the thing a user does.",
+      "author": {
+        "@id": "https://suedeai.ai/founder#person"
+      },
+      "publisher": {
+        "@id": "https://suedeai.ai/#organization"
+      },
+      "datePublished": "2026-07-27",
+      "mainEntityOfPage": "https://claude.suedeai.ai/clean-build-is-not-proof/",
+      "url": "https://claude.suedeai.ai/clean-build-is-not-proof/",
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Claude Code"
+        },
+        {
+          "@type": "Thing",
+          "name": "AI coding agents"
+        },
+        {
+          "@type": "Thing",
+          "name": "Software deployment verification"
+        }
+      ],
+      "isPartOf": {
+        "@id": "https://claude.suedeai.ai/#article"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Claude Code Field Notes",
+          "item": "https://claude.suedeai.ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "A clean build is a compile check, not proof",
+          "item": "https://claude.suedeai.ai/clean-build-is-not-proof/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+  :root { color-scheme: light dark; --fg:#16130f; --bg:#faf8f5; --mut:#6b625a; --rule:#e2dbd2; --accent:#8a5a2b; }
+  @media (prefers-color-scheme: dark) { :root { --fg:#ece7e1; --bg:#14120f; --mut:#a49a90; --rule:#2e2822; --accent:#c9955c; } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg);
+         font:17px/1.65 ui-serif, Georgia, "Iowan Old Style", serif; }
+  .wrap { max-width:44rem; margin:0 auto; padding:4rem 1.25rem 6rem; }
+  h1 { font-size:clamp(1.9rem,5vw,2.6rem); line-height:1.15; letter-spacing:-.02em; margin:0 0 .6rem; }
+  h2 { font-size:1.3rem; line-height:1.3; margin:2.8rem 0 .7rem; letter-spacing:-.01em; }
+  .deck { color:var(--mut); font-size:1.06rem; margin:0 0 2rem; }
+  .byline { font:600 .85rem/1.5 ui-sans-serif,system-ui,sans-serif; letter-spacing:.06em;
+            text-transform:uppercase; color:var(--accent); margin:0 0 2.4rem; }
+  .crumbs { font:600 .78rem/1.5 ui-sans-serif,system-ui,sans-serif; letter-spacing:.06em;
+            text-transform:uppercase; color:var(--mut); margin:0 0 1.4rem; }
+  .crumbs a { text-decoration:none; }
+  a { color:var(--accent); }
+  hr { border:0; border-top:1px solid var(--rule); margin:3rem 0; }
+  pre { background:color-mix(in oklab, var(--fg) 5%, transparent); border:1px solid var(--rule);
+        border-radius:6px; padding:.85rem 1rem; overflow-x:auto;
+        font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace; }
+  code { font:.9em ui-monospace,SFMono-Regular,Menlo,monospace; }
+  .related ul { padding-left:1.2rem; }
+  .related li { margin:0 0 .6rem; }
+  .lesson-nav { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem 2rem;
+                margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--rule);
+                font:.95rem/1.45 ui-sans-serif,system-ui,sans-serif; }
+  .lesson-nav a { text-decoration:none; max-width:20rem; }
+  .lesson-nav .next { margin-left:auto; text-align:right; }
+  .lesson-nav span { display:block; font:600 .72rem/1.4 ui-sans-serif,system-ui,sans-serif;
+                     letter-spacing:.1em; text-transform:uppercase; color:var(--mut); }
+  footer { margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--rule);
+           font-size:.92rem; color:var(--mut); }
+  footer a { color:inherit; }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+<p class="crumbs"><a href="/">Claude Code Field Notes</a> · Lesson 1 of 6</p>
+<article>
+<h1>A clean build is a compile check, not proof</h1>
+<p class="byline">Jason Colapietro · Founder and CEO, Suede Labs AI</p>
+<p class="deck">Lesson 1 of six in <a href="/">Claude Code Field Notes: Running AI Coding Agents in Production</a>, drawn from operating more
+than twenty live software surfaces with Claude Code.</p>
+
+<p>A wallet-connect refactor passed build, type-check, and lint. It merged and deployed under standing
+autonomy. Then it broke a live button on six marketing pages with a client-side exception the
+instant anyone clicked it.</p>
+<p>Nothing in the pipeline was wrong. The pipeline answers "does this compile and typecheck," and the
+question that mattered was "does the button still work." Those are different questions and only one
+of them was being asked.</p>
+<p>The rule that came out of it: <strong>verify the artifact you shipped, by doing the thing a user does.</strong>
+For an interactive change that means clicking it on the live domain, in a clean browser context,
+after the deploy lands. It cost ten minutes to catch and revert. It would have cost nothing to
+prevent.</p>
+<p>Two corollaries worth adopting:</p>
+<ul>
+<li><strong>Verify the committed state, not your working tree.</strong> A passing test against uncommitted local
+files proves nothing about what you pushed.</li>
+<li><strong>Verify against the live URL, not the build log.</strong> A green deploy and a working page are
+different claims.</li>
+</ul>
+</article>
+
+<section class="related" aria-labelledby="related">
+<h2 id="related">Related</h2>
+<ul>
+<li><a href="https://agents.suedeai.ai/templates/site-monitor">Site Monitor Agent Template</a>: an agent that checks a site every 30 minutes and alerts on degraded status.</li>
+<li><a href="https://skills.suedeai.ai/skills/suede-code-review.html">AI Code Review Skill: Findings With File and Line</a>: reads the changed files with their callers, contracts, and deploy surface, ranks every finding P0 to P3, and ends at a ship gate.</li>
+<li><a href="https://seo.suedeai.ai/technical-seo-monitoring">Technical SEO Monitoring Services</a>: agreed checks that catch technical search regressions as a website changes, with a dated, prioritized record of issues and repairs.</li>
+</ul>
+</section>
+
+<nav class="lesson-nav" aria-label="Lessons">
+<a class="prev" href="/"><span>Overview</span>All six lessons</a>
+<a class="next" rel="next" href="/empty-environment-variables/"><span>Next: lesson 2</span>An empty environment variable is worse than a missing one</a>
+</nav>
+
+<footer>
+<p><strong>Jason Colapietro</strong> is the Founder and CEO of <a href="https://suedeai.ai">Suede Labs AI</a>,
+where he builds creator-ownership infrastructure, programmable IP, and proof-of-creation systems for
+the AI era. He operates the company's full production estate solo, using AI coding agents as the labor.
+He is a published author and Forbes contributor, and publishes an open-source
+<a href="https://github.com/JasonColapietro/suede-creator-skills">Claude Code skill pack</a>.</p>
+<p><a href="https://suedeai.ai/founder">Founder page</a> ·
+<a href="https://github.com/JasonColapietro">GitHub</a> ·
+<a href="https://x.com/johnnysuede">X</a> ·
+<a href="https://jasoncolapietro.substack.com">Substack</a></p>
+<p>Abridged from <em>The Complete Claude Code Compendium</em>, 110,055 words, Johnny Suede Press.
+For access or licensing, reach out through <a href="https://suedeai.ai">suedeai.ai</a>.</p>
+</footer>
+
+</main>
+</body>
+</html>

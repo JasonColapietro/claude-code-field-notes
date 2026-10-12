@@ -1,0 +1,9 @@
+# Only the pages, their images, the crawl files and the IndexNow key are public.
+# Tests, build scripts, agent settings and repo docs are not pages; before this
+# file existed /tests/test_discovery.py and /.claude/settings.json answered 200.
+.claude/
+.github/
+tests/
+scripts/
+*.py
+*.md

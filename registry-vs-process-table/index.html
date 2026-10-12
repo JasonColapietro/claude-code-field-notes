@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>A registry reports what it was told; a process table reports what is | Claude Code Field Notes</title>
+<title>Registry vs process table: ask the OS | Claude Code Field Notes</title>
 <meta name="description" content="A session registry reported live agent workspaces as not running. Ask the operating system with lsof, and re-check immediately before deleting anything.">
 <link rel="canonical" href="https://claude.suedeai.ai/registry-vs-process-table/">
 
@@ -12,10 +12,21 @@
 <meta property="og:title" content="A registry reports what it was told; a process table reports what is">
 <meta property="og:description" content="A session registry reported live agent workspaces as not running. Ask the operating system with lsof, and re-check immediately before deleting anything.">
 <meta property="og:url" content="https://claude.suedeai.ai/registry-vs-process-table/">
-<meta property="og:site_name" content="Suede Labs AI">
+<meta property="og:site_name" content="Claude Code Field Notes">
+<meta property="og:image" content="https://claude.suedeai.ai/og/registry-vs-process-table.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A registry reports what it was told; a process table reports what is, a Claude Code Field Notes lesson by Jason Colapietro">
+<meta property="article:published_time" content="2026-07-27">
+<meta property="article:modified_time" content="2026-10-12">
+<meta property="article:author" content="https://suedeai.ai/founder">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@AISUEDE">
 <meta name="twitter:creator" content="@johnnysuede">
+<meta name="twitter:title" content="A registry reports what it was told; a process table reports what is">
+<meta name="twitter:description" content="A session registry reported live agent workspaces as not running. Ask the operating system with lsof, and re-check immediately before deleting anything.">
+<meta name="twitter:image" content="https://claude.suedeai.ai/og/registry-vs-process-table.png">
 
 <!--
   JSON-LD references the canonical @ids from suede-home/src/lib/seo-entity.ts.
@@ -35,8 +46,41 @@
     {
       "@type": "Organization",
       "@id": "https://suedeai.ai/#organization",
-      "name": "Suede Labs AI",
+      "name": "Suede AI",
+      "alternateName": [
+        "Suede Labs",
+        "Suede Labs AI",
+        "Suede"
+      ],
       "url": "https://suedeai.ai"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://claude.suedeai.ai/registry-vs-process-table/#webpage",
+      "url": "https://claude.suedeai.ai/registry-vs-process-table/",
+      "name": "Registry vs process table: ask the OS | Claude Code Field Notes",
+      "description": "A session registry reported live agent workspaces as not running. Ask the operating system with lsof, and re-check immediately before deleting anything.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://claude.suedeai.ai/#website"
+      },
+      "breadcrumb": {
+        "@id": "https://claude.suedeai.ai/registry-vs-process-table/#breadcrumb"
+      },
+      "primaryImageOfPage": {
+        "@id": "https://claude.suedeai.ai/og/registry-vs-process-table.png"
+      },
+      "mainEntity": {
+        "@id": "https://claude.suedeai.ai/registry-vs-process-table/#article"
+      },
+      "author": {
+        "@id": "https://suedeai.ai/founder#person"
+      },
+      "publisher": {
+        "@id": "https://suedeai.ai/#organization"
+      },
+      "datePublished": "2026-07-27",
+      "dateModified": "2026-10-12"
     },
     {
       "@type": "Article",
@@ -68,10 +112,19 @@
       ],
       "isPartOf": {
         "@id": "https://claude.suedeai.ai/#article"
-      }
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://claude.suedeai.ai/og/registry-vs-process-table.png",
+        "width": 1200,
+        "height": 630
+      },
+      "dateModified": "2026-10-12",
+      "inLanguage": "en"
     },
     {
       "@type": "BreadcrumbList",
+      "@id": "https://claude.suedeai.ai/registry-vs-process-table/#breadcrumb",
       "itemListElement": [
         {
           "@type": "ListItem",
@@ -132,7 +185,7 @@
 <p class="crumbs"><a href="/">Claude Code Field Notes</a> · Lesson 5 of 6</p>
 <article>
 <h1>A registry reports what it was told; a process table reports what is</h1>
-<p class="byline">Jason Colapietro · Founder and CEO, Suede Labs AI</p>
+<p class="byline">Jason Colapietro · Founder and CEO, Suede AI</p>
 <p class="deck">Lesson 5 of six in <a href="/">Claude Code Field Notes: Running AI Coding Agents in Production</a>, drawn from operating more
 than twenty live software surfaces with Claude Code.</p>
 
@@ -164,7 +217,7 @@ yourself that merged work was lost.</p>
 </nav>
 
 <footer>
-<p><strong>Jason Colapietro</strong> is the Founder and CEO of <a href="https://suedeai.ai">Suede Labs AI</a>,
+<p><strong>Jason Colapietro</strong> is the Founder and CEO of <a href="https://suedeai.ai">Suede AI</a>,
 where he builds creator-ownership infrastructure, programmable IP, and proof-of-creation systems for
 the AI era. He operates the company's full production estate solo, using AI coding agents as the labor.
 He is a published author and Forbes contributor, and publishes an open-source

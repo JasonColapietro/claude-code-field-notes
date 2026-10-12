@@ -43,11 +43,13 @@ class DiscoveryTests(unittest.TestCase):
         self.assertEqual([node.text for node in sitemap.findall("s:url/s:loc", ns)], [CANONICAL] + LESSON_URLS)
         self.assertEqual(len(sitemap), 1 + len(LESSONS))
         for url in sitemap:
-            self.assertEqual(len(url), 1)
+            self.assertEqual([child.tag.split("}")[1] for child in url], ["loc", "lastmod"])
+            self.assertRegex(url.find("s:lastmod", ns).text, r"^\d{4}-\d{2}-\d{2}$")
         html = (ROOT / "index.html").read_text()
         canonical = re.search(r'<link rel="canonical" href="([^"]+)"', html).group(1)
         self.assertEqual(canonical.rstrip("/") + "/", CANONICAL)
-        self.assertIn("<title>Claude Code Field Notes: Running AI Coding Agents in Production | Jason Colapietro</title>", html)
+        self.assertIn("<title>Claude Code Field Notes: Running AI Coding Agents in Production</title>", html)
+        self.assertEqual(canonical, CANONICAL)
         graph = json_ld(html)
         ids = {node.get("@id") for node in graph["@graph"]}
         self.assertIn(PERSON, ids)
@@ -67,6 +69,10 @@ class DiscoveryTests(unittest.TestCase):
                 self.assertEqual(re.search(r'<meta property="og:url" content="([^"]+)"', html).group(1), url)
                 title = re.search(r"<title>([^<]+)</title>", html).group(1)
                 self.assertTrue(title.endswith(" | Claude Code Field Notes"), title)
+                self.assertLessEqual(len(title), 65, title)
+                image = re.search(r'<meta property="og:image" content="([^"]+)">', html).group(1)
+                self.assertEqual(image, CANONICAL + "og/" + slug + ".png")
+                self.assertTrue((ROOT / "og" / (slug + ".png")).exists())
                 titles.add(title)
                 description = re.search(r'<meta name="description" content="([^"]+)">', html).group(1)
                 self.assertLessEqual(len(description), 160)
@@ -93,6 +99,44 @@ class DiscoveryTests(unittest.TestCase):
                 related = re.search(r'<section class="related".*?</section>', html, re.S).group(0)
                 self.assertRegex(related, r'href="https://(skills|agents|seo)\.suedeai\.ai/')
         self.assertEqual(len(titles), len(LESSONS))
+
+    def test_meta_lengths_and_social_cards(self):
+        for path in [ROOT / "index.html"] + [ROOT / slug / "index.html" for slug in LESSONS]:
+            with self.subTest(path=path.parent.name):
+                html = path.read_text()
+                title = re.search(r"<title>([^<]+)</title>", html).group(1)
+                description = re.search(r'<meta name="description" content="([^"]+)">', html).group(1)
+                self.assertLessEqual(len(title), 65, title)
+                self.assertTrue(120 <= len(description) <= 160, len(description))
+                self.assertEqual(html.count("<h1"), 1)
+                for prop in ["og:title", "og:description", "og:url", "og:image"]:
+                    self.assertIn(f'<meta property="{prop}" content="https://' if prop in ("og:url", "og:image") else f'<meta property="{prop}"', html)
+                self.assertIn('<meta name="twitter:card" content="summary_large_image">', html)
+                image = re.search(r'<meta property="og:image" content="https://claude\.suedeai\.ai/(og/[^"]+)">', html).group(1)
+                png = (ROOT / image).read_bytes()
+                self.assertEqual(png[:8], b"\x89PNG\r\n\x1a\n")
+                self.assertEqual((int.from_bytes(png[16:20], "big"), int.from_bytes(png[20:24], "big")), (1200, 630))
+                graph = json_ld(html)
+                types = {node.get("@type") for node in graph["@graph"]}
+                self.assertIn("WebPage", types)
+
+    def test_llms_files_are_built_from_the_pages(self):
+        result = subprocess.run(["python3", str(ROOT / "scripts" / "build_llms.py"), "--check"], check=False)
+        self.assertEqual(result.returncode, 0, "run python3 scripts/build_llms.py")
+        for name in ["llms.txt", "llms-full.txt"]:
+            text = (ROOT / name).read_text()
+            self.assertTrue(text.startswith("# "), name)
+            self.assertNotIn("\u2014", text, name)
+        self.assertIn(CANONICAL + "llms-full.txt", (ROOT / "llms.txt").read_text())
+        full = (ROOT / "llms-full.txt").read_text()
+        for url in LESSON_URLS:
+            self.assertIn(url, full)
+
+    def test_non_page_files_stay_out_of_the_deployment(self):
+        ignored = (ROOT / ".vercelignore").read_text().split()
+        for entry in [".claude/", "tests/", "scripts/", "*.md"]:
+            self.assertIn(entry, ignored)
+        self.assertEqual((ROOT / "4c265a375effa42521f5b88bb3c28501.txt").read_text(), "4c265a375effa42521f5b88bb3c28501")
 
     def test_vercel_headers_and_preview_cancellation(self):
         config = json.loads((ROOT / "vercel.json").read_text())

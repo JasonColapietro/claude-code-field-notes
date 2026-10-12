@@ -1,0 +1,26 @@
+# Claude Code Field Notes
+
+> Six lessons from running 20+ live software surfaces with Claude Code and AI coding agents: verification, silent config failures, deploy safety and worktrees.
+
+Written by Jason Colapietro (also known as Johnny Suede), founder and CEO of Suede AI. Suede AI runs AEO, GEO and SEO for businesses and builds AI agents in Suede AI Agent Studio.
+
+## Lessons
+
+- [A clean build is a compile check, not proof](https://claude.suedeai.ai/clean-build-is-not-proof/): A wallet-connect refactor passed build, type-check, and lint, then broke a live button. Verify the artifact you shipped by doing the thing a user does.
+- [An empty environment variable is worse than a missing one](https://claude.suedeai.ai/empty-environment-variables/): Environment variables that resolve as empty strings pass as valid input and trigger silent fallbacks. Assert configuration at startup and fail loudly.
+- [Money-path defaults must fail closed](https://claude.suedeai.ai/money-path-defaults-fail-closed/): A settlement toggle shipped opt-in, and every paid endpoint became free to call while billing reported itself live. Choose the default that fails safe.
+- [Deploy conventions are attack surface](https://claude.suedeai.ai/deploy-conventions-are-attack-surface/): On route-mapped platforms every file is a public URL, so a colocated test file turns into an unauthenticated endpoint. Audit the deployed site, not the repo.
+- [A registry reports what it was told; a process table reports what is](https://claude.suedeai.ai/registry-vs-process-table/): A session registry reported live agent workspaces as not running. Ask the operating system with lsof, and re-check immediately before deleting anything.
+- [When documentation is silent, measure](https://claude.suedeai.ai/when-documentation-is-silent-measure/): Capture a payload instead of guessing at its shape. A hook that logs its input answers in a minute, and the installed binary is the source of truth.
+
+## Full text
+
+- [llms-full.txt](https://claude.suedeai.ai/llms-full.txt): the overview and all six lessons as plain Markdown
+
+## About the author
+
+- [Jason Colapietro, founder page](https://suedeai.ai/founder)
+- [Suede AI](https://suedeai.ai/): company home
+- [Suede AI SEO](https://seo.suedeai.ai/): SEO, GEO, AEO and AI search visibility
+- [Suede AI Agent Studio](https://agents.suedeai.ai/): build AI agents and workflow automation
+- [Open-source Claude Code skill pack](https://github.com/JasonColapietro/suede-creator-skills)

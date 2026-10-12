@@ -2,23 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://claude.suedeai.ai/</loc>
+    <lastmod>2026-10-12</lastmod>
   </url>
   <url>
     <loc>https://claude.suedeai.ai/clean-build-is-not-proof/</loc>
+    <lastmod>2026-10-12</lastmod>
   </url>
   <url>
     <loc>https://claude.suedeai.ai/empty-environment-variables/</loc>
+    <lastmod>2026-10-12</lastmod>
   </url>
   <url>
     <loc>https://claude.suedeai.ai/money-path-defaults-fail-closed/</loc>
+    <lastmod>2026-10-12</lastmod>
   </url>
   <url>
     <loc>https://claude.suedeai.ai/deploy-conventions-are-attack-surface/</loc>
+    <lastmod>2026-10-12</lastmod>
   </url>
   <url>
     <loc>https://claude.suedeai.ai/registry-vs-process-table/</loc>
+    <lastmod>2026-10-12</lastmod>
   </url>
   <url>
     <loc>https://claude.suedeai.ai/when-documentation-is-silent-measure/</loc>
+    <lastmod>2026-10-12</lastmod>
   </url>
 </urlset>

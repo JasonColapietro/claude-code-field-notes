@@ -4,5 +4,10 @@
       "source": { "source": "github", "repo": "JasonColapietro/suede-creator-skills" }
     }
   },
-  "enabledPlugins": { "suede-skills@suede": true }
+  "enabledPlugins": { "suede-skills@suede": true },
+  "attribution": {
+    "commit": "",
+    "pr": "",
+    "sessionUrl": false
+  }
 }

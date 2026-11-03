@@ -113,4 +113,6 @@ That gets more expensive to ignore as you add agents. One person reviewing one c
 
 [Founder page](https://suedeai.ai/founder) · [GitHub](https://github.com/JasonColapietro) · [X](https://x.com/johnnysuede) · [LinkedIn](https://www.linkedin.com/in/jasoncolapietro) · [Substack](https://jasoncolapietro.substack.com)
 
+[Privacy](https://suedeai.ai/privacy) · [Contact](https://suedeai.ai/contact)
+
 Abridged from The Complete Claude Code Compendium, 110,055 words, Johnny Suede Press. For access or licensing, reach out through [suedeai.ai](https://suedeai.ai).

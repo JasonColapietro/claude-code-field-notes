@@ -137,6 +137,8 @@ surfaces cannot, so the verification has to be mechanical, and it has to run aga
 creator-ownership infrastructure, programmable IP, and proof-of-creation systems for the AI era. He
 operates the company's full production estate solo, more than twenty live surfaces, using AI coding
 agents as the labor.
+His book [Build With Agents: Claude Code and Codex from first session to teams](https://suedeai.ai/books/volume-3)
+turns these field notes into a full method, with a free sample chapter.
 
 He is a published author and Forbes contributor, and he publishes an open-source
 [skill pack](https://github.com/JasonColapietro/suede-creator-skills) for Claude Code.

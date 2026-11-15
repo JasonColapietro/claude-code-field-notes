@@ -217,7 +217,7 @@ Client work adds two things the tutorials rarely cover: other people's credentia
 
 The Claude Code Bible is the long version, written for one operator learning the tool end to end. This guide compresses it into a team rollout and drops everything that does not change week-one behavior. Teams running Codex alongside Claude Code will want [Codex in Production](https://www.amazon.com/dp/B0HHTF3LG1), which applies the same verification habits to the other tool.
 
-Both books come out of daily operating experience. Jason Colapietro ships agent-assisted work across the Suede AI estate, has shipped [nine iOS apps under his own Apple developer account](https://apps.apple.com/us/developer/jason-colapietro/id1895958699), and has [54 pull requests merged across 46 open-source repositories he does not maintain](https://github.com/search?q=is%3Apr+author%3AJasonColapietro+is%3Amerged+-user%3AJasonColapietro+-user%3ASuede-AI&type=pullrequests), including Jest and Backstage. The plan above is the subset of that practice a small team can adopt in a month.
+Both books come out of daily operating experience. Jason Colapietro ships agent-assisted work across the Suede AI estate, has shipped [nine iOS apps under his own Apple developer account](https://apps.apple.com/us/developer/jason-colapietro/id1895958699), and has [54 pull requests merged across 46 open-source repositories he does not maintain](https://github.com/search?q=is%3Apr+author%3AJasonColapietro+is%3Amerged+-user%3AJasonColapietro+-user%3ASuede-AI&type=pullrequests), including Jest and Backstage. The plan above is the subset of that practice Jason thinks a small team can adopt in a month.
 
 ### Where teams usually stall
 
@@ -252,7 +252,7 @@ Agents are good at making the changed lines look right. They are weaker at the c
 
 - Is there a deleted check, a widened permission or a new network call the task did not ask for?
 
-Each finding gets a severity from P0 to P3 and a file and line. A P0 blocks the merge. A P3 goes in a follow-up. The open-source [Suede code review skill](https://skills.suedeai.ai/skills/suede-code-review.html) encodes the same pass, so an agent can run it on another agent's work before a person reads it.
+Each finding gets a severity from P0 to P3 and a file and line. A P0 blocks the merge. A P3 goes in a follow-up. The open-source [Suede AI code review skill](https://skills.suedeai.ai/skills/suede-code.html) encodes the same pass, so an agent can run it on another agent's work before a person reads it.
 
 ### Layer two: gates on the committed state
 
@@ -301,7 +301,7 @@ Open-source review is also where this process was tested hardest. Maintainers of
 
 This process is slower than merging on a green check. Every change gains a review pass and a live check, and that is real time on the calendar. We accept the cost because the alternative was measured too: the broken wallet button from lesson 1 took ten minutes to catch and revert after it reached users, plus the time it was live. Review time is predictable. Incident time is not.
 
-It also does not catch everything. Live checks sample the paths that matter most; they do not exercise every branch. That is why the receipt names what was skipped, and why Jason Colapietro treats a missing line in a receipt as a finding in its own right.
+Jason is direct about the limits. It does not catch everything. Live checks sample the paths that matter most; they do not exercise every branch. That is why the receipt names what was skipped, and why Jason Colapietro treats a missing line in a receipt as a finding in its own right.
 
 ### Next step
 
@@ -315,7 +315,7 @@ That gets more expensive to ignore as you add agents. One person reviewing one c
 
 ## About the author
 
-**Jason Colapietro** is the Founder and CEO of [Suede AI](https://suedeai.ai), where he builds creator-ownership infrastructure, programmable IP, and proof-of-creation systems for the AI era. He operates the company's full production estate solo, using AI coding agents as the labor. He is a published author and Forbes contributor, and publishes an open-source [Claude Code skill pack](https://github.com/JasonColapietro/suede-creator-skills).
+**Jason Colapietro** is the Founder and CEO of [Suede AI](https://suedeai.ai), where he builds creator-ownership infrastructure, programmable IP, and proof-of-creation systems for the AI era. He operates the company's full production estate solo, using AI coding agents as the labor. He is a published author and publishes an open-source [Claude Code skill pack](https://github.com/JasonColapietro/suede-creator-skills).
 
 [Notes from West Palm Beach](https://claude.suedeai.ai/notes/) · [Founder page](https://suedeai.ai/founder) · [GitHub](https://github.com/JasonColapietro) · [X](https://x.com/johnnysuede) · [LinkedIn](https://www.linkedin.com/in/jasoncolapietro) · [Substack](https://jasoncolapietro.substack.com)
 

@@ -150,3 +150,18 @@ class NotesTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class SiteWideBannedFactsTests(unittest.TestCase):
+    """No published file may carry a street address or a Forbes claim."""
+
+    BANNED = [r"forbes", r"streetAddress", r"victorian", r"postalCode", r"olive ave"]
+
+    def test_no_banned_facts_anywhere(self):
+        files = list(ROOT.glob("*/index.html")) + list(ROOT.glob("notes/*/index.html"))
+        files += [ROOT / "index.html", ROOT / "llms.txt", ROOT / "llms-full.txt", ROOT / "README.md"]
+        for path in files:
+            text = path.read_text(encoding="utf-8")
+            for pattern in self.BANNED:
+                with self.subTest(path=str(path.relative_to(ROOT)), pattern=pattern):
+                    self.assertIsNone(re.search(pattern, text, re.I))

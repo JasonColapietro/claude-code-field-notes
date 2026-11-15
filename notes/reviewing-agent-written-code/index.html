@@ -233,7 +233,7 @@
 <li>Did a file land in a directory the platform serves as public routes?</li>
 <li>Is there a deleted check, a widened permission or a new network call the task did not ask for?</li>
 </ul>
-<p>Each finding gets a severity from P0 to P3 and a file and line. A P0 blocks the merge. A P3 goes in a follow-up. The open-source <a href="https://skills.suedeai.ai/skills/suede-code-review.html">Suede code review skill</a> encodes the same pass, so an agent can run it on another agent's work before a person reads it.</p>
+<p>Each finding gets a severity from P0 to P3 and a file and line. A P0 blocks the merge. A P3 goes in a follow-up. The open-source <a href="https://skills.suedeai.ai/skills/suede-code.html">Suede AI code review skill</a> encodes the same pass, so an agent can run it on another agent's work before a person reads it.</p>
 
 <h2>Layer two: gates on the committed state</h2>
 <p>Jason Colapietro calls the gates the boring part, and they are the part most often run wrong. They must run against what was committed, not against a working tree that still holds uncommitted fixes. A fresh clone of the branch is the cleanest way:</p>
@@ -264,7 +264,7 @@ done</code></pre>
 
 <h2>The cost, stated plainly</h2>
 <p>This process is slower than merging on a green check. Every change gains a review pass and a live check, and that is real time on the calendar. We accept the cost because the alternative was measured too: the broken wallet button from lesson 1 took ten minutes to catch and revert after it reached users, plus the time it was live. Review time is predictable. Incident time is not.</p>
-<p>It also does not catch everything. Live checks sample the paths that matter most; they do not exercise every branch. That is why the receipt names what was skipped, and why Jason Colapietro treats a missing line in a receipt as a finding in its own right.</p>
+<p>Jason is direct about the limits. It does not catch everything. Live checks sample the paths that matter most; they do not exercise every branch. That is why the receipt names what was skipped, and why Jason Colapietro treats a missing line in a receipt as a finding in its own right.</p>
 
 <h2>Next step</h2>
 <p>If agents write code for your website, ask your developer for one receipt from last week. If they cannot produce one, the <a href="https://suedeai.agency/assessment">Suede AI assessment</a> is a good place to start. It applies this review to your live site and hands back findings you can verify yourself. For the person behind the process, see Jason Colapietro's <a href="https://suedeai.ai/founder">founder page</a>, and for an AI readiness check of your pages, the <a href="https://optimize.suedeai.ai/notes">Suede Scan notes</a>.</p>

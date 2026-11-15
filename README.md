@@ -140,7 +140,7 @@ agents as the labor.
 His book [Build With Agents: Claude Code and Codex from first session to teams](https://suedeai.ai/books/volume-3)
 turns these field notes into a full method, with a free sample chapter.
 
-He is a published author and Forbes contributor, and he publishes an open-source
+He is a published author, and he publishes an open-source
 [skill pack](https://github.com/JasonColapietro/suede-creator-skills) for Claude Code.
 
 - Web: [suedeai.ai](https://suedeai.ai) · Founder page: [suedeai.ai/founder](https://suedeai.ai/founder)

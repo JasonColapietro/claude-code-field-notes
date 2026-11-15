@@ -23,6 +23,11 @@ LESSONS = [
     "registry-vs-process-table",
     "when-documentation-is-silent-measure",
 ]
+NOTES = [
+    "claude-academy-badges-west-palm-beach-agency",
+    "claude-code-bible-south-florida-dev-teams",
+    "reviewing-agent-written-code",
+]
 
 
 class Body(HTMLParser):
@@ -99,7 +104,7 @@ def meta(html_text, name):
 
 def article_node(html_text):
     graph = json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>', html_text, re.S).group(1))
-    return next(n for n in graph["@graph"] if n["@type"] == "Article")
+    return next(n for n in graph["@graph"] if n["@type"] in ("Article", "BlogPosting"))
 
 
 def build():
@@ -113,7 +118,16 @@ def build():
         body = re.sub(r"<h1>.*?</h1>", "", body, flags=re.S)
         body = re.sub(r'<p class="(byline|deck)">.*?</p>', "", body, flags=re.S)
         lessons.append((n, slug, node["headline"], meta(page, "description"), to_text(body)))
-    pattern = to_text(section(home, "<h2>The pattern underneath</h2>", "<footer>"))
+    notes = []
+    for slug in NOTES:
+        page = (ROOT / "notes" / slug / "index.html").read_text()
+        node = article_node(page)
+        body = section(page, "<article>", "</article>")
+        body = re.sub(r"<h1>.*?</h1>", "", body, flags=re.S)
+        body = re.sub(r'<p class="(byline|deck)">.*?</p>', "", body, flags=re.S)
+        notes.append((slug, node["headline"], meta(page, "description"), to_text(body)))
+    notes_desc = meta((ROOT / "notes" / "index.html").read_text(), "description")
+    pattern = to_text(section(home, "<h2>The pattern underneath</h2>", '<section class="built-by"'))
     about = to_text(section(home, "<footer>", "</footer>"))
 
     short = [
@@ -130,9 +144,17 @@ def build():
     short += [f"- [{h}]({BASE}{s}/): {d}" for _, s, h, d, _ in lessons]
     short += [
         "",
+        "## Notes from West Palm Beach",
+        "",
+        f"[Notes index]({BASE}notes/): {notes_desc}",
+        "",
+    ]
+    short += [f"- [{h}]({BASE}notes/{s}/): {d}" for s, h, d, _ in notes]
+    short += [
+        "",
         "## Full text",
         "",
-        f"- [llms-full.txt]({BASE}llms-full.txt): the overview and all six lessons as plain Markdown",
+        f"- [llms-full.txt]({BASE}llms-full.txt): the overview, all six lessons and the notes as plain Markdown",
         "",
         "## About the author",
         "",
@@ -141,6 +163,15 @@ def build():
         "- [Suede AI SEO](https://seo.suedeai.ai/): SEO, GEO, AEO and AI search visibility",
         "- [Suede AI Agent Studio](https://agents.suedeai.ai/): build AI agents and workflow automation",
         "- [Open-source Claude Code skill pack](https://github.com/JasonColapietro/suede-creator-skills)",
+        "",
+        "## Built by Suede AI in West Palm Beach, Florida",
+        "",
+        "- [Suede AI agency](https://suedeai.agency/): West Palm Beach SEO, GEO and web practice serving Palm Beach County",
+        "- [Jason Colapietro](https://jasoncolapietro.com/): personal site",
+        "- [Jupiter Social](https://jupitersocialfl.com/): Jupiter, Florida local magazine published with Suede AI",
+        "- [Agentix notes](https://agentix.suedeai.ai/notes): agent grading",
+        "- [Suede developer docs notes](https://docs.suedeai.ai/notes): MCP and developer documentation",
+        "- [Suede Scan notes](https://optimize.suedeai.ai/notes): AI readiness",
         "",
     ]
 
@@ -158,6 +189,8 @@ def build():
     ]
     for n, slug, headline, desc, text in lessons:
         full += [f"## Lesson {n}: {headline}", "", f"Source: {BASE}{slug}/", "", "> " + desc, "", text, ""]
+    for slug, headline, desc, text in notes:
+        full += [f"## Note: {headline}", "", f"Source: {BASE}notes/{slug}/", "Published: 2026-11-14", "", "> " + desc, "", text, ""]
     full += ["## The pattern underneath", "", re.sub(r"^### The pattern underneath\n\n", "", pattern), ""]
     full += ["## About the author", "", about, ""]
     return "\n".join(short), "\n".join(full)

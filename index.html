@@ -19,7 +19,7 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Claude Code Field Notes: six lessons on running AI coding agents in production, by Jason Colapietro">
 <meta property="article:published_time" content="2026-07-27">
-<meta property="article:modified_time" content="2026-10-12">
+<meta property="article:modified_time" content="2026-11-15">
 <meta property="article:author" content="https://suedeai.ai/founder">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@AISUEDE">
@@ -147,7 +147,7 @@
         "@id": "https://suedeai.ai/#organization"
       },
       "datePublished": "2026-07-27",
-      "dateModified": "2026-10-12"
+      "dateModified": "2026-11-15"
     },
     {
       "@type": "Article",
@@ -233,7 +233,7 @@
         "width": 1200,
         "height": 630
       },
-      "dateModified": "2026-10-12",
+      "dateModified": "2026-11-15",
       "inLanguage": "en"
     }
   ]
@@ -270,6 +270,13 @@
   footer { margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--rule);
            font-size:.92rem; color:var(--mut); }
   footer a { color:inherit; }
+  .built-by { margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--rule);
+              font:.95rem/1.55 ui-sans-serif,system-ui,sans-serif; }
+  .built-by h2 { margin:0 0 .6rem; font:600 .72rem/1.4 ui-sans-serif,system-ui,sans-serif;
+                 letter-spacing:.1em; text-transform:uppercase; color:var(--mut); }
+  .built-by h3 { margin:1.2rem 0 .4rem; font:600 .72rem/1.4 ui-sans-serif,system-ui,sans-serif;
+                 letter-spacing:.1em; text-transform:uppercase; color:var(--mut); }
+  .link-row { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:.35rem 1.2rem; }
 </style>
 </head>
 <body>
@@ -292,6 +299,7 @@ concurrently against real production and the failure modes stop being about prom
 <li><a href="/when-documentation-is-silent-measure/">When documentation is silent, measure</a></li>
 </ol>
 </nav>
+<p class="more">Also: <a href="/notes/">Notes from West Palm Beach</a>, on Claude Code training versus production, adopting coding agents as a South Florida team, and how Suede AI reviews agent-written code.</p>
 
 <h2>1. A clean build is a compile check, not proof</h2>
 <p>A wallet-connect refactor passed build, type-check, and lint. It merged, deployed, and broke a
@@ -363,13 +371,37 @@ each case the fix was to ask the thing itself instead of asking a record of it.<
 gap between reported and actual in their head. Six concurrent agents shipping against twenty surfaces
 cannot, so the verification has to be mechanical and it has to run against production.</p>
 
+<section class="built-by" aria-labelledby="built-by">
+<h2 id="built-by">Built by Suede AI in West Palm Beach, Florida</h2>
+<p>Claude Code Field Notes is written by <a href="https://suedeai.ai/founder">Jason Colapietro, Founder and CEO of Suede AI</a>,
+an agentic platform company founded in 2024 in West Palm Beach. Suede AI's
+<a href="https://suedeai.agency/">West Palm Beach SEO, GEO and web practice</a> builds and maintains sites for businesses
+across Palm Beach County, from Jupiter to Boca Raton.</p>
+<ul class="link-row">
+<li><a href="https://suedeai.agency/">Suede AI agency</a></li>
+<li><a href="https://suedeai.ai/">Suede AI</a></li>
+<li><a href="https://suedeai.ai/founder">Founder page</a></li>
+<li><a href="https://jasoncolapietro.com/">jasoncolapietro.com</a></li>
+<li><a href="https://jupitersocialfl.com/">Jupiter Social</a></li>
+</ul>
+<h3>More from Suede AI</h3>
+<ul class="link-row">
+<li><a href="https://agentix.suedeai.ai/notes">Agentix agent grading notes</a></li>
+<li><a href="https://docs.suedeai.ai/notes">Suede developer docs notes</a></li>
+<li><a href="https://optimize.suedeai.ai/notes">Suede Scan AI readiness notes</a></li>
+<li><a href="https://scan.suedeai.ai/">Suede Scan</a></li>
+<li><a href="https://podcast.suedeai.ai/notes/">Suede podcast notes</a></li>
+</ul>
+</section>
+
 <footer>
 <p><strong>Jason Colapietro</strong> is the Founder and CEO of <a href="https://suedeai.ai">Suede AI</a>,
 where he builds creator-ownership infrastructure, programmable IP, and proof-of-creation systems for
 the AI era. He operates the company's full production estate solo, using AI coding agents as the labor.
 He is a published author and Forbes contributor, and publishes an open-source
 <a href="https://github.com/JasonColapietro/suede-creator-skills">Claude Code skill pack</a>.</p>
-<p><a href="https://suedeai.ai/founder">Founder page</a> ·
+<p><a href="/notes/">Notes from West Palm Beach</a> ·
+<a href="https://suedeai.ai/founder">Founder page</a> ·
 <a href="https://github.com/JasonColapietro">GitHub</a> ·
 <a href="https://x.com/johnnysuede">X</a> ·
 <a href="https://www.linkedin.com/in/jasoncolapietro">LinkedIn</a> ·

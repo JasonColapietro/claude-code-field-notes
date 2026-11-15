@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Notes from West Palm Beach | Claude Code Field Notes</title>
+<meta name="description" content="Jason Colapietro on running Claude Code for a West Palm Beach agency: training versus production, team adoption in South Florida, and reviewing agent code.">
+<link rel="canonical" href="https://claude.suedeai.ai/notes/">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Notes from West Palm Beach: Claude Code at a working agency">
+<meta property="og:description" content="Jason Colapietro on running Claude Code for a West Palm Beach agency: training versus production, team adoption in South Florida, and reviewing agent code.">
+<meta property="og:url" content="https://claude.suedeai.ai/notes/">
+<meta property="og:site_name" content="Claude Code Field Notes">
+<meta property="og:image" content="https://claude.suedeai.ai/og/notes.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Notes from West Palm Beach, Claude Code Field Notes by Jason Colapietro">
+<meta property="article:published_time" content="2026-11-14">
+<meta property="article:modified_time" content="2026-11-15">
+<meta property="article:author" content="https://suedeai.ai/founder">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@AISUEDE">
+<meta name="twitter:creator" content="@johnnysuede">
+<meta name="twitter:title" content="Notes from West Palm Beach: Claude Code at a working agency">
+<meta name="twitter:description" content="Jason Colapietro on running Claude Code for a West Palm Beach agency: training versus production, team adoption in South Florida, and reviewing agent code.">
+<meta name="twitter:image" content="https://claude.suedeai.ai/og/notes.png">
+
+<!--
+  JSON-LD references the canonical @ids from suede-home/src/lib/seo-entity.ts.
+  Do NOT mint new @ids here: a minted Person id will not merge with the live
+  graph. Person = https://suedeai.ai/founder#person, Org = https://suedeai.ai/#organization.
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://suedeai.ai/founder#person",
+      "name": "Jason Colapietro",
+      "jobTitle": "Founder and CEO, Suede AI",
+      "url": "https://suedeai.ai/founder"
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://suedeai.ai/#organization",
+      "name": "Suede AI",
+      "url": "https://suedeai.ai"
+    },
+    {
+      "@type": "CollectionPage",
+      "@id": "https://claude.suedeai.ai/notes/#webpage",
+      "url": "https://claude.suedeai.ai/notes/",
+      "name": "Notes from West Palm Beach | Claude Code Field Notes",
+      "description": "Jason Colapietro on running Claude Code for a West Palm Beach agency: training versus production, team adoption in South Florida, and reviewing agent code.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://claude.suedeai.ai/#website"
+      },
+      "breadcrumb": {
+        "@id": "https://claude.suedeai.ai/notes/#breadcrumb"
+      },
+      "mainEntity": {
+        "@id": "https://claude.suedeai.ai/notes/#blog"
+      },
+      "datePublished": "2026-11-14",
+      "dateModified": "2026-11-15"
+    },
+    {
+      "@type": "Blog",
+      "@id": "https://claude.suedeai.ai/notes/#blog",
+      "name": "Notes from West Palm Beach",
+      "description": "Jason Colapietro on running Claude Code for a West Palm Beach agency: training versus production, team adoption in South Florida, and reviewing agent code.",
+      "url": "https://claude.suedeai.ai/notes/",
+      "author": {
+        "@id": "https://suedeai.ai/founder#person"
+      },
+      "publisher": {
+        "@id": "https://suedeai.ai/#organization"
+      },
+      "inLanguage": "en",
+      "spatialCoverage": [
+        {
+          "@type": "Place",
+          "name": "West Palm Beach, Florida",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "West Palm Beach",
+            "addressRegion": "FL",
+            "addressCountry": "US"
+          }
+        },
+        {
+          "@type": "Place",
+          "name": "Jupiter, Florida",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Jupiter",
+            "addressRegion": "FL",
+            "addressCountry": "US"
+          }
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Palm Beach County, Florida"
+        }
+      ],
+      "blogPost": [
+        {
+          "@type": "BlogPosting",
+          "@id": "https://claude.suedeai.ai/notes/claude-academy-badges-west-palm-beach-agency/#article",
+          "headline": "Nine Claude Academy badges, one West Palm Beach agency: what the courses cover and what production added",
+          "url": "https://claude.suedeai.ai/notes/claude-academy-badges-west-palm-beach-agency/"
+        },
+        {
+          "@type": "BlogPosting",
+          "@id": "https://claude.suedeai.ai/notes/claude-code-bible-south-florida-dev-teams/#article",
+          "headline": "From The Claude Code Bible to client work: a field guide for South Florida dev teams adopting coding agents",
+          "url": "https://claude.suedeai.ai/notes/claude-code-bible-south-florida-dev-teams/"
+        },
+        {
+          "@type": "BlogPosting",
+          "@id": "https://claude.suedeai.ai/notes/reviewing-agent-written-code/#article",
+          "headline": "Agent-written code still needs proof: how Suede AI reviews AI changes before they ship",
+          "url": "https://claude.suedeai.ai/notes/reviewing-agent-written-code/"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://claude.suedeai.ai/notes/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Claude Code Field Notes",
+          "item": "https://claude.suedeai.ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Notes",
+          "item": "https://claude.suedeai.ai/notes/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+  :root { color-scheme: light dark; --fg:#16130f; --bg:#faf8f5; --mut:#6b625a; --rule:#e2dbd2; --accent:#8a5a2b; }
+  @media (prefers-color-scheme: dark) { :root { --fg:#ece7e1; --bg:#14120f; --mut:#a49a90; --rule:#2e2822; --accent:#c9955c; } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg);
+         font:17px/1.65 ui-serif, Georgia, "Iowan Old Style", serif; }
+  .wrap { max-width:44rem; margin:0 auto; padding:4rem 1.25rem 6rem; }
+  h1 { font-size:clamp(1.9rem,5vw,2.6rem); line-height:1.15; letter-spacing:-.02em; margin:0 0 .6rem; }
+  h2 { font-size:1.3rem; line-height:1.3; margin:2.8rem 0 .7rem; letter-spacing:-.01em; }
+  .deck { color:var(--mut); font-size:1.06rem; margin:0 0 2rem; }
+  .byline { font:600 .85rem/1.5 ui-sans-serif,system-ui,sans-serif; letter-spacing:.06em;
+            text-transform:uppercase; color:var(--accent); margin:0 0 2.4rem; }
+  .crumbs { font:600 .78rem/1.5 ui-sans-serif,system-ui,sans-serif; letter-spacing:.06em;
+            text-transform:uppercase; color:var(--mut); margin:0 0 1.4rem; }
+  .crumbs a { text-decoration:none; }
+  a { color:var(--accent); }
+  hr { border:0; border-top:1px solid var(--rule); margin:3rem 0; }
+  pre { background:color-mix(in oklab, var(--fg) 5%, transparent); border:1px solid var(--rule);
+        border-radius:6px; padding:.85rem 1rem; overflow-x:auto;
+        font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace; }
+  code { font:.9em ui-monospace,SFMono-Regular,Menlo,monospace; }
+  .related ul { padding-left:1.2rem; }
+  .related li { margin:0 0 .6rem; }
+  .lesson-nav { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem 2rem;
+                margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--rule);
+                font:.95rem/1.45 ui-sans-serif,system-ui,sans-serif; }
+  .lesson-nav a { text-decoration:none; max-width:20rem; }
+  .lesson-nav .next { margin-left:auto; text-align:right; }
+  .lesson-nav span { display:block; font:600 .72rem/1.4 ui-sans-serif,system-ui,sans-serif;
+                     letter-spacing:.1em; text-transform:uppercase; color:var(--mut); }
+  footer { margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--rule);
+           font-size:.92rem; color:var(--mut); }
+  footer a { color:inherit; }
+  .toc { margin:0 0 2.4rem; padding:1rem 0 .4rem; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
+  .toc h2 { margin:0 0 .4rem; font:600 .72rem/1.4 ui-sans-serif,system-ui,sans-serif;
+            letter-spacing:.1em; text-transform:uppercase; color:var(--mut); }
+  .toc ol { margin:0 0 .6rem; padding-left:1.4rem; }
+  .toc li { margin:0 0 .9rem; }
+  .toc .sum { color:var(--mut); font-size:.95rem; }
+  .built-by { margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--rule);
+              font:.95rem/1.55 ui-sans-serif,system-ui,sans-serif; }
+  .built-by h2 { margin:0 0 .6rem; font:600 .72rem/1.4 ui-sans-serif,system-ui,sans-serif;
+                 letter-spacing:.1em; text-transform:uppercase; color:var(--mut); }
+  .built-by h3 { margin:1.2rem 0 .4rem; font:600 .72rem/1.4 ui-sans-serif,system-ui,sans-serif;
+                 letter-spacing:.1em; text-transform:uppercase; color:var(--mut); }
+  .link-row { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:.35rem 1.2rem; }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+<p class="crumbs"><a href="/">Claude Code Field Notes</a> · Notes</p>
+<h1>Notes from West Palm Beach</h1>
+<p class="byline">Jason Colapietro · Founder and CEO, Suede AI</p>
+<p class="deck">The <a href="/">six lessons</a> cover what broke in production. These notes cover the
+work around them: what Claude Code training does and does not prepare you for, how a South Florida team
+can adopt coding agents in a month, and how Suede AI reviews agent-written code before it ships. Written
+in West Palm Beach by Jason Colapietro.</p>
+
+<nav class="toc" aria-labelledby="notes-list">
+<h2 id="notes-list">The notes</h2>
+<ol>
+<li><a href="/notes/claude-academy-badges-west-palm-beach-agency/">Nine Claude Academy badges, one West Palm Beach agency: what the courses cover and what production added</a><br><span class="sum">Jason Colapietro holds nine Claude Academy badges. What the courses teach, what running Suede AI&#x27;s West Palm Beach agency on Claude Code added, and what to ask.</span></li>
+<li><a href="/notes/claude-code-bible-south-florida-dev-teams/">From The Claude Code Bible to client work: a field guide for South Florida dev teams adopting coding agents</a><br><span class="sum">A four-week plan for Palm Beach County dev teams moving from The Claude Code Bible to client work with coding agents: memory files, gates, worktrees, limits.</span></li>
+<li><a href="/notes/reviewing-agent-written-code/">Agent-written code still needs proof: how Suede AI reviews AI changes before they ship</a><br><span class="sum">How Suede AI reviews agent-written code before it ships: diff review against callers, gates on the committed state, live-URL checks and a receipt per change.</span></li>
+</ol>
+</nav>
+
+<section class="built-by" aria-labelledby="built-by">
+<h2 id="built-by">Built by Suede AI in West Palm Beach, Florida</h2>
+<p>Claude Code Field Notes is written by <a href="https://suedeai.ai/founder">Jason Colapietro, Founder and CEO of Suede AI</a>,
+an agentic platform company founded in 2024 in West Palm Beach. Suede AI's
+<a href="https://suedeai.agency/">West Palm Beach SEO, GEO and web practice</a> builds and maintains sites for businesses
+across Palm Beach County, from Jupiter to Boca Raton.</p>
+<ul class="link-row">
+<li><a href="https://suedeai.agency/">Suede AI agency</a></li>
+<li><a href="https://suedeai.ai/">Suede AI</a></li>
+<li><a href="https://suedeai.ai/founder">Founder page</a></li>
+<li><a href="https://jasoncolapietro.com/">jasoncolapietro.com</a></li>
+<li><a href="https://jupitersocialfl.com/">Jupiter Social</a></li>
+</ul>
+<h3>More from Suede AI</h3>
+<ul class="link-row">
+<li><a href="https://agentix.suedeai.ai/notes">Agentix agent grading notes</a></li>
+<li><a href="https://docs.suedeai.ai/notes">Suede developer docs notes</a></li>
+<li><a href="https://optimize.suedeai.ai/notes">Suede Scan AI readiness notes</a></li>
+<li><a href="https://scan.suedeai.ai/">Suede Scan</a></li>
+<li><a href="https://podcast.suedeai.ai/notes/">Suede podcast notes</a></li>
+</ul>
+</section>
+
+<footer>
+<p><strong>Jason Colapietro</strong> is the Founder and CEO of <a href="https://suedeai.ai">Suede AI</a>,
+an agentic platform company he founded in 2024 in West Palm Beach, Florida. He operates the company's
+production estate with AI coding agents as the labor and is the author of
+<a href="https://www.amazon.com/dp/B0HHTMJWB4">The Claude Code Bible</a>.</p>
+<p><a href="/">Field Notes</a> ·
+<a href="/notes/">Notes</a> ·
+<a href="https://suedeai.ai/founder">Founder page</a> ·
+<a href="https://github.com/JasonColapietro">GitHub</a> ·
+<a href="https://x.com/johnnysuede">X</a></p>
+<p><a href="https://suedeai.ai/privacy">Privacy</a> ·
+<a href="https://suedeai.ai/contact">Contact</a></p>
+</footer>
+
+</main>
+  <script src="https://suedeai.ai/agent-view.js" defer></script>
+</body>
+</html>

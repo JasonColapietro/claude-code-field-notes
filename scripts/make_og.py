@@ -7,6 +7,9 @@ The cards use the site's light palette from the inline stylesheet (--bg
 SERIF_FONT is a Georgia-metric serif (Gelasio, OFL, from google/fonts) and
 SANS_FONT a system-style sans (Inter). Output: og/<slug>.png for each lesson
 and og/home.png for the overview page.
+
+Usage: python3 scripts/make_og.py SERIF_FONT SANS_FONT --notes renders only the
+/notes/ cards (og/notes.png and og/notes-<slug>.png), leaving lesson cards as-is.
 """
 import json
 import re
@@ -25,6 +28,11 @@ LESSONS = [
     "deploy-conventions-are-attack-surface",
     "registry-vs-process-table",
     "when-documentation-is-silent-measure",
+]
+NOTES = [
+    "claude-academy-badges-west-palm-beach-agency",
+    "claude-code-bible-south-florida-dev-teams",
+    "reviewing-agent-written-code",
 ]
 
 
@@ -69,8 +77,25 @@ def card(headline, kicker, out, serif, sans):
     img.save(out, optimize=True)
 
 
+def headline_of(path):
+    html = path.read_text()
+    graph = json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>', html, re.S).group(1))
+    return next(x for x in graph["@graph"] if x["@type"] in ("Article", "BlogPosting"))["headline"]
+
+
+def notes(serif, sans):
+    for n, slug in enumerate(NOTES, 1):
+        headline = headline_of(ROOT / "notes" / slug / "index.html").split(":")[0]
+        card(headline, f"Notes from West Palm Beach · {n} of {len(NOTES)}", ROOT / "og" / f"notes-{slug}.png", serif, sans)
+    card("Notes from West Palm Beach: Claude Code at a working agency", "Claude Code Field Notes · Notes",
+         ROOT / "og" / "notes.png", serif, sans)
+
+
 def main():
     serif, sans = sys.argv[1], sys.argv[2]
+    if "--notes" in sys.argv:
+        notes(serif, sans)
+        return
     for n, slug in enumerate(LESSONS, 1):
         html = (ROOT / slug / "index.html").read_text()
         graph = json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>', html, re.S).group(1))

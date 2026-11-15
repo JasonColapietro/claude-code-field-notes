@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://claude.suedeai.ai/</loc>
-    <lastmod>2026-10-12</lastmod>
+    <lastmod>2026-11-15</lastmod>
   </url>
   <url>
     <loc>https://claude.suedeai.ai/clean-build-is-not-proof/</loc>
@@ -27,5 +27,21 @@
   <url>
     <loc>https://claude.suedeai.ai/when-documentation-is-silent-measure/</loc>
     <lastmod>2026-10-12</lastmod>
+  </url>
+  <url>
+    <loc>https://claude.suedeai.ai/notes/</loc>
+    <lastmod>2026-11-15</lastmod>
+  </url>
+  <url>
+    <loc>https://claude.suedeai.ai/notes/claude-academy-badges-west-palm-beach-agency/</loc>
+    <lastmod>2026-11-15</lastmod>
+  </url>
+  <url>
+    <loc>https://claude.suedeai.ai/notes/claude-code-bible-south-florida-dev-teams/</loc>
+    <lastmod>2026-11-15</lastmod>
+  </url>
+  <url>
+    <loc>https://claude.suedeai.ai/notes/reviewing-agent-written-code/</loc>
+    <lastmod>2026-11-15</lastmod>
   </url>
 </urlset>

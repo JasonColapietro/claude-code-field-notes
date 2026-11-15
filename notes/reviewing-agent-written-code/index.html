@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Agent-written code needs proof | Claude Code Field Notes</title>
+<meta name="description" content="How Suede AI reviews agent-written code before it ships: diff review against callers, gates on the committed state, live-URL checks and a receipt per change.">
+<link rel="canonical" href="https://claude.suedeai.ai/notes/reviewing-agent-written-code/">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Agent-written code still needs proof: how Suede AI reviews AI changes before they ship">
+<meta property="og:description" content="How Suede AI reviews agent-written code before it ships: diff review against callers, gates on the committed state, live-URL checks and a receipt per change.">
+<meta property="og:url" content="https://claude.suedeai.ai/notes/reviewing-agent-written-code/">
+<meta property="og:site_name" content="Claude Code Field Notes">
+<meta property="og:image" content="https://claude.suedeai.ai/og/notes-reviewing-agent-written-code.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Agent-written code still needs proof: how Suede AI reviews AI changes before they ship, a Claude Code Field Notes note by Jason Colapietro">
+<meta property="article:published_time" content="2026-11-14">
+<meta property="article:modified_time" content="2026-11-15">
+<meta property="article:author" content="https://suedeai.ai/founder">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@AISUEDE">
+<meta name="twitter:creator" content="@johnnysuede">
+<meta name="twitter:title" content="Agent-written code still needs proof: how Suede AI reviews AI changes before they ship">
+<meta name="twitter:description" content="How Suede AI reviews agent-written code before it ships: diff review against callers, gates on the committed state, live-URL checks and a receipt per change.">
+<meta name="twitter:image" content="https://claude.suedeai.ai/og/notes-reviewing-agent-written-code.png">
+
+<!--
+  JSON-LD references the canonical @ids from suede-home/src/lib/seo-entity.ts.
+  Do NOT mint new @ids here: a minted Person id will not merge with the live
+  graph. Person = https://suedeai.ai/founder#person, Org = https://suedeai.ai/#organization.
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://suedeai.ai/founder#person",
+      "name": "Jason Colapietro",
+      "jobTitle": "Founder and CEO, Suede AI",
+      "url": "https://suedeai.ai/founder"
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://suedeai.ai/#organization",
+      "name": "Suede AI",
+      "url": "https://suedeai.ai"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://claude.suedeai.ai/notes/reviewing-agent-written-code/#webpage",
+      "url": "https://claude.suedeai.ai/notes/reviewing-agent-written-code/",
+      "name": "Agent-written code needs proof | Claude Code Field Notes",
+      "description": "How Suede AI reviews agent-written code before it ships: diff review against callers, gates on the committed state, live-URL checks and a receipt per change.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://claude.suedeai.ai/#website"
+      },
+      "breadcrumb": {
+        "@id": "https://claude.suedeai.ai/notes/reviewing-agent-written-code/#breadcrumb"
+      },
+      "primaryImageOfPage": {
+        "@id": "https://claude.suedeai.ai/og/notes-reviewing-agent-written-code.png"
+      },
+      "mainEntity": {
+        "@id": "https://claude.suedeai.ai/notes/reviewing-agent-written-code/#article"
+      },
+      "datePublished": "2026-11-14",
+      "dateModified": "2026-11-15"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://claude.suedeai.ai/notes/reviewing-agent-written-code/#article",
+      "headline": "Agent-written code still needs proof: how Suede AI reviews AI changes before they ship",
+      "description": "How Suede AI reviews agent-written code before it ships: diff review against callers, gates on the committed state, live-URL checks and a receipt per change.",
+      "author": {
+        "@id": "https://suedeai.ai/founder#person"
+      },
+      "publisher": {
+        "@id": "https://suedeai.ai/#organization"
+      },
+      "datePublished": "2026-11-14",
+      "dateModified": "2026-11-15",
+      "mainEntityOfPage": "https://claude.suedeai.ai/notes/reviewing-agent-written-code/",
+      "url": "https://claude.suedeai.ai/notes/reviewing-agent-written-code/",
+      "isPartOf": {
+        "@id": "https://claude.suedeai.ai/notes/#blog"
+      },
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Code review for AI-generated changes"
+        },
+        {
+          "@type": "Thing",
+          "name": "Claude Code"
+        },
+        {
+          "@type": "Thing",
+          "name": "Deployment verification"
+        }
+      ],
+      "spatialCoverage": [
+        {
+          "@type": "Place",
+          "name": "West Palm Beach, Florida",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "West Palm Beach",
+            "addressRegion": "FL",
+            "addressCountry": "US"
+          }
+        },
+        {
+          "@type": "Place",
+          "name": "Jupiter, Florida",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Jupiter",
+            "addressRegion": "FL",
+            "addressCountry": "US"
+          }
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Palm Beach County, Florida"
+        }
+      ],
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://claude.suedeai.ai/og/notes-reviewing-agent-written-code.png",
+        "width": 1200,
+        "height": 630
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://claude.suedeai.ai/notes/reviewing-agent-written-code/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Claude Code Field Notes",
+          "item": "https://claude.suedeai.ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Notes",
+          "item": "https://claude.suedeai.ai/notes/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Agent-written code still needs proof: how Suede AI reviews AI changes before they ship",
+          "item": "https://claude.suedeai.ai/notes/reviewing-agent-written-code/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+  :root { color-scheme: light dark; --fg:#16130f; --bg:#faf8f5; --mut:#6b625a; --rule:#e2dbd2; --accent:#8a5a2b; }
+  @media (prefers-color-scheme: dark) { :root { --fg:#ece7e1; --bg:#14120f; --mut:#a49a90; --rule:#2e2822; --accent:#c9955c; } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg);
+         font:17px/1.65 ui-serif, Georgia, "Iowan Old Style", serif; }
+  .wrap { max-width:44rem; margin:0 auto; padding:4rem 1.25rem 6rem; }
+  h1 { font-size:clamp(1.9rem,5vw,2.6rem); line-height:1.15; letter-spacing:-.02em; margin:0 0 .6rem; }
+  h2 { font-size:1.3rem; line-height:1.3; margin:2.8rem 0 .7rem; letter-spacing:-.01em; }
+  .deck { color:var(--mut); font-size:1.06rem; margin:0 0 2rem; }
+  .byline { font:600 .85rem/1.5 ui-sans-serif,system-ui,sans-serif; letter-spacing:.06em;
+            text-transform:uppercase; color:var(--accent); margin:0 0 2.4rem; }
+  .crumbs { font:600 .78rem/1.5 ui-sans-serif,system-ui,sans-serif; letter-spacing:.06em;
+            text-transform:uppercase; color:var(--mut); margin:0 0 1.4rem; }
+  .crumbs a { text-decoration:none; }
+  a { color:var(--accent); }
+  hr { border:0; border-top:1px solid var(--rule); margin:3rem 0; }
+  pre { background:color-mix(in oklab, var(--fg) 5%, transparent); border:1px solid var(--rule);
+        border-radius:6px; padding:.85rem 1rem; overflow-x:auto;
+        font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace; }
+  code { font:.9em ui-monospace,SFMono-Regular,Menlo,monospace; }
+  .related ul { padding-left:1.2rem; }
+  .related li { margin:0 0 .6rem; }
+  .lesson-nav { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem 2rem;
+                margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--rule);
+                font:.95rem/1.45 ui-sans-serif,system-ui,sans-serif; }
+  .lesson-nav a { text-decoration:none; max-width:20rem; }
+  .lesson-nav .next { margin-left:auto; text-align:right; }
+  .lesson-nav span { display:block; font:600 .72rem/1.4 ui-sans-serif,system-ui,sans-serif;
+                     letter-spacing:.1em; text-transform:uppercase; color:var(--mut); }
+  footer { margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--rule);
+           font-size:.92rem; color:var(--mut); }
+  footer a { color:inherit; }
+  .toc { margin:0 0 2.4rem; padding:1rem 0 .4rem; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
+  .toc h2 { margin:0 0 .4rem; font:600 .72rem/1.4 ui-sans-serif,system-ui,sans-serif;
+            letter-spacing:.1em; text-transform:uppercase; color:var(--mut); }
+  .toc ol { margin:0 0 .6rem; padding-left:1.4rem; }
+  .toc li { margin:0 0 .9rem; }
+  .toc .sum { color:var(--mut); font-size:.95rem; }
+  .built-by { margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--rule);
+              font:.95rem/1.55 ui-sans-serif,system-ui,sans-serif; }
+  .built-by h2 { margin:0 0 .6rem; font:600 .72rem/1.4 ui-sans-serif,system-ui,sans-serif;
+                 letter-spacing:.1em; text-transform:uppercase; color:var(--mut); }
+  .built-by h3 { margin:1.2rem 0 .4rem; font:600 .72rem/1.4 ui-sans-serif,system-ui,sans-serif;
+                 letter-spacing:.1em; text-transform:uppercase; color:var(--mut); }
+  .link-row { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:.35rem 1.2rem; }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+<p class="crumbs"><a href="/">Claude Code Field Notes</a> · <a href="/notes/">Notes</a> · 3 of 3</p>
+<article>
+<h1>Agent-written code still needs proof: how Suede AI reviews AI changes before they ship</h1>
+<p class="byline">Jason Colapietro · Founder and CEO, Suede AI · West Palm Beach, Florida</p>
+<p class="deck">Note 3 of 3 in <a href="/notes/">Notes from West Palm Beach</a>, published November 14, 2026.</p>
+<p>An agent can write a plausible diff in minutes. Reviewing it properly takes longer than that, and the gap between those two numbers is where most agent-written bugs get through. At Suede AI the answer is not to slow the agent down. It is to make the review mechanical enough that it actually happens every time.</p>
+<p>This note is the review process Jason Colapietro runs on agent-written changes across the Suede AI estate and on client sites maintained from West Palm Beach. It has three layers and ends with a receipt.</p>
+
+<h2>Layer one: read the diff against its callers</h2>
+<p>Agents are good at making the changed lines look right. They are weaker at the code that calls those lines. So the first read starts outside the diff:</p>
+<ul>
+<li>Who calls the changed function, and does every caller still get what it expects?</li>
+<li>Did a default change? Defaults are where an "optional" refactor quietly alters behavior for every existing user.</li>
+<li>Did a file land in a directory the platform serves as public routes?</li>
+<li>Is there a deleted check, a widened permission or a new network call the task did not ask for?</li>
+</ul>
+<p>Each finding gets a severity from P0 to P3 and a file and line. A P0 blocks the merge. A P3 goes in a follow-up. The open-source <a href="https://skills.suedeai.ai/skills/suede-code-review.html">Suede code review skill</a> encodes the same pass, so an agent can run it on another agent's work before a person reads it.</p>
+
+<h2>Layer two: gates on the committed state</h2>
+<p>Jason Colapietro calls the gates the boring part, and they are the part most often run wrong. They must run against what was committed, not against a working tree that still holds uncommitted fixes. A fresh clone of the branch is the cleanest way:</p>
+<pre><code>git clone --branch "$BRANCH" --depth 1 "$REPO" /tmp/review &amp;&amp; cd /tmp/review
+npm ci &amp;&amp; npm run typecheck &amp;&amp; npm run lint &amp;&amp; npm test &amp;&amp; npm run build</code></pre>
+<p>If the repository has a guard test for its own rules, such as banned copy, schema ids or sitemap entries, it runs here too. Suede never weakens a guard to get a green run. If a guard blocks a change, the change is wrong or the guard needs a reviewed update in its own commit.</p>
+
+<h2>Layer three: proof on the live URL</h2>
+<p>After the deploy lands, check the thing a user touches. For a content change, that is the page itself, its canonical URL and its structured data. For an interactive change, it is a click in a clean browser profile. For a route change, it is the status codes:</p>
+<pre><code>for path in / /notes/ /api/healthz /api/handler.test; do
+  printf '%s %s\n' "$(curl -s -o /dev/null -w '%{http_code}' "https://example.com$path")" "$path"
+done</code></pre>
+<p>Pages should answer 200 and anything that is not a real endpoint should answer 404. <a href="/deploy-conventions-are-attack-surface/">Lesson 4</a> covers why the last line in that loop matters. <a href="/clean-build-is-not-proof/">Lesson 1</a> covers why none of this can be replaced by a build log.</p>
+
+<h2>What goes in the receipt</h2>
+<p>Every reviewed change leaves a short record. It is plain text, and it fits in a commit message or a pull request description:</p>
+<ul>
+<li>The commit SHA that was reviewed and deployed.</li>
+<li>Each command that ran, with its exit code.</li>
+<li>Each URL that was checked, with its status and what was looked at.</li>
+<li>What was not checked, stated plainly.</li>
+</ul>
+<p>The last line is the one that builds trust. A receipt that claims everything was verified is less believable than one that says the checkout flow was not exercised because it needs a real card.</p>
+
+<h2>Why Suede publishes receipts in public</h2>
+<p>The same habit runs through how Suede AI talks about itself. Every public claim has a proof link on the <a href="https://seo.suedeai.ai/evidence">Suede AI evidence page</a>. When we say that on October 31, 2026, Suede AI SEO ranked #1 among Palm Beach County-based companies listed in <a href="https://themanifest.com/artificial-intelligence/consulting/deployment/companies/florida">The Manifest's Florida AI Deployment directory</a> and in the top 25 statewide, the directory link and the <a href="https://suedeai.agency/company/recognition">recognition page</a> sit next to it. When we cite Jason Colapietro's <a href="https://github.com/search?q=is%3Apr+author%3AJasonColapietro+is%3Amerged+-user%3AJasonColapietro+-user%3ASuede-AI&amp;type=pullrequests">54 merged pull requests across 46 open-source repositories he does not maintain</a>, the search that produces the number is the link.</p>
+<p>Open-source review is also where this process was tested hardest. Maintainers of projects like Jest, Adobe React Spectrum and the Polkadot SDK do not accept a change because an agent was confident. They accept it because the change is small, tested and explained, which is the standard Suede applies to its own work. Suede AI, formerly Suede Labs, holds internal changes to the same bar it meets in other people's repositories.</p>
+
+<h2>The cost, stated plainly</h2>
+<p>This process is slower than merging on a green check. Every change gains a review pass and a live check, and that is real time on the calendar. We accept the cost because the alternative was measured too: the broken wallet button from lesson 1 took ten minutes to catch and revert after it reached users, plus the time it was live. Review time is predictable. Incident time is not.</p>
+<p>It also does not catch everything. Live checks sample the paths that matter most; they do not exercise every branch. That is why the receipt names what was skipped, and why Jason Colapietro treats a missing line in a receipt as a finding in its own right.</p>
+
+<h2>Next step</h2>
+<p>If agents write code for your website, ask your developer for one receipt from last week. If they cannot produce one, the <a href="https://suedeai.agency/assessment">Suede AI assessment</a> is a good place to start. It applies this review to your live site and hands back findings you can verify yourself. For the person behind the process, see Jason Colapietro's <a href="https://suedeai.ai/founder">founder page</a>, and for an AI readiness check of your pages, the <a href="https://optimize.suedeai.ai/notes">Suede Scan notes</a>.</p>
+</article>
+
+<nav class="lesson-nav" aria-label="Notes">
+<a class="prev" rel="prev" href="/notes/claude-code-bible-south-florida-dev-teams/"><span>Previous note</span>A field guide for South Florida dev teams adopting coding agents</a>
+<a class="next" href="/"><span>Field Notes</span>The six production lessons</a>
+</nav>
+
+<section class="built-by" aria-labelledby="built-by">
+<h2 id="built-by">Built by Suede AI in West Palm Beach, Florida</h2>
+<p>Claude Code Field Notes is written by <a href="https://suedeai.ai/founder">Jason Colapietro, Founder and CEO of Suede AI</a>,
+an agentic platform company founded in 2024 in West Palm Beach. Suede AI's
+<a href="https://suedeai.agency/">West Palm Beach SEO, GEO and web practice</a> builds and maintains sites for businesses
+across Palm Beach County, from Jupiter to Boca Raton.</p>
+<ul class="link-row">
+<li><a href="https://suedeai.agency/">Suede AI agency</a></li>
+<li><a href="https://suedeai.ai/">Suede AI</a></li>
+<li><a href="https://suedeai.ai/founder">Founder page</a></li>
+<li><a href="https://jasoncolapietro.com/">jasoncolapietro.com</a></li>
+<li><a href="https://jupitersocialfl.com/">Jupiter Social</a></li>
+</ul>
+<h3>More from Suede AI</h3>
+<ul class="link-row">
+<li><a href="https://agentix.suedeai.ai/notes">Agentix agent grading notes</a></li>
+<li><a href="https://docs.suedeai.ai/notes">Suede developer docs notes</a></li>
+<li><a href="https://optimize.suedeai.ai/notes">Suede Scan AI readiness notes</a></li>
+<li><a href="https://scan.suedeai.ai/">Suede Scan</a></li>
+<li><a href="https://podcast.suedeai.ai/notes/">Suede podcast notes</a></li>
+</ul>
+</section>
+
+<footer>
+<p><strong>Jason Colapietro</strong> is the Founder and CEO of <a href="https://suedeai.ai">Suede AI</a>,
+an agentic platform company he founded in 2024 in West Palm Beach, Florida. He operates the company's
+production estate with AI coding agents as the labor and is the author of
+<a href="https://www.amazon.com/dp/B0HHTMJWB4">The Claude Code Bible</a>.</p>
+<p><a href="/">Field Notes</a> ·
+<a href="/notes/">Notes</a> ·
+<a href="https://suedeai.ai/founder">Founder page</a> ·
+<a href="https://github.com/JasonColapietro">GitHub</a> ·
+<a href="https://x.com/johnnysuede">X</a></p>
+<p><a href="https://suedeai.ai/privacy">Privacy</a> ·
+<a href="https://suedeai.ai/contact">Contact</a></p>
+</footer>
+
+</main>
+  <script src="https://suedeai.ai/agent-view.js" defer></script>
+</body>
+</html>

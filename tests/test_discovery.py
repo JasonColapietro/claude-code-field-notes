@@ -21,6 +21,12 @@ LESSONS = [
     "when-documentation-is-silent-measure",
 ]
 LESSON_URLS = [CANONICAL + slug + "/" for slug in LESSONS]
+NOTES = [
+    "claude-academy-badges-west-palm-beach-agency",
+    "claude-code-bible-south-florida-dev-teams",
+    "reviewing-agent-written-code",
+]
+NOTE_URLS = [CANONICAL + "notes/"] + [CANONICAL + "notes/" + slug + "/" for slug in NOTES]
 PERSON = "https://suedeai.ai/founder#person"
 ORGANIZATION = "https://suedeai.ai/#organization"
 
@@ -40,8 +46,8 @@ class DiscoveryTests(unittest.TestCase):
         sitemap = ET.parse(ROOT / "sitemap.xml").getroot()
         ns = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9"}
         self.assertEqual(sitemap.tag, "{" + ns["s"] + "}urlset")
-        self.assertEqual([node.text for node in sitemap.findall("s:url/s:loc", ns)], [CANONICAL] + LESSON_URLS)
-        self.assertEqual(len(sitemap), 1 + len(LESSONS))
+        self.assertEqual([node.text for node in sitemap.findall("s:url/s:loc", ns)], [CANONICAL] + LESSON_URLS + NOTE_URLS)
+        self.assertEqual(len(sitemap), 1 + len(LESSONS) + len(NOTE_URLS))
         for url in sitemap:
             self.assertEqual([child.tag.split("}")[1] for child in url], ["loc", "lastmod"])
             self.assertRegex(url.find("s:lastmod", ns).text, r"^\d{4}-\d{2}-\d{2}$")

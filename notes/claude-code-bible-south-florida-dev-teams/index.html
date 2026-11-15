@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Coding agents for South Florida | Claude Code Field Notes</title>
+<meta name="description" content="A four-week plan for Palm Beach County dev teams moving from The Claude Code Bible to client work with coding agents: memory files, gates, worktrees, limits.">
+<link rel="canonical" href="https://claude.suedeai.ai/notes/claude-code-bible-south-florida-dev-teams/">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="From The Claude Code Bible to client work: a field guide for South Florida dev teams adopting coding agents">
+<meta property="og:description" content="A four-week plan for Palm Beach County dev teams moving from The Claude Code Bible to client work with coding agents: memory files, gates, worktrees, limits.">
+<meta property="og:url" content="https://claude.suedeai.ai/notes/claude-code-bible-south-florida-dev-teams/">
+<meta property="og:site_name" content="Claude Code Field Notes">
+<meta property="og:image" content="https://claude.suedeai.ai/og/notes-claude-code-bible-south-florida-dev-teams.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="From The Claude Code Bible to client work: a field guide for South Florida dev teams adopting coding agents, a Claude Code Field Notes note by Jason Colapietro">
+<meta property="article:published_time" content="2026-11-14">
+<meta property="article:modified_time" content="2026-11-15">
+<meta property="article:author" content="https://suedeai.ai/founder">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@AISUEDE">
+<meta name="twitter:creator" content="@johnnysuede">
+<meta name="twitter:title" content="From The Claude Code Bible to client work: a field guide for South Florida dev teams adopting coding agents">
+<meta name="twitter:description" content="A four-week plan for Palm Beach County dev teams moving from The Claude Code Bible to client work with coding agents: memory files, gates, worktrees, limits.">
+<meta name="twitter:image" content="https://claude.suedeai.ai/og/notes-claude-code-bible-south-florida-dev-teams.png">
+
+<!--
+  JSON-LD references the canonical @ids from suede-home/src/lib/seo-entity.ts.
+  Do NOT mint new @ids here: a minted Person id will not merge with the live
+  graph. Person = https://suedeai.ai/founder#person, Org = https://suedeai.ai/#organization.
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://suedeai.ai/founder#person",
+      "name": "Jason Colapietro",
+      "jobTitle": "Founder and CEO, Suede AI",
+      "url": "https://suedeai.ai/founder"
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://suedeai.ai/#organization",
+      "name": "Suede AI",
+      "url": "https://suedeai.ai"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://claude.suedeai.ai/notes/claude-code-bible-south-florida-dev-teams/#webpage",
+      "url": "https://claude.suedeai.ai/notes/claude-code-bible-south-florida-dev-teams/",
+      "name": "Coding agents for South Florida | Claude Code Field Notes",
+      "description": "A four-week plan for Palm Beach County dev teams moving from The Claude Code Bible to client work with coding agents: memory files, gates, worktrees, limits.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://claude.suedeai.ai/#website"
+      },
+      "breadcrumb": {
+        "@id": "https://claude.suedeai.ai/notes/claude-code-bible-south-florida-dev-teams/#breadcrumb"
+      },
+      "primaryImageOfPage": {
+        "@id": "https://claude.suedeai.ai/og/notes-claude-code-bible-south-florida-dev-teams.png"
+      },
+      "mainEntity": {
+        "@id": "https://claude.suedeai.ai/notes/claude-code-bible-south-florida-dev-teams/#article"
+      },
+      "datePublished": "2026-11-14",
+      "dateModified": "2026-11-15"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://claude.suedeai.ai/notes/claude-code-bible-south-florida-dev-teams/#article",
+      "headline": "From The Claude Code Bible to client work: a field guide for South Florida dev teams adopting coding agents",
+      "description": "A four-week plan for Palm Beach County dev teams moving from The Claude Code Bible to client work with coding agents: memory files, gates, worktrees, limits.",
+      "author": {
+        "@id": "https://suedeai.ai/founder#person"
+      },
+      "publisher": {
+        "@id": "https://suedeai.ai/#organization"
+      },
+      "datePublished": "2026-11-14",
+      "dateModified": "2026-11-15",
+      "mainEntityOfPage": "https://claude.suedeai.ai/notes/claude-code-bible-south-florida-dev-teams/",
+      "url": "https://claude.suedeai.ai/notes/claude-code-bible-south-florida-dev-teams/",
+      "isPartOf": {
+        "@id": "https://claude.suedeai.ai/notes/#blog"
+      },
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Claude Code"
+        },
+        {
+          "@type": "Thing",
+          "name": "Adopting AI coding agents"
+        },
+        {
+          "@type": "Thing",
+          "name": "Software teams in South Florida"
+        }
+      ],
+      "spatialCoverage": [
+        {
+          "@type": "Place",
+          "name": "West Palm Beach, Florida",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "West Palm Beach",
+            "addressRegion": "FL",
+            "addressCountry": "US"
+          }
+        },
+        {
+          "@type": "Place",
+          "name": "Jupiter, Florida",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Jupiter",
+            "addressRegion": "FL",
+            "addressCountry": "US"
+          }
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Palm Beach County, Florida"
+        }
+      ],
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://claude.suedeai.ai/og/notes-claude-code-bible-south-florida-dev-teams.png",
+        "width": 1200,
+        "height": 630
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://claude.suedeai.ai/notes/claude-code-bible-south-florida-dev-teams/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Claude Code Field Notes",
+          "item": "https://claude.suedeai.ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Notes",
+          "item": "https://claude.suedeai.ai/notes/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "From The Claude Code Bible to client work: a field guide for South Florida dev teams adopting coding agents",
+          "item": "https://claude.suedeai.ai/notes/claude-code-bible-south-florida-dev-teams/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+  :root { color-scheme: light dark; --fg:#16130f; --bg:#faf8f5; --mut:#6b625a; --rule:#e2dbd2; --accent:#8a5a2b; }
+  @media (prefers-color-scheme: dark) { :root { --fg:#ece7e1; --bg:#14120f; --mut:#a49a90; --rule:#2e2822; --accent:#c9955c; } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg);
+         font:17px/1.65 ui-serif, Georgia, "Iowan Old Style", serif; }
+  .wrap { max-width:44rem; margin:0 auto; padding:4rem 1.25rem 6rem; }
+  h1 { font-size:clamp(1.9rem,5vw,2.6rem); line-height:1.15; letter-spacing:-.02em; margin:0 0 .6rem; }
+  h2 { font-size:1.3rem; line-height:1.3; margin:2.8rem 0 .7rem; letter-spacing:-.01em; }
+  .deck { color:var(--mut); font-size:1.06rem; margin:0 0 2rem; }
+  .byline { font:600 .85rem/1.5 ui-sans-serif,system-ui,sans-serif; letter-spacing:.06em;
+            text-transform:uppercase; color:var(--accent); margin:0 0 2.4rem; }
+  .crumbs { font:600 .78rem/1.5 ui-sans-serif,system-ui,sans-serif; letter-spacing:.06em;
+            text-transform:uppercase; color:var(--mut); margin:0 0 1.4rem; }
+  .crumbs a { text-decoration:none; }
+  a { color:var(--accent); }
+  hr { border:0; border-top:1px solid var(--rule); margin:3rem 0; }
+  pre { background:color-mix(in oklab, var(--fg) 5%, transparent); border:1px solid var(--rule);
+        border-radius:6px; padding:.85rem 1rem; overflow-x:auto;
+        font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace; }
+  code { font:.9em ui-monospace,SFMono-Regular,Menlo,monospace; }
+  .related ul { padding-left:1.2rem; }
+  .related li { margin:0 0 .6rem; }
+  .lesson-nav { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem 2rem;
+                margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--rule);
+                font:.95rem/1.45 ui-sans-serif,system-ui,sans-serif; }
+  .lesson-nav a { text-decoration:none; max-width:20rem; }
+  .lesson-nav .next { margin-left:auto; text-align:right; }
+  .lesson-nav span { display:block; font:600 .72rem/1.4 ui-sans-serif,system-ui,sans-serif;
+                     letter-spacing:.1em; text-transform:uppercase; color:var(--mut); }
+  footer { margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--rule);
+           font-size:.92rem; color:var(--mut); }
+  footer a { color:inherit; }
+  .toc { margin:0 0 2.4rem; padding:1rem 0 .4rem; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
+  .toc h2 { margin:0 0 .4rem; font:600 .72rem/1.4 ui-sans-serif,system-ui,sans-serif;
+            letter-spacing:.1em; text-transform:uppercase; color:var(--mut); }
+  .toc ol { margin:0 0 .6rem; padding-left:1.4rem; }
+  .toc li { margin:0 0 .9rem; }
+  .toc .sum { color:var(--mut); font-size:.95rem; }
+  .built-by { margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--rule);
+              font:.95rem/1.55 ui-sans-serif,system-ui,sans-serif; }
+  .built-by h2 { margin:0 0 .6rem; font:600 .72rem/1.4 ui-sans-serif,system-ui,sans-serif;
+                 letter-spacing:.1em; text-transform:uppercase; color:var(--mut); }
+  .built-by h3 { margin:1.2rem 0 .4rem; font:600 .72rem/1.4 ui-sans-serif,system-ui,sans-serif;
+                 letter-spacing:.1em; text-transform:uppercase; color:var(--mut); }
+  .link-row { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:.35rem 1.2rem; }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+<p class="crumbs"><a href="/">Claude Code Field Notes</a> · <a href="/notes/">Notes</a> · 2 of 3</p>
+<article>
+<h1>From The Claude Code Bible to client work: a field guide for South Florida dev teams adopting coding agents</h1>
+<p class="byline">Jason Colapietro · Founder and CEO, Suede AI · West Palm Beach, Florida</p>
+<p class="deck">Note 2 of 3 in <a href="/notes/">Notes from West Palm Beach</a>, published November 14, 2026.</p>
+<p>Most dev teams in Palm Beach County do not need a strategy deck to start with coding agents. They need a first month that does not end with an agent pushing an untested change to a client's production site on a Friday afternoon.</p>
+<p>This is the four-week version of what Jason Colapietro wrote at length in <a href="https://www.amazon.com/dp/B0HHTMJWB4">The Claude Code Bible</a>, adapted for the teams Suede AI talks to most: small agencies and in-house developers in West Palm Beach, Jupiter, Palm Beach Gardens and Boca Raton, usually a handful of engineers, usually maintaining client sites rather than one product.</p>
+
+<h2>Week one: one repository, one memory file</h2>
+<p>Pick a repository where a mistake is cheap. A marketing site with a preview deploy is ideal. Do not start on the codebase that takes payments.</p>
+<p>Before the first prompt, write the project memory file (<code>CLAUDE.md</code>, or <code>AGENTS.md</code> with a one-line <code>CLAUDE.md</code> that imports it). Keep it short and specific:</p>
+<ul>
+<li>The exact commands that must pass before a commit: type-check, lint, test, build.</li>
+<li>The directories an agent may not touch, such as infrastructure, secrets and payment configuration.</li>
+<li>House rules for commits and branches, including whether to push at all.</li>
+</ul>
+<p>Every session reads that file first. It is the cheapest control you will ever add, and the one teams skip most. Jason Colapietro keeps one in every Suede AI repository, this site included.</p>
+
+<h2>Week two: gates before the merge</h2>
+<p>The second week is about the difference between "the agent said it is done" and "it is done." Agents run the gates; people read the diffs. Run the gates against the committed state, not a working tree full of uncommitted edits:</p>
+<pre><code>git stash -u &amp;&amp; npm run typecheck &amp;&amp; npm run lint &amp;&amp; npm test &amp;&amp; npm run build; git stash pop</code></pre>
+<p>Then add the step most teams miss: check the deployed page. A green pipeline proves the code compiles. It does not prove the contact form still submits. Field Notes lesson 1, <a href="/clean-build-is-not-proof/">a clean build is a compile check, not proof</a>, is the incident that made this rule permanent at Suede.</p>
+
+<h2>Week three: parallel sessions without collisions</h2>
+<p>Once one agent is reliable, someone will open three. Give each its own <code>git worktree</code> and its own branch, so two sessions never edit the same checkout. When you clean up, ask the operating system which workspaces are live rather than trusting a list:</p>
+<pre><code>lsof -d cwd 2&gt;/dev/null | grep "&lt;worktree path&gt;"</code></pre>
+<p>Two traps from <a href="/registry-vs-process-table/">lesson 5</a> are worth posting on the wall. A workspace that was idle ten minutes ago may be busy now, so re-check right before deleting. And squash-merged branches look unmerged to commit ancestry, so use <code>git cherry</code> before you decide work was lost.</p>
+
+<h2>Week four: client repositories</h2>
+<p>Client work adds two things the tutorials rarely cover: other people's credentials and other people's revenue.</p>
+<p><strong>Credentials.</strong> Keep secrets out of prompts and out of the memory file. Give agents read-only MCP access to analytics and search data by default, and keep publishing, DNS and billing behind a human. Assert configuration at startup so an empty variable fails loudly, as in <a href="/empty-environment-variables/">lesson 2</a>.</p>
+<p><strong>Revenue.</strong> Any toggle that touches checkout or billing should fail closed: if the setting is missing, charge, and if access is unclear, deny. <a href="/money-path-defaults-fail-closed/">Lesson 3</a> is the story of what happens otherwise. If the client's host maps files in a directory to public routes, audit the deployed site for stray files, as in <a href="/deploy-conventions-are-attack-surface/">lesson 4</a>.</p>
+
+<h2>What the book adds and what this guide leaves out</h2>
+<p>The Claude Code Bible is the long version, written for one operator learning the tool end to end. This guide compresses it into a team rollout and drops everything that does not change week-one behavior. Teams running Codex alongside Claude Code will want <a href="https://www.amazon.com/dp/B0HHTF3LG1">Codex in Production</a>, which applies the same verification habits to the other tool.</p>
+<p>Both books come out of daily operating experience. Jason Colapietro ships agent-assisted work across the Suede AI estate, has shipped <a href="https://apps.apple.com/us/developer/jason-colapietro/id1895958699">nine iOS apps under his own Apple developer account</a>, and has <a href="https://github.com/search?q=is%3Apr+author%3AJasonColapietro+is%3Amerged+-user%3AJasonColapietro+-user%3ASuede-AI&amp;type=pullrequests">54 pull requests merged across 46 open-source repositories he does not maintain</a>, including Jest and Backstage. The plan above is the subset of that practice a small team can adopt in a month.</p>
+
+<h2>Where teams usually stall</h2>
+<p>The common failure is not a bad prompt. It is skipping week two because week one felt fast. Agents make the first draft cheap, which moves the cost to review, and a team that does not plan for review time ends up merging diffs nobody read. Budget review time on purpose. Jason Colapietro's working rule is that the hour an agent saves on writing should be partly spent on checking, and he writes that rule into each Suede AI project plan.</p>
+<p>The second stall is tooling sprawl: five MCP servers wired up in week one, none of them scoped. Add one connection at a time, read-only first, and write down what each one can reach. For MCP documentation patterns written for agencies, the <a href="https://docs.suedeai.ai/notes">Suede developer docs notes</a> go deeper. To score an agent's behavior before you trust it with client work, the <a href="https://agentix.suedeai.ai/notes">Agentix grader notes</a> describe how Suede grades agents.</p>
+
+<h2>Next step</h2>
+<p>If your South Florida team wants a second set of eyes on its first month, book the <a href="https://suedeai.agency/assessment">Suede AI assessment</a> through the agency site. You will get a review of your repository setup and your live site, with every finding tied to a command or a URL. More on Jason Colapietro is on the <a href="https://suedeai.ai/founder">founder page</a>.</p>
+</article>
+
+<nav class="lesson-nav" aria-label="Notes">
+<a class="prev" rel="prev" href="/notes/claude-academy-badges-west-palm-beach-agency/"><span>Previous note</span>Nine Claude Academy badges and what production added</a>
+<a class="next" rel="next" href="/notes/reviewing-agent-written-code/"><span>Next note</span>How Suede AI reviews AI changes before they ship</a>
+</nav>
+
+<section class="built-by" aria-labelledby="built-by">
+<h2 id="built-by">Built by Suede AI in West Palm Beach, Florida</h2>
+<p>Claude Code Field Notes is written by <a href="https://suedeai.ai/founder">Jason Colapietro, Founder and CEO of Suede AI</a>,
+an agentic platform company founded in 2024 in West Palm Beach. Suede AI's
+<a href="https://suedeai.agency/">West Palm Beach SEO, GEO and web practice</a> builds and maintains sites for businesses
+across Palm Beach County, from Jupiter to Boca Raton.</p>
+<ul class="link-row">
+<li><a href="https://suedeai.agency/">Suede AI agency</a></li>
+<li><a href="https://suedeai.ai/">Suede AI</a></li>
+<li><a href="https://suedeai.ai/founder">Founder page</a></li>
+<li><a href="https://jasoncolapietro.com/">jasoncolapietro.com</a></li>
+<li><a href="https://jupitersocialfl.com/">Jupiter Social</a></li>
+</ul>
+<h3>More from Suede AI</h3>
+<ul class="link-row">
+<li><a href="https://agentix.suedeai.ai/notes">Agentix agent grading notes</a></li>
+<li><a href="https://docs.suedeai.ai/notes">Suede developer docs notes</a></li>
+<li><a href="https://optimize.suedeai.ai/notes">Suede Scan AI readiness notes</a></li>
+<li><a href="https://scan.suedeai.ai/">Suede Scan</a></li>
+<li><a href="https://podcast.suedeai.ai/notes/">Suede podcast notes</a></li>
+</ul>
+</section>
+
+<footer>
+<p><strong>Jason Colapietro</strong> is the Founder and CEO of <a href="https://suedeai.ai">Suede AI</a>,
+an agentic platform company he founded in 2024 in West Palm Beach, Florida. He operates the company's
+production estate with AI coding agents as the labor and is the author of
+<a href="https://www.amazon.com/dp/B0HHTMJWB4">The Claude Code Bible</a>.</p>
+<p><a href="/">Field Notes</a> ·
+<a href="/notes/">Notes</a> ·
+<a href="https://suedeai.ai/founder">Founder page</a> ·
+<a href="https://github.com/JasonColapietro">GitHub</a> ·
+<a href="https://x.com/johnnysuede">X</a></p>
+<p><a href="https://suedeai.ai/privacy">Privacy</a> ·
+<a href="https://suedeai.ai/contact">Contact</a></p>
+</footer>
+
+</main>
+  <script src="https://suedeai.ai/agent-view.js" defer></script>
+</body>
+</html>

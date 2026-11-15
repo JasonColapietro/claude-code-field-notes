@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Notes from West Palm Beach | Claude Code Field Notes</title>
-<meta name="description" content="Jason Colapietro on running Claude Code for a West Palm Beach agency: training versus production, team adoption in South Florida, and reviewing agent code.">
+<meta name="description" content="Jason Colapietro on Claude Code at a West Palm Beach agency: training, team adoption, code review, client repo memory files and token budgets on fixed fees.">
 <link rel="canonical" href="https://claude.suedeai.ai/notes/">
 
 <meta property="og:type" content="article">
 <meta property="og:title" content="Notes from West Palm Beach: Claude Code at a working agency">
-<meta property="og:description" content="Jason Colapietro on running Claude Code for a West Palm Beach agency: training versus production, team adoption in South Florida, and reviewing agent code.">
+<meta property="og:description" content="Jason Colapietro on Claude Code at a West Palm Beach agency: training, team adoption, code review, client repo memory files and token budgets on fixed fees.">
 <meta property="og:url" content="https://claude.suedeai.ai/notes/">
 <meta property="og:site_name" content="Claude Code Field Notes">
 <meta property="og:image" content="https://claude.suedeai.ai/og/notes.png">
@@ -25,7 +25,7 @@
 <meta name="twitter:site" content="@AISUEDE">
 <meta name="twitter:creator" content="@johnnysuede">
 <meta name="twitter:title" content="Notes from West Palm Beach: Claude Code at a working agency">
-<meta name="twitter:description" content="Jason Colapietro on running Claude Code for a West Palm Beach agency: training versus production, team adoption in South Florida, and reviewing agent code.">
+<meta name="twitter:description" content="Jason Colapietro on Claude Code at a West Palm Beach agency: training, team adoption, code review, client repo memory files and token budgets on fixed fees.">
 <meta name="twitter:image" content="https://claude.suedeai.ai/og/notes.png">
 
 <!--
@@ -55,7 +55,7 @@
       "@id": "https://claude.suedeai.ai/notes/#webpage",
       "url": "https://claude.suedeai.ai/notes/",
       "name": "Notes from West Palm Beach | Claude Code Field Notes",
-      "description": "Jason Colapietro on running Claude Code for a West Palm Beach agency: training versus production, team adoption in South Florida, and reviewing agent code.",
+      "description": "Jason Colapietro on Claude Code at a West Palm Beach agency: training, team adoption, code review, client repo memory files and token budgets on fixed fees.",
       "inLanguage": "en",
       "isPartOf": {
         "@id": "https://claude.suedeai.ai/#website"
@@ -73,7 +73,7 @@
       "@type": "Blog",
       "@id": "https://claude.suedeai.ai/notes/#blog",
       "name": "Notes from West Palm Beach",
-      "description": "Jason Colapietro on running Claude Code for a West Palm Beach agency: training versus production, team adoption in South Florida, and reviewing agent code.",
+      "description": "Jason Colapietro on Claude Code at a West Palm Beach agency: training, team adoption, code review, client repo memory files and token budgets on fixed fees.",
       "url": "https://claude.suedeai.ai/notes/",
       "author": {
         "@id": "https://suedeai.ai/founder#person"
@@ -126,6 +126,18 @@
           "@id": "https://claude.suedeai.ai/notes/reviewing-agent-written-code/#article",
           "headline": "Agent-written code still needs proof: how Suede AI reviews AI changes before they ship",
           "url": "https://claude.suedeai.ai/notes/reviewing-agent-written-code/"
+        },
+        {
+          "@type": "BlogPosting",
+          "@id": "https://claude.suedeai.ai/notes/claude-md-agents-md-client-repo-playbook/#article",
+          "headline": "Setting up CLAUDE.md and AGENTS.md for a client repo: an agency playbook",
+          "url": "https://claude.suedeai.ai/notes/claude-md-agents-md-client-repo-playbook/"
+        },
+        {
+          "@type": "BlogPosting",
+          "@id": "https://claude.suedeai.ai/notes/coding-agent-token-budgets-fixed-fee-projects/#article",
+          "headline": "Cost control for coding agents: budgeting tokens on fixed-fee South Florida web projects",
+          "url": "https://claude.suedeai.ai/notes/coding-agent-token-budgets-fixed-fee-projects/"
         }
       ]
     },
@@ -207,7 +219,8 @@
 <p class="byline">Jason Colapietro · Founder and CEO, Suede AI</p>
 <p class="deck">The <a href="/">six lessons</a> cover what broke in production. These notes cover the
 work around them: what Claude Code training does and does not prepare you for, how a South Florida team
-can adopt coding agents in a month, and how Suede AI reviews agent-written code before it ships. Written
+can adopt coding agents in a month, how Suede AI reviews agent-written code before it ships, how to set up
+memory files in a client repository, and how to budget agent tokens on a fixed-fee project. Written
 in West Palm Beach by Jason Colapietro.</p>
 
 <nav class="toc" aria-labelledby="notes-list">
@@ -216,6 +229,8 @@ in West Palm Beach by Jason Colapietro.</p>
 <li><a href="/notes/claude-academy-badges-west-palm-beach-agency/">Nine Claude Academy badges, one West Palm Beach agency: what the courses cover and what production added</a><br><span class="sum">Jason Colapietro holds nine Claude Academy badges. What the courses teach, what running Suede AI&#x27;s West Palm Beach agency on Claude Code added, and what to ask.</span></li>
 <li><a href="/notes/claude-code-bible-south-florida-dev-teams/">From The Claude Code Bible to client work: a field guide for South Florida dev teams adopting coding agents</a><br><span class="sum">A four-week plan for Palm Beach County dev teams moving from The Claude Code Bible to client work with coding agents: memory files, gates, worktrees, limits.</span></li>
 <li><a href="/notes/reviewing-agent-written-code/">Agent-written code still needs proof: how Suede AI reviews AI changes before they ship</a><br><span class="sum">How Suede AI reviews agent-written code before it ships: diff review against callers, gates on the committed state, live-URL checks and a receipt per change.</span></li>
+<li><a href="/notes/claude-md-agents-md-client-repo-playbook/">Setting up CLAUDE.md and AGENTS.md for a client repo: an agency playbook</a><br><span class="sum">An agency playbook for CLAUDE.md and AGENTS.md in client repos: one source of truth, six sections, rule order, deny rules, guard tests and handover.</span></li>
+<li><a href="/notes/coding-agent-token-budgets-fixed-fee-projects/">Cost control for coding agents: budgeting tokens on fixed-fee South Florida web projects</a><br><span class="sum">How Suede AI budgets coding-agent tokens on fixed-fee South Florida web projects: per-task ceilings, model choice, small context, stop rules and a cost log.</span></li>
 </ol>
 </nav>
 

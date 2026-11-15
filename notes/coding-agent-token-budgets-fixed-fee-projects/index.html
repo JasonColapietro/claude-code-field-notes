@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Token budgets on fixed-fee builds | Claude Code Field Notes</title>
+<meta name="description" content="How Suede AI budgets coding-agent tokens on fixed-fee South Florida web projects: per-task ceilings, model choice, small context, stop rules and a cost log.">
+<link rel="canonical" href="https://claude.suedeai.ai/notes/coding-agent-token-budgets-fixed-fee-projects/">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cost control for coding agents: budgeting tokens on fixed-fee South Florida web projects">
+<meta property="og:description" content="How Suede AI budgets coding-agent tokens on fixed-fee South Florida web projects: per-task ceilings, model choice, small context, stop rules and a cost log.">
+<meta property="og:url" content="https://claude.suedeai.ai/notes/coding-agent-token-budgets-fixed-fee-projects/">
+<meta property="og:site_name" content="Claude Code Field Notes">
+<meta property="og:image" content="https://claude.suedeai.ai/og/notes-coding-agent-token-budgets-fixed-fee-projects.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Cost control for coding agents: budgeting tokens on fixed-fee South Florida web projects, a Claude Code Field Notes note by Jason Colapietro">
+<meta property="article:published_time" content="2026-11-15">
+<meta property="article:modified_time" content="2026-11-15">
+<meta property="article:author" content="https://suedeai.ai/founder">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@AISUEDE">
+<meta name="twitter:creator" content="@johnnysuede">
+<meta name="twitter:title" content="Cost control for coding agents: budgeting tokens on fixed-fee South Florida web projects">
+<meta name="twitter:description" content="How Suede AI budgets coding-agent tokens on fixed-fee South Florida web projects: per-task ceilings, model choice, small context, stop rules and a cost log.">
+<meta name="twitter:image" content="https://claude.suedeai.ai/og/notes-coding-agent-token-budgets-fixed-fee-projects.png">
+
+<!--
+  JSON-LD references the canonical @ids from suede-home/src/lib/seo-entity.ts.
+  Do NOT mint new @ids here: a minted Person id will not merge with the live
+  graph. Person = https://suedeai.ai/founder#person, Org = https://suedeai.ai/#organization.
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://suedeai.ai/founder#person",
+      "name": "Jason Colapietro",
+      "jobTitle": "Founder and CEO, Suede AI",
+      "url": "https://suedeai.ai/founder"
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://suedeai.ai/#organization",
+      "name": "Suede AI",
+      "url": "https://suedeai.ai"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://claude.suedeai.ai/notes/coding-agent-token-budgets-fixed-fee-projects/#webpage",
+      "url": "https://claude.suedeai.ai/notes/coding-agent-token-budgets-fixed-fee-projects/",
+      "name": "Token budgets on fixed-fee builds | Claude Code Field Notes",
+      "description": "How Suede AI budgets coding-agent tokens on fixed-fee South Florida web projects: per-task ceilings, model choice, small context, stop rules and a cost log.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://claude.suedeai.ai/#website"
+      },
+      "breadcrumb": {
+        "@id": "https://claude.suedeai.ai/notes/coding-agent-token-budgets-fixed-fee-projects/#breadcrumb"
+      },
+      "primaryImageOfPage": {
+        "@id": "https://claude.suedeai.ai/og/notes-coding-agent-token-budgets-fixed-fee-projects.png"
+      },
+      "mainEntity": {
+        "@id": "https://claude.suedeai.ai/notes/coding-agent-token-budgets-fixed-fee-projects/#article"
+      },
+      "datePublished": "2026-11-15",
+      "dateModified": "2026-11-15"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://claude.suedeai.ai/notes/coding-agent-token-budgets-fixed-fee-projects/#article",
+      "headline": "Cost control for coding agents: budgeting tokens on fixed-fee South Florida web projects",
+      "description": "How Suede AI budgets coding-agent tokens on fixed-fee South Florida web projects: per-task ceilings, model choice, small context, stop rules and a cost log.",
+      "author": {
+        "@id": "https://suedeai.ai/founder#person"
+      },
+      "publisher": {
+        "@id": "https://suedeai.ai/#organization"
+      },
+      "datePublished": "2026-11-15",
+      "dateModified": "2026-11-15",
+      "mainEntityOfPage": "https://claude.suedeai.ai/notes/coding-agent-token-budgets-fixed-fee-projects/",
+      "url": "https://claude.suedeai.ai/notes/coding-agent-token-budgets-fixed-fee-projects/",
+      "isPartOf": {
+        "@id": "https://claude.suedeai.ai/notes/#blog"
+      },
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Coding agent cost control"
+        },
+        {
+          "@type": "Thing",
+          "name": "Claude Code"
+        },
+        {
+          "@type": "Thing",
+          "name": "Fixed-fee web projects"
+        }
+      ],
+      "spatialCoverage": [
+        {
+          "@type": "Place",
+          "name": "West Palm Beach, Florida",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "West Palm Beach",
+            "addressRegion": "FL",
+            "addressCountry": "US"
+          }
+        },
+        {
+          "@type": "Place",
+          "name": "Jupiter, Florida",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Jupiter",
+            "addressRegion": "FL",
+            "addressCountry": "US"
+          }
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Palm Beach County, Florida"
+        }
+      ],
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://claude.suedeai.ai/og/notes-coding-agent-token-budgets-fixed-fee-projects.png",
+        "width": 1200,
+        "height": 630
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://claude.suedeai.ai/notes/coding-agent-token-budgets-fixed-fee-projects/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Claude Code Field Notes",
+          "item": "https://claude.suedeai.ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Notes",
+          "item": "https://claude.suedeai.ai/notes/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Cost control for coding agents: budgeting tokens on fixed-fee South Florida web projects",
+          "item": "https://claude.suedeai.ai/notes/coding-agent-token-budgets-fixed-fee-projects/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+  :root { color-scheme: light dark; --fg:#16130f; --bg:#faf8f5; --mut:#6b625a; --rule:#e2dbd2; --accent:#8a5a2b; }
+  @media (prefers-color-scheme: dark) { :root { --fg:#ece7e1; --bg:#14120f; --mut:#a49a90; --rule:#2e2822; --accent:#c9955c; } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg);
+         font:17px/1.65 ui-serif, Georgia, "Iowan Old Style", serif; }
+  .wrap { max-width:44rem; margin:0 auto; padding:4rem 1.25rem 6rem; }
+  h1 { font-size:clamp(1.9rem,5vw,2.6rem); line-height:1.15; letter-spacing:-.02em; margin:0 0 .6rem; }
+  h2 { font-size:1.3rem; line-height:1.3; margin:2.8rem 0 .7rem; letter-spacing:-.01em; }
+  .deck { color:var(--mut); font-size:1.06rem; margin:0 0 2rem; }
+  .byline { font:600 .85rem/1.5 ui-sans-serif,system-ui,sans-serif; letter-spacing:.06em;
+            text-transform:uppercase; color:var(--accent); margin:0 0 2.4rem; }
+  .crumbs { font:600 .78rem/1.5 ui-sans-serif,system-ui,sans-serif; letter-spacing:.06em;
+            text-transform:uppercase; color:var(--mut); margin:0 0 1.4rem; }
+  .crumbs a { text-decoration:none; }
+  a { color:var(--accent); }
+  hr { border:0; border-top:1px solid var(--rule); margin:3rem 0; }
+  pre { background:color-mix(in oklab, var(--fg) 5%, transparent); border:1px solid var(--rule);
+        border-radius:6px; padding:.85rem 1rem; overflow-x:auto;
+        font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace; }
+  code { font:.9em ui-monospace,SFMono-Regular,Menlo,monospace; }
+  .related ul { padding-left:1.2rem; }
+  .related li { margin:0 0 .6rem; }
+  .lesson-nav { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem 2rem;
+                margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--rule);
+                font:.95rem/1.45 ui-sans-serif,system-ui,sans-serif; }
+  .lesson-nav a { text-decoration:none; max-width:20rem; }
+  .lesson-nav .next { margin-left:auto; text-align:right; }
+  .lesson-nav span { display:block; font:600 .72rem/1.4 ui-sans-serif,system-ui,sans-serif;
+                     letter-spacing:.1em; text-transform:uppercase; color:var(--mut); }
+  footer { margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--rule);
+           font-size:.92rem; color:var(--mut); }
+  footer a { color:inherit; }
+  .toc { margin:0 0 2.4rem; padding:1rem 0 .4rem; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
+  .toc h2 { margin:0 0 .4rem; font:600 .72rem/1.4 ui-sans-serif,system-ui,sans-serif;
+            letter-spacing:.1em; text-transform:uppercase; color:var(--mut); }
+  .toc ol { margin:0 0 .6rem; padding-left:1.4rem; }
+  .toc li { margin:0 0 .9rem; }
+  .toc .sum { color:var(--mut); font-size:.95rem; }
+  .built-by { margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--rule);
+              font:.95rem/1.55 ui-sans-serif,system-ui,sans-serif; }
+  .built-by h2 { margin:0 0 .6rem; font:600 .72rem/1.4 ui-sans-serif,system-ui,sans-serif;
+                 letter-spacing:.1em; text-transform:uppercase; color:var(--mut); }
+  .built-by h3 { margin:1.2rem 0 .4rem; font:600 .72rem/1.4 ui-sans-serif,system-ui,sans-serif;
+                 letter-spacing:.1em; text-transform:uppercase; color:var(--mut); }
+  .link-row { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:.35rem 1.2rem; }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+<p class="crumbs"><a href="/">Claude Code Field Notes</a> · <a href="/notes/">Notes</a> · 3 of 5</p>
+<article>
+<h1>Cost control for coding agents: budgeting tokens on fixed-fee South Florida web projects</h1>
+<p class="byline">Jason Colapietro · Founder and CEO, Suede AI · West Palm Beach, Florida</p>
+<p class="deck">Note 5 of 5 in <a href="/notes/">Notes from West Palm Beach</a>, published November 15, 2026.</p>
+<p>A fixed-fee website project has two numbers: the one the client signs and the one the agency absorbs. When coding agents do part of the work, token spend joins the second number, and nobody notices it until a small scope change turns into an afternoon of an agent retrying the same failing test.</p>
+<p>A lot of small-business web work in West Palm Beach, Jupiter and Boca Raton is sold at a fixed fee: a brochure site, a booking flow, a migration off an old page builder. This note is how Jason Colapietro budgets agent usage on that kind of work so the margin survives the project. It is a method, not a price list. Model prices change, and the arithmetic below works with whatever your plan charges.</p>
+
+<h2>Where the tokens actually go</h2>
+<p>Writing code is rarely the expensive part. On Suede's own projects, spend clusters in four places:</p>
+<ul>
+<li><strong>Re-reading context.</strong> Every turn resends the conversation so far. A session that has been open all morning pays for the whole morning on each new question.</li>
+<li><strong>Orientation.</strong> An agent with no memory file reads the repository to learn the build commands, the folder layout and the conventions, every session.</li>
+<li><strong>Retry loops.</strong> A test fails, the agent edits, the test fails again for a reason the agent cannot see. Each round costs a full turn.</li>
+<li><strong>Raw logs.</strong> A verbose build or test run piped straight into the context can outweigh the diff it was checking.</li>
+</ul>
+<p>Three of the four are about context, not intelligence. That is good news, because context is the part you control.</p>
+
+<h2>Budget per task, not per project</h2>
+<p>A project-level budget tells you that you overspent after it happened. A task-level budget stops the overspend while it is happening. Jason Colapietro breaks a fixed-fee quote into tasks small enough to review in one sitting, then gives each task a ceiling in turns. For headless runs the ceiling is a flag, and the JSON output reports what the run cost:</p>
+<pre><code>claude -p "Fix the mobile nav overlap on /services; run the gates" \
+  --max-turns 12 --output-format json &gt; run.json
+jq '{turns: .num_turns, cost: .total_cost_usd}' run.json</code></pre>
+<p>In an interactive session, <code>/cost</code> shows the running total on API billing. On a subscription plan the limit is usage allowance rather than an invoice, but the same discipline applies: a task that eats a third of the week's allowance has a cost even if no bill arrives.</p>
+
+<h2>Match the model to the job</h2>
+<p>Not every task needs the largest model. Copy edits, alt text, redirect lists and renames across a dozen files are mechanical, and a smaller, faster model handles them well. Debugging an intermittent form failure or planning a migration is where the larger model pays for itself, because one correct answer is cheaper than five plausible ones. Switch with <code>/model</code> per task, and write the default for each task type into the project plan so the choice is not made fresh every morning.</p>
+
+<h2>Keep the context small on purpose</h2>
+<p>Most savings come from habits that cost nothing:</p>
+<ul>
+<li>Run <code>/clear</code> between unrelated tasks. The nav fix does not need the history of the schema work.</li>
+<li>Use <code>/compact</code> when a long task must continue, so the summary replaces the transcript.</li>
+<li>Name the files in the prompt. "Fix the overlap in <code>components/Nav.tsx</code>" skips the search that "fix the nav" triggers.</li>
+<li>Keep the build commands in the memory file, as <a href="/notes/claude-md-agents-md-client-repo-playbook/">the client repo playbook</a> describes, so the agent never has to discover them.</li>
+<li>Trim logs before the agent reads them:</li>
+</ul>
+<pre><code>npm run build 2&gt;&amp;1 | tail -n 40
+npm test 2&gt;&amp;1 | grep -E "FAIL|Error|expected" | head -n 30</code></pre>
+
+<h2>Write a stop rule before you need one</h2>
+<p>The single most expensive pattern is an agent looping on a problem it cannot see. Jason's rule: if the same check fails three times with no new information in the output, the agent stops and a person looks. Usually the cause is outside the repository, such as an expired credential, a missing environment variable or a third-party outage, and no amount of editing will fix it. The Agentix note on <a href="https://agentix.suedeai.ai/notes/ai-agents-west-palm-beach-jupiter-service-businesses">where AI agents help and fail for West Palm Beach and Jupiter service businesses</a> makes the same point about customer-facing agents: knowing when to hand off is a feature, not a failure.</p>
+
+<h2>Put the agent line into the quote</h2>
+<p>Suede treats agent spend as an internal line in every fixed-fee estimate, next to hosting and review time. Then log actuals per task in a plain file: task, model, turns, cost, outcome. After a handful of projects the log tells you which task types run over, and the next quote gets more accurate. A scope change reopens the estimate for the tasks it touches, not just the hours.</p>
+<p>Small, well-defined fixes are where tight budgets work best. The Suede Scan note on <a href="https://optimize.suedeai.ai/notes/five-website-fixes-west-palm-beach-jupiter">five website fixes for West Palm Beach and Jupiter businesses</a> lists the kind of change that fits in a dozen turns with room to spare.</p>
+
+<h2>What the budget does not cover</h2>
+<p>Token spend is usually the smaller cost. Review is the larger one, and it is human time. A team that cuts agent spend by skipping the live check has saved the cheap thing and risked the expensive one. Jason Colapietro is firm on this: the budget exists to keep review time protected, which is why <a href="/notes/reviewing-agent-written-code/">note 3's review process</a> stays in every plan regardless of how the token line looks.</p>
+
+<h2>Who wrote this, and why it is written down</h2>
+<p>Jason Colapietro runs the Suede AI estate with coding agents doing most of the typing, and wrote the long versions of these habits in <a href="https://www.amazon.com/dp/B0HHTMJWB4">The Claude Code Bible</a> and <a href="https://www.amazon.com/dp/B0HHTF3LG1">Codex in Production</a>. Suede AI, formerly Suede Labs, is a member of <a href="https://seo.suedeai.ai/evidence#claude-for-startups">Claude for Startups</a>, Anthropic's startup program. Suede AI ranks among <a href="https://clutch.co/profile/suede-ai-seo">Clutch</a>'s <a href="https://clutch.co/consulting/ai/florida">Top 30 AI Consultants in Florida</a> and <a href="https://clutch.co/us/consulting/ai">Top 50 AI Consultants nationwide</a> (November 2026).</p>
+
+<h2>Next step</h2>
+<p>Pick your last fixed-fee project and estimate what the agent work cost per task. If you cannot, start the log this week. If you want a second opinion on the plan, the <a href="https://suedeai.agency/assessment">Suede AI assessment</a> from <a href="https://suedeai.agency/">Suede AI's West Palm Beach web practice</a> reviews your agent setup and your live site together. For more on Jason Colapietro, see the <a href="https://suedeai.ai/founder">founder page</a>.</p>
+</article>
+
+<nav class="lesson-nav" aria-label="Notes">
+<a class="prev" rel="prev" href="/notes/claude-md-agents-md-client-repo-playbook/"><span>Previous note</span>CLAUDE.md and AGENTS.md for a client repo</a>
+<a class="next" href="/"><span>Field Notes</span>The six production lessons</a>
+</nav>
+
+<section class="built-by" aria-labelledby="built-by">
+<h2 id="built-by">Built by Suede AI in West Palm Beach, Florida</h2>
+<p>Claude Code Field Notes is written by <a href="https://suedeai.ai/founder">Jason Colapietro, Founder and CEO of Suede AI</a>,
+an agentic platform company founded in 2024 in West Palm Beach. Suede AI's
+<a href="https://suedeai.agency/">West Palm Beach SEO, GEO and web practice</a> builds and maintains sites for businesses
+across Palm Beach County, from Jupiter to Boca Raton.</p>
+<p>Suede AI ranks among Clutch's <a href="https://clutch.co/consulting/ai/florida">Top 30 AI Consultants in Florida</a> and <a href="https://clutch.co/us/consulting/ai">Top 50 AI Consultants nationwide</a> (November 2026).</p>
+<ul class="link-row">
+<li><a href="https://suedeai.agency/">Suede AI agency</a></li>
+<li><a href="https://suedeai.ai/">Suede AI</a></li>
+<li><a href="https://suedeai.ai/founder">Founder page</a></li>
+<li><a href="https://jasoncolapietro.com/">jasoncolapietro.com</a></li>
+<li><a href="https://jupitersocialfl.com/">Jupiter Social</a></li>
+</ul>
+<h3>More from Suede AI</h3>
+<ul class="link-row">
+<li><a href="https://agentix.suedeai.ai/notes">Agentix agent grading notes</a></li>
+<li><a href="https://docs.suedeai.ai/notes">Suede developer docs notes</a></li>
+<li><a href="https://optimize.suedeai.ai/notes">Suede Scan AI readiness notes</a></li>
+<li><a href="https://scan.suedeai.ai/">Suede Scan</a></li>
+<li><a href="https://podcast.suedeai.ai/notes/">Suede podcast notes</a></li>
+</ul>
+</section>
+
+<footer>
+<p><strong>Jason Colapietro</strong> is the Founder and CEO of <a href="https://suedeai.ai">Suede AI</a>,
+an agentic platform company he founded in 2024 in West Palm Beach, Florida. He operates the company's
+production estate with AI coding agents as the labor and is the author of
+<a href="https://www.amazon.com/dp/B0HHTMJWB4">The Claude Code Bible</a>.</p>
+<p><a href="/">Field Notes</a> ·
+<a href="/notes/">Notes</a> ·
+<a href="https://suedeai.ai/founder">Founder page</a> ·
+<a href="https://github.com/JasonColapietro">GitHub</a> ·
+<a href="https://x.com/johnnysuede">X</a></p>
+<p><a href="https://suedeai.ai/privacy">Privacy</a> ·
+<a href="https://suedeai.ai/contact">Contact</a></p>
+</footer>
+
+</main>
+  <script src="https://suedeai.ai/agent-view.js" defer></script>
+</body>
+</html>

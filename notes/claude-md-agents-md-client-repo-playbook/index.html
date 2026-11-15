@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>CLAUDE.md for client repos | Claude Code Field Notes</title>
+<meta name="description" content="An agency playbook for CLAUDE.md and AGENTS.md in client repos: one source of truth, six sections, rule order, deny rules, guard tests and handover.">
+<link rel="canonical" href="https://claude.suedeai.ai/notes/claude-md-agents-md-client-repo-playbook/">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Setting up CLAUDE.md and AGENTS.md for a client repo: an agency playbook">
+<meta property="og:description" content="An agency playbook for CLAUDE.md and AGENTS.md in client repos: one source of truth, six sections, rule order, deny rules, guard tests and handover.">
+<meta property="og:url" content="https://claude.suedeai.ai/notes/claude-md-agents-md-client-repo-playbook/">
+<meta property="og:site_name" content="Claude Code Field Notes">
+<meta property="og:image" content="https://claude.suedeai.ai/og/notes-claude-md-agents-md-client-repo-playbook.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Setting up CLAUDE.md and AGENTS.md for a client repo: an agency playbook, a Claude Code Field Notes note by Jason Colapietro">
+<meta property="article:published_time" content="2026-11-15">
+<meta property="article:modified_time" content="2026-11-15">
+<meta property="article:author" content="https://suedeai.ai/founder">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@AISUEDE">
+<meta name="twitter:creator" content="@johnnysuede">
+<meta name="twitter:title" content="Setting up CLAUDE.md and AGENTS.md for a client repo: an agency playbook">
+<meta name="twitter:description" content="An agency playbook for CLAUDE.md and AGENTS.md in client repos: one source of truth, six sections, rule order, deny rules, guard tests and handover.">
+<meta name="twitter:image" content="https://claude.suedeai.ai/og/notes-claude-md-agents-md-client-repo-playbook.png">
+
+<!--
+  JSON-LD references the canonical @ids from suede-home/src/lib/seo-entity.ts.
+  Do NOT mint new @ids here: a minted Person id will not merge with the live
+  graph. Person = https://suedeai.ai/founder#person, Org = https://suedeai.ai/#organization.
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://suedeai.ai/founder#person",
+      "name": "Jason Colapietro",
+      "jobTitle": "Founder and CEO, Suede AI",
+      "url": "https://suedeai.ai/founder"
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://suedeai.ai/#organization",
+      "name": "Suede AI",
+      "url": "https://suedeai.ai"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://claude.suedeai.ai/notes/claude-md-agents-md-client-repo-playbook/#webpage",
+      "url": "https://claude.suedeai.ai/notes/claude-md-agents-md-client-repo-playbook/",
+      "name": "CLAUDE.md for client repos | Claude Code Field Notes",
+      "description": "An agency playbook for CLAUDE.md and AGENTS.md in client repos: one source of truth, six sections, rule order, deny rules, guard tests and handover.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://claude.suedeai.ai/#website"
+      },
+      "breadcrumb": {
+        "@id": "https://claude.suedeai.ai/notes/claude-md-agents-md-client-repo-playbook/#breadcrumb"
+      },
+      "primaryImageOfPage": {
+        "@id": "https://claude.suedeai.ai/og/notes-claude-md-agents-md-client-repo-playbook.png"
+      },
+      "mainEntity": {
+        "@id": "https://claude.suedeai.ai/notes/claude-md-agents-md-client-repo-playbook/#article"
+      },
+      "datePublished": "2026-11-15",
+      "dateModified": "2026-11-15"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://claude.suedeai.ai/notes/claude-md-agents-md-client-repo-playbook/#article",
+      "headline": "Setting up CLAUDE.md and AGENTS.md for a client repo: an agency playbook",
+      "description": "An agency playbook for CLAUDE.md and AGENTS.md in client repos: one source of truth, six sections, rule order, deny rules, guard tests and handover.",
+      "author": {
+        "@id": "https://suedeai.ai/founder#person"
+      },
+      "publisher": {
+        "@id": "https://suedeai.ai/#organization"
+      },
+      "datePublished": "2026-11-15",
+      "dateModified": "2026-11-15",
+      "mainEntityOfPage": "https://claude.suedeai.ai/notes/claude-md-agents-md-client-repo-playbook/",
+      "url": "https://claude.suedeai.ai/notes/claude-md-agents-md-client-repo-playbook/",
+      "isPartOf": {
+        "@id": "https://claude.suedeai.ai/notes/#blog"
+      },
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "CLAUDE.md and AGENTS.md agent memory files"
+        },
+        {
+          "@type": "Thing",
+          "name": "Claude Code"
+        },
+        {
+          "@type": "Thing",
+          "name": "Agency client repositories"
+        }
+      ],
+      "spatialCoverage": [
+        {
+          "@type": "Place",
+          "name": "West Palm Beach, Florida",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "West Palm Beach",
+            "addressRegion": "FL",
+            "addressCountry": "US"
+          }
+        },
+        {
+          "@type": "Place",
+          "name": "Jupiter, Florida",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Jupiter",
+            "addressRegion": "FL",
+            "addressCountry": "US"
+          }
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Palm Beach County, Florida"
+        }
+      ],
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://claude.suedeai.ai/og/notes-claude-md-agents-md-client-repo-playbook.png",
+        "width": 1200,
+        "height": 630
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://claude.suedeai.ai/notes/claude-md-agents-md-client-repo-playbook/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Claude Code Field Notes",
+          "item": "https://claude.suedeai.ai/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Notes",
+          "item": "https://claude.suedeai.ai/notes/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Setting up CLAUDE.md and AGENTS.md for a client repo: an agency playbook",
+          "item": "https://claude.suedeai.ai/notes/claude-md-agents-md-client-repo-playbook/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+  :root { color-scheme: light dark; --fg:#16130f; --bg:#faf8f5; --mut:#6b625a; --rule:#e2dbd2; --accent:#8a5a2b; }
+  @media (prefers-color-scheme: dark) { :root { --fg:#ece7e1; --bg:#14120f; --mut:#a49a90; --rule:#2e2822; --accent:#c9955c; } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg);
+         font:17px/1.65 ui-serif, Georgia, "Iowan Old Style", serif; }
+  .wrap { max-width:44rem; margin:0 auto; padding:4rem 1.25rem 6rem; }
+  h1 { font-size:clamp(1.9rem,5vw,2.6rem); line-height:1.15; letter-spacing:-.02em; margin:0 0 .6rem; }
+  h2 { font-size:1.3rem; line-height:1.3; margin:2.8rem 0 .7rem; letter-spacing:-.01em; }
+  .deck { color:var(--mut); font-size:1.06rem; margin:0 0 2rem; }
+  .byline { font:600 .85rem/1.5 ui-sans-serif,system-ui,sans-serif; letter-spacing:.06em;
+            text-transform:uppercase; color:var(--accent); margin:0 0 2.4rem; }
+  .crumbs { font:600 .78rem/1.5 ui-sans-serif,system-ui,sans-serif; letter-spacing:.06em;
+            text-transform:uppercase; color:var(--mut); margin:0 0 1.4rem; }
+  .crumbs a { text-decoration:none; }
+  a { color:var(--accent); }
+  hr { border:0; border-top:1px solid var(--rule); margin:3rem 0; }
+  pre { background:color-mix(in oklab, var(--fg) 5%, transparent); border:1px solid var(--rule);
+        border-radius:6px; padding:.85rem 1rem; overflow-x:auto;
+        font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace; }
+  code { font:.9em ui-monospace,SFMono-Regular,Menlo,monospace; }
+  .related ul { padding-left:1.2rem; }
+  .related li { margin:0 0 .6rem; }
+  .lesson-nav { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem 2rem;
+                margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--rule);
+                font:.95rem/1.45 ui-sans-serif,system-ui,sans-serif; }
+  .lesson-nav a { text-decoration:none; max-width:20rem; }
+  .lesson-nav .next { margin-left:auto; text-align:right; }
+  .lesson-nav span { display:block; font:600 .72rem/1.4 ui-sans-serif,system-ui,sans-serif;
+                     letter-spacing:.1em; text-transform:uppercase; color:var(--mut); }
+  footer { margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--rule);
+           font-size:.92rem; color:var(--mut); }
+  footer a { color:inherit; }
+  .toc { margin:0 0 2.4rem; padding:1rem 0 .4rem; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
+  .toc h2 { margin:0 0 .4rem; font:600 .72rem/1.4 ui-sans-serif,system-ui,sans-serif;
+            letter-spacing:.1em; text-transform:uppercase; color:var(--mut); }
+  .toc ol { margin:0 0 .6rem; padding-left:1.4rem; }
+  .toc li { margin:0 0 .9rem; }
+  .toc .sum { color:var(--mut); font-size:.95rem; }
+  .built-by { margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--rule);
+              font:.95rem/1.55 ui-sans-serif,system-ui,sans-serif; }
+  .built-by h2 { margin:0 0 .6rem; font:600 .72rem/1.4 ui-sans-serif,system-ui,sans-serif;
+                 letter-spacing:.1em; text-transform:uppercase; color:var(--mut); }
+  .built-by h3 { margin:1.2rem 0 .4rem; font:600 .72rem/1.4 ui-sans-serif,system-ui,sans-serif;
+                 letter-spacing:.1em; text-transform:uppercase; color:var(--mut); }
+  .link-row { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:.35rem 1.2rem; }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+<p class="crumbs"><a href="/">Claude Code Field Notes</a> · <a href="/notes/">Notes</a> · 3 of 5</p>
+<article>
+<h1>Setting up CLAUDE.md and AGENTS.md for a client repo: an agency playbook</h1>
+<p class="byline">Jason Colapietro · Founder and CEO, Suede AI · West Palm Beach, Florida</p>
+<p class="deck">Note 4 of 5 in <a href="/notes/">Notes from West Palm Beach</a>, published November 15, 2026.</p>
+<p>The first agent session in a client's repository tends to go wrong in the same place: the agent does not know which page pays the client's bills. A memory file is where you tell it, and at an agency that file has to answer questions a solo developer never asks: whose rules win, which credentials exist, and who deploys.</p>
+<p>This playbook is how Suede AI sets up CLAUDE.md and AGENTS.md in client repositories maintained from West Palm Beach. <a href="/notes/claude-code-bible-south-florida-dev-teams/">Note 2</a> covered writing a first memory file in week one. This note covers the structure an agency needs on top of that: one source of truth, six fixed sections, a written rule order, enforcement behind the prose, and a handover plan. Jason Colapietro wrote it from the files in Suede's own repositories, this site included.</p>
+
+<h2>One file holds the rules, the other imports it</h2>
+<p>Claude Code reads CLAUDE.md. Codex and a growing list of other agents read AGENTS.md. A client repository can be touched by more than one tool in a single month, sometimes by the client's in-house developer running a different agent from yours. Two hand-maintained copies drift within weeks. So the rules live in AGENTS.md, and CLAUDE.md is a single import line:</p>
+<pre><code># CLAUDE.md
+@AGENTS.md</code></pre>
+<p>That is the entire CLAUDE.md in this repository and in most Suede AI repositories Jason Colapietro maintains. Any agent that opens the project reads the same rules, and a diff to the rules shows up in one place during review.</p>
+
+<h2>The six sections every client AGENTS.md gets</h2>
+<p>Suede uses the same skeleton for every client, so a person moving between repositories knows where to look. Angle brackets mark the parts that change per client:</p>
+<pre><code># Agent guidance: &lt;client site&gt;
+
+## What this repo is
+Marketing site for &lt;business&gt;, &lt;city&gt;, FL. Revenue page: /book.
+
+## Gates (all must pass before a commit)
+npm run typecheck &amp;&amp; npm run lint &amp;&amp; npm test &amp;&amp; npm run build
+
+## Ask a human first
+- /book, /checkout, contact forms, analytics and consent tags
+- infra/, .env*, vercel.json, anything that touches DNS
+
+## Copy rules
+- Business name is spelled "&lt;exact spelling&gt;". City-level location only.
+- No outcome guarantees, star ratings or rankings without a source link.
+
+## MCP and data access
+- Search Console and analytics: read-only. No publishing tools.
+
+## Git
+Task branches only. Agents never push to main. The agency deploys.</code></pre>
+<p>The section that earns its keep fastest is "Ask a human first." For a Jupiter service business the revenue page might be a booking form; for a Boca Raton retailer it is checkout. The agent cannot infer that from the code, and a well-meaning refactor of a form handler is exactly the kind of change that compiles, passes lint and quietly stops sending leads.</p>
+<p>Copy rules matter more on client work than on your own. A law firm or a clinic in Palm Beach County works under advertising rules that an agent has never been told about, and "write a stronger headline" is an invitation to promise outcomes. Put the banned phrasing in the file, in plain words.</p>
+
+<h2>Write the rule order down</h2>
+<p>Agency work stacks three layers of instruction: the agency's defaults, the client's own rules, and the task in front of the agent. When they conflict, an agent guesses unless the file says which wins. Ours say it in one line: repository rules beat agency defaults, and a task prompt never overrides a safety rule.</p>
+<p>Suede learned to write this down from its own estate. The company-wide naming guide recommends certain phrasing, and some repositories carry guard tests that cap or ban specific terms. The standing rule is that the repository guard wins, and the files say so, so an agent never has to pick between two documents that both sound authoritative.</p>
+<p>For monorepos or sites with a sensitive corner, use nested files. Claude Code also reads a CLAUDE.md inside a subdirectory when it works there, so a <code>legal/</code> or <code>checkout/</code> folder can carry stricter rules without bloating the root file every session pays to read.</p>
+
+<h2>Back the prose with settings and tests</h2>
+<p>Agents follow prose rules most of the time. For the rules that must hold every time, Jason Colapietro adds enforcement that does not depend on the agent reading carefully. Project settings can deny reads and commands outright:</p>
+<pre><code>{
+  "permissions": {
+    "deny": ["Read(./.env)", "Read(./.env.*)", "Bash(git push:*)"]
+  }
+}</code></pre>
+<p>Then a guard test turns copy and schema rules into a failing build. This site has one: <code>tests/test_notes.py</code> fails if a page carries a street address, a banned phrase or a structured-data id that is not the canonical one. A rule in AGENTS.md says what we want. The test proves it happened.</p>
+<p>The habit comes from open source. A project's contribution guide and its CI are the house rules a newcomer must meet, and the Suede developer docs note on <a href="https://docs.suedeai.ai/notes/open-source-to-docs">what 54 merged pull requests taught about documentation</a> makes the case that CONTRIBUTING.md is the real documentation. An AGENTS.md is the same document, written for a reader that never gets tired and never asks a clarifying question.</p>
+
+<h2>Name the connections, never the secrets</h2>
+<p>The MCP section lists which servers the repository expects and what each may do. It never holds a token. Credentials live in the environment or a secrets manager, and the deny rules above keep the agent from reading the env file into its context. If a client grants Search Console access, the file says read-only, and the server is configured that way too. The Suede docs primer on <a href="https://docs.suedeai.ai/notes/mcp-for-agencies-south-florida">MCP for South Florida agencies</a> covers the scoping rules in more depth.</p>
+
+<h2>Plan the handover from day one</h2>
+<p>Clients leave, hire in-house developers or bring in a second agency. The AGENTS.md is the handover document that is already written. Keep it readable by a person, date each rule that came from a decision ("client direction, 2026-10-03" beats an unexplained ban), and review it whenever scope changes. A rule nobody can explain gets deleted by the next team, usually right before it would have mattered.</p>
+
+<h2>Why an agency should be held to this</h2>
+<p>Reading and following someone else's house rules is a skill with a public record. Jason Colapietro has <a href="https://github.com/search?q=is%3Apr+author%3AJasonColapietro+is%3Amerged+-user%3AJasonColapietro+-user%3ASuede-AI&amp;type=pullrequests">54 pull requests merged across 46 open-source repositories he does not maintain</a>, including Jest, Backstage and Hardhat, and each of those projects had its own conventions to meet first. Suede AI ranks among <a href="https://clutch.co/profile/suede-ai-seo">Clutch</a>'s <a href="https://clutch.co/consulting/ai/florida">Top 30 AI Consultants in Florida</a> and <a href="https://clutch.co/us/consulting/ai">Top 50 AI Consultants nationwide</a> (November 2026). Suede AI, formerly Suede Labs, publishes the proof for every claim on its <a href="https://seo.suedeai.ai/evidence">evidence page</a>.</p>
+
+<h2>Next step</h2>
+<p>Open the memory file in your own site's repository. If it does not name the revenue page, the rule order and who deploys, the <a href="https://suedeai.agency/assessment">Suede AI assessment</a> will review it alongside your live site, through <a href="https://suedeai.agency/">Suede AI's West Palm Beach web practice</a>. For the person who writes these files, see Jason Colapietro's <a href="https://suedeai.ai/founder">founder page</a>.</p>
+</article>
+
+<nav class="lesson-nav" aria-label="Notes">
+<a class="prev" rel="prev" href="/notes/reviewing-agent-written-code/"><span>Previous note</span>How Suede AI reviews AI changes before they ship</a>
+<a class="next" rel="next" href="/notes/coding-agent-token-budgets-fixed-fee-projects/"><span>Next note</span>Budgeting coding-agent tokens on fixed-fee projects</a>
+</nav>
+
+<section class="built-by" aria-labelledby="built-by">
+<h2 id="built-by">Built by Suede AI in West Palm Beach, Florida</h2>
+<p>Claude Code Field Notes is written by <a href="https://suedeai.ai/founder">Jason Colapietro, Founder and CEO of Suede AI</a>,
+an agentic platform company founded in 2024 in West Palm Beach. Suede AI's
+<a href="https://suedeai.agency/">West Palm Beach SEO, GEO and web practice</a> builds and maintains sites for businesses
+across Palm Beach County, from Jupiter to Boca Raton.</p>
+<p>Suede AI ranks among Clutch's <a href="https://clutch.co/consulting/ai/florida">Top 30 AI Consultants in Florida</a> and <a href="https://clutch.co/us/consulting/ai">Top 50 AI Consultants nationwide</a> (November 2026).</p>
+<ul class="link-row">
+<li><a href="https://suedeai.agency/">Suede AI agency</a></li>
+<li><a href="https://suedeai.ai/">Suede AI</a></li>
+<li><a href="https://suedeai.ai/founder">Founder page</a></li>
+<li><a href="https://jasoncolapietro.com/">jasoncolapietro.com</a></li>
+<li><a href="https://jupitersocialfl.com/">Jupiter Social</a></li>
+</ul>
+<h3>More from Suede AI</h3>
+<ul class="link-row">
+<li><a href="https://agentix.suedeai.ai/notes">Agentix agent grading notes</a></li>
+<li><a href="https://docs.suedeai.ai/notes">Suede developer docs notes</a></li>
+<li><a href="https://optimize.suedeai.ai/notes">Suede Scan AI readiness notes</a></li>
+<li><a href="https://scan.suedeai.ai/">Suede Scan</a></li>
+<li><a href="https://podcast.suedeai.ai/notes/">Suede podcast notes</a></li>
+</ul>
+</section>
+
+<footer>
+<p><strong>Jason Colapietro</strong> is the Founder and CEO of <a href="https://suedeai.ai">Suede AI</a>,
+an agentic platform company he founded in 2024 in West Palm Beach, Florida. He operates the company's
+production estate with AI coding agents as the labor and is the author of
+<a href="https://www.amazon.com/dp/B0HHTMJWB4">The Claude Code Bible</a>.</p>
+<p><a href="/">Field Notes</a> ·
+<a href="/notes/">Notes</a> ·
+<a href="https://suedeai.ai/founder">Founder page</a> ·
+<a href="https://github.com/JasonColapietro">GitHub</a> ·
+<a href="https://x.com/johnnysuede">X</a></p>
+<p><a href="https://suedeai.ai/privacy">Privacy</a> ·
+<a href="https://suedeai.ai/contact">Contact</a></p>
+</footer>
+
+</main>
+  <script src="https://suedeai.ai/agent-view.js" defer></script>
+</body>
+</html>

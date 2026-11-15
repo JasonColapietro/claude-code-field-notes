@@ -25,6 +25,8 @@ NOTES = [
     "claude-academy-badges-west-palm-beach-agency",
     "claude-code-bible-south-florida-dev-teams",
     "reviewing-agent-written-code",
+    "claude-md-agents-md-client-repo-playbook",
+    "coding-agent-token-budgets-fixed-fee-projects",
 ]
 NOTE_URLS = [CANONICAL + "notes/"] + [CANONICAL + "notes/" + slug + "/" for slug in NOTES]
 PERSON = "https://suedeai.ai/founder#person"

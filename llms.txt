@@ -15,11 +15,13 @@ Written by Jason Colapietro (also known as Johnny Suede), founder and CEO of Sue
 
 ## Notes from West Palm Beach
 
-[Notes index](https://claude.suedeai.ai/notes/): Jason Colapietro on running Claude Code for a West Palm Beach agency: training versus production, team adoption in South Florida, and reviewing agent code.
+[Notes index](https://claude.suedeai.ai/notes/): Jason Colapietro on Claude Code at a West Palm Beach agency: training, team adoption, code review, client repo memory files and token budgets on fixed fees.
 
 - [Nine Claude Academy badges, one West Palm Beach agency: what the courses cover and what production added](https://claude.suedeai.ai/notes/claude-academy-badges-west-palm-beach-agency/): Jason Colapietro holds nine Claude Academy badges. What the courses teach, what running Suede AI's West Palm Beach agency on Claude Code added, and what to ask.
 - [From The Claude Code Bible to client work: a field guide for South Florida dev teams adopting coding agents](https://claude.suedeai.ai/notes/claude-code-bible-south-florida-dev-teams/): A four-week plan for Palm Beach County dev teams moving from The Claude Code Bible to client work with coding agents: memory files, gates, worktrees, limits.
 - [Agent-written code still needs proof: how Suede AI reviews AI changes before they ship](https://claude.suedeai.ai/notes/reviewing-agent-written-code/): How Suede AI reviews agent-written code before it ships: diff review against callers, gates on the committed state, live-URL checks and a receipt per change.
+- [Setting up CLAUDE.md and AGENTS.md for a client repo: an agency playbook](https://claude.suedeai.ai/notes/claude-md-agents-md-client-repo-playbook/): An agency playbook for CLAUDE.md and AGENTS.md in client repos: one source of truth, six sections, rule order, deny rules, guard tests and handover.
+- [Cost control for coding agents: budgeting tokens on fixed-fee South Florida web projects](https://claude.suedeai.ai/notes/coding-agent-token-budgets-fixed-fee-projects/): How Suede AI budgets coding-agent tokens on fixed-fee South Florida web projects: per-task ceilings, model choice, small context, stop rules and a cost log.
 
 ## Full text
 

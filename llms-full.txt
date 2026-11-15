@@ -307,6 +307,182 @@ Jason is direct about the limits. It does not catch everything. Live checks samp
 
 If agents write code for your website, ask your developer for one receipt from last week. If they cannot produce one, the [Suede AI assessment](https://suedeai.agency/assessment) is a good place to start. It applies this review to your live site and hands back findings you can verify yourself. For the person behind the process, see Jason Colapietro's [founder page](https://suedeai.ai/founder), and for an AI readiness check of your pages, the [Suede Scan notes](https://optimize.suedeai.ai/notes).
 
+## Note: Setting up CLAUDE.md and AGENTS.md for a client repo: an agency playbook
+
+Source: https://claude.suedeai.ai/notes/claude-md-agents-md-client-repo-playbook/
+Published: 2026-11-15
+
+> An agency playbook for CLAUDE.md and AGENTS.md in client repos: one source of truth, six sections, rule order, deny rules, guard tests and handover.
+
+The first agent session in a client's repository tends to go wrong in the same place: the agent does not know which page pays the client's bills. A memory file is where you tell it, and at an agency that file has to answer questions a solo developer never asks: whose rules win, which credentials exist, and who deploys.
+
+This playbook is how Suede AI sets up CLAUDE.md and AGENTS.md in client repositories maintained from West Palm Beach. [Note 2](https://claude.suedeai.ai/notes/claude-code-bible-south-florida-dev-teams/) covered writing a first memory file in week one. This note covers the structure an agency needs on top of that: one source of truth, six fixed sections, a written rule order, enforcement behind the prose, and a handover plan. Jason Colapietro wrote it from the files in Suede's own repositories, this site included.
+
+### One file holds the rules, the other imports it
+
+Claude Code reads CLAUDE.md. Codex and a growing list of other agents read AGENTS.md. A client repository can be touched by more than one tool in a single month, sometimes by the client's in-house developer running a different agent from yours. Two hand-maintained copies drift within weeks. So the rules live in AGENTS.md, and CLAUDE.md is a single import line:
+
+```
+# CLAUDE.md
+@AGENTS.md
+```
+
+That is the entire CLAUDE.md in this repository and in most Suede AI repositories Jason Colapietro maintains. Any agent that opens the project reads the same rules, and a diff to the rules shows up in one place during review.
+
+### The six sections every client AGENTS.md gets
+
+Suede uses the same skeleton for every client, so a person moving between repositories knows where to look. Angle brackets mark the parts that change per client:
+
+```
+# Agent guidance: <client site>
+
+## What this repo is
+Marketing site for <business>, <city>, FL. Revenue page: /book.
+
+## Gates (all must pass before a commit)
+npm run typecheck && npm run lint && npm test && npm run build
+
+## Ask a human first
+- /book, /checkout, contact forms, analytics and consent tags
+- infra/, .env*, vercel.json, anything that touches DNS
+
+## Copy rules
+- Business name is spelled "<exact spelling>". City-level location only.
+- No outcome guarantees, star ratings or rankings without a source link.
+
+## MCP and data access
+- Search Console and analytics: read-only. No publishing tools.
+
+## Git
+Task branches only. Agents never push to main. The agency deploys.
+```
+
+The section that earns its keep fastest is "Ask a human first." For a Jupiter service business the revenue page might be a booking form; for a Boca Raton retailer it is checkout. The agent cannot infer that from the code, and a well-meaning refactor of a form handler is exactly the kind of change that compiles, passes lint and quietly stops sending leads.
+
+Copy rules matter more on client work than on your own. A law firm or a clinic in Palm Beach County works under advertising rules that an agent has never been told about, and "write a stronger headline" is an invitation to promise outcomes. Put the banned phrasing in the file, in plain words.
+
+### Write the rule order down
+
+Agency work stacks three layers of instruction: the agency's defaults, the client's own rules, and the task in front of the agent. When they conflict, an agent guesses unless the file says which wins. Ours say it in one line: repository rules beat agency defaults, and a task prompt never overrides a safety rule.
+
+Suede learned to write this down from its own estate. The company-wide naming guide recommends certain phrasing, and some repositories carry guard tests that cap or ban specific terms. The standing rule is that the repository guard wins, and the files say so, so an agent never has to pick between two documents that both sound authoritative.
+
+For monorepos or sites with a sensitive corner, use nested files. Claude Code also reads a CLAUDE.md inside a subdirectory when it works there, so a legal/ or checkout/ folder can carry stricter rules without bloating the root file every session pays to read.
+
+### Back the prose with settings and tests
+
+Agents follow prose rules most of the time. For the rules that must hold every time, Jason Colapietro adds enforcement that does not depend on the agent reading carefully. Project settings can deny reads and commands outright:
+
+```
+{
+  "permissions": {
+    "deny": ["Read(./.env)", "Read(./.env.*)", "Bash(git push:*)"]
+  }
+}
+```
+
+Then a guard test turns copy and schema rules into a failing build. This site has one: tests/test_notes.py fails if a page carries a street address, a banned phrase or a structured-data id that is not the canonical one. A rule in AGENTS.md says what we want. The test proves it happened.
+
+The habit comes from open source. A project's contribution guide and its CI are the house rules a newcomer must meet, and the Suede developer docs note on [what 54 merged pull requests taught about documentation](https://docs.suedeai.ai/notes/open-source-to-docs) makes the case that CONTRIBUTING.md is the real documentation. An AGENTS.md is the same document, written for a reader that never gets tired and never asks a clarifying question.
+
+### Name the connections, never the secrets
+
+The MCP section lists which servers the repository expects and what each may do. It never holds a token. Credentials live in the environment or a secrets manager, and the deny rules above keep the agent from reading the env file into its context. If a client grants Search Console access, the file says read-only, and the server is configured that way too. The Suede docs primer on [MCP for South Florida agencies](https://docs.suedeai.ai/notes/mcp-for-agencies-south-florida) covers the scoping rules in more depth.
+
+### Plan the handover from day one
+
+Clients leave, hire in-house developers or bring in a second agency. The AGENTS.md is the handover document that is already written. Keep it readable by a person, date each rule that came from a decision ("client direction, 2026-10-03" beats an unexplained ban), and review it whenever scope changes. A rule nobody can explain gets deleted by the next team, usually right before it would have mattered.
+
+### Why an agency should be held to this
+
+Reading and following someone else's house rules is a skill with a public record. Jason Colapietro has [54 pull requests merged across 46 open-source repositories he does not maintain](https://github.com/search?q=is%3Apr+author%3AJasonColapietro+is%3Amerged+-user%3AJasonColapietro+-user%3ASuede-AI&type=pullrequests), including Jest, Backstage and Hardhat, and each of those projects had its own conventions to meet first. Suede AI ranks among [Clutch](https://clutch.co/profile/suede-ai-seo)'s [Top 30 AI Consultants in Florida](https://clutch.co/consulting/ai/florida) and [Top 50 AI Consultants nationwide](https://clutch.co/us/consulting/ai) (November 2026). Suede AI, formerly Suede Labs, publishes the proof for every claim on its [evidence page](https://seo.suedeai.ai/evidence).
+
+### Next step
+
+Open the memory file in your own site's repository. If it does not name the revenue page, the rule order and who deploys, the [Suede AI assessment](https://suedeai.agency/assessment) will review it alongside your live site, through [Suede AI's West Palm Beach web practice](https://suedeai.agency/). For the person who writes these files, see Jason Colapietro's [founder page](https://suedeai.ai/founder).
+
+## Note: Cost control for coding agents: budgeting tokens on fixed-fee South Florida web projects
+
+Source: https://claude.suedeai.ai/notes/coding-agent-token-budgets-fixed-fee-projects/
+Published: 2026-11-15
+
+> How Suede AI budgets coding-agent tokens on fixed-fee South Florida web projects: per-task ceilings, model choice, small context, stop rules and a cost log.
+
+A fixed-fee website project has two numbers: the one the client signs and the one the agency absorbs. When coding agents do part of the work, token spend joins the second number, and nobody notices it until a small scope change turns into an afternoon of an agent retrying the same failing test.
+
+A lot of small-business web work in West Palm Beach, Jupiter and Boca Raton is sold at a fixed fee: a brochure site, a booking flow, a migration off an old page builder. This note is how Jason Colapietro budgets agent usage on that kind of work so the margin survives the project. It is a method, not a price list. Model prices change, and the arithmetic below works with whatever your plan charges.
+
+### Where the tokens actually go
+
+Writing code is rarely the expensive part. On Suede's own projects, spend clusters in four places:
+
+- **Re-reading context.** Every turn resends the conversation so far. A session that has been open all morning pays for the whole morning on each new question.
+
+- **Orientation.** An agent with no memory file reads the repository to learn the build commands, the folder layout and the conventions, every session.
+
+- **Retry loops.** A test fails, the agent edits, the test fails again for a reason the agent cannot see. Each round costs a full turn.
+
+- **Raw logs.** A verbose build or test run piped straight into the context can outweigh the diff it was checking.
+
+Three of the four are about context, not intelligence. That is good news, because context is the part you control.
+
+### Budget per task, not per project
+
+A project-level budget tells you that you overspent after it happened. A task-level budget stops the overspend while it is happening. Jason Colapietro breaks a fixed-fee quote into tasks small enough to review in one sitting, then gives each task a ceiling in turns. For headless runs the ceiling is a flag, and the JSON output reports what the run cost:
+
+```
+claude -p "Fix the mobile nav overlap on /services; run the gates" \
+  --max-turns 12 --output-format json > run.json
+jq '{turns: .num_turns, cost: .total_cost_usd}' run.json
+```
+
+In an interactive session, /cost shows the running total on API billing. On a subscription plan the limit is usage allowance rather than an invoice, but the same discipline applies: a task that eats a third of the week's allowance has a cost even if no bill arrives.
+
+### Match the model to the job
+
+Not every task needs the largest model. Copy edits, alt text, redirect lists and renames across a dozen files are mechanical, and a smaller, faster model handles them well. Debugging an intermittent form failure or planning a migration is where the larger model pays for itself, because one correct answer is cheaper than five plausible ones. Switch with /model per task, and write the default for each task type into the project plan so the choice is not made fresh every morning.
+
+### Keep the context small on purpose
+
+Most savings come from habits that cost nothing:
+
+- Run /clear between unrelated tasks. The nav fix does not need the history of the schema work.
+
+- Use /compact when a long task must continue, so the summary replaces the transcript.
+
+- Name the files in the prompt. "Fix the overlap in components/Nav.tsx" skips the search that "fix the nav" triggers.
+
+- Keep the build commands in the memory file, as [the client repo playbook](https://claude.suedeai.ai/notes/claude-md-agents-md-client-repo-playbook/) describes, so the agent never has to discover them.
+
+- Trim logs before the agent reads them:
+
+```
+npm run build 2>&1 | tail -n 40
+npm test 2>&1 | grep -E "FAIL|Error|expected" | head -n 30
+```
+
+### Write a stop rule before you need one
+
+The single most expensive pattern is an agent looping on a problem it cannot see. Jason's rule: if the same check fails three times with no new information in the output, the agent stops and a person looks. Usually the cause is outside the repository, such as an expired credential, a missing environment variable or a third-party outage, and no amount of editing will fix it. The Agentix note on [where AI agents help and fail for West Palm Beach and Jupiter service businesses](https://agentix.suedeai.ai/notes/ai-agents-west-palm-beach-jupiter-service-businesses) makes the same point about customer-facing agents: knowing when to hand off is a feature, not a failure.
+
+### Put the agent line into the quote
+
+Suede treats agent spend as an internal line in every fixed-fee estimate, next to hosting and review time. Then log actuals per task in a plain file: task, model, turns, cost, outcome. After a handful of projects the log tells you which task types run over, and the next quote gets more accurate. A scope change reopens the estimate for the tasks it touches, not just the hours.
+
+Small, well-defined fixes are where tight budgets work best. The Suede Scan note on [five website fixes for West Palm Beach and Jupiter businesses](https://optimize.suedeai.ai/notes/five-website-fixes-west-palm-beach-jupiter) lists the kind of change that fits in a dozen turns with room to spare.
+
+### What the budget does not cover
+
+Token spend is usually the smaller cost. Review is the larger one, and it is human time. A team that cuts agent spend by skipping the live check has saved the cheap thing and risked the expensive one. Jason Colapietro is firm on this: the budget exists to keep review time protected, which is why [note 3's review process](https://claude.suedeai.ai/notes/reviewing-agent-written-code/) stays in every plan regardless of how the token line looks.
+
+### Who wrote this, and why it is written down
+
+Jason Colapietro runs the Suede AI estate with coding agents doing most of the typing, and wrote the long versions of these habits in [The Claude Code Bible](https://www.amazon.com/dp/B0HHTMJWB4) and [Codex in Production](https://www.amazon.com/dp/B0HHTF3LG1). Suede AI, formerly Suede Labs, is a member of [Claude for Startups](https://seo.suedeai.ai/evidence#claude-for-startups), Anthropic's startup program. Suede AI ranks among [Clutch](https://clutch.co/profile/suede-ai-seo)'s [Top 30 AI Consultants in Florida](https://clutch.co/consulting/ai/florida) and [Top 50 AI Consultants nationwide](https://clutch.co/us/consulting/ai) (November 2026).
+
+### Next step
+
+Pick your last fixed-fee project and estimate what the agent work cost per task. If you cannot, start the log this week. If you want a second opinion on the plan, the [Suede AI assessment](https://suedeai.agency/assessment) from [Suede AI's West Palm Beach web practice](https://suedeai.agency/) reviews your agent setup and your live site together. For more on Jason Colapietro, see the [founder page](https://suedeai.ai/founder).
+
 ## The pattern underneath
 
 Every lesson here is the same shape. A system reported success while doing something else: a green build, an empty variable, a billing toggle, a file tree, a session registry, a documentation page. In each case the fix was to ask the thing itself instead of asking a record of it.

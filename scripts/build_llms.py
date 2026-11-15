@@ -27,6 +27,8 @@ NOTES = [
     "claude-academy-badges-west-palm-beach-agency",
     "claude-code-bible-south-florida-dev-teams",
     "reviewing-agent-written-code",
+    "claude-md-agents-md-client-repo-playbook",
+    "coding-agent-token-budgets-fixed-fee-projects",
 ]
 
 
@@ -125,7 +127,7 @@ def build():
         body = section(page, "<article>", "</article>")
         body = re.sub(r"<h1>.*?</h1>", "", body, flags=re.S)
         body = re.sub(r'<p class="(byline|deck)">.*?</p>', "", body, flags=re.S)
-        notes.append((slug, node["headline"], meta(page, "description"), to_text(body)))
+        notes.append((slug, node["headline"], meta(page, "description"), to_text(body), node["datePublished"]))
     notes_desc = meta((ROOT / "notes" / "index.html").read_text(), "description")
     pattern = to_text(section(home, "<h2>The pattern underneath</h2>", '<section class="built-by"'))
     about = to_text(section(home, "<footer>", "</footer>"))
@@ -149,7 +151,7 @@ def build():
         f"[Notes index]({BASE}notes/): {notes_desc}",
         "",
     ]
-    short += [f"- [{h}]({BASE}notes/{s}/): {d}" for s, h, d, _ in notes]
+    short += [f"- [{h}]({BASE}notes/{s}/): {d}" for s, h, d, _, _ in notes]
     short += [
         "",
         "## Full text",
@@ -193,8 +195,8 @@ def build():
     ]
     for n, slug, headline, desc, text in lessons:
         full += [f"## Lesson {n}: {headline}", "", f"Source: {BASE}{slug}/", "", "> " + desc, "", text, ""]
-    for slug, headline, desc, text in notes:
-        full += [f"## Note: {headline}", "", f"Source: {BASE}notes/{slug}/", "Published: 2026-11-14", "", "> " + desc, "", text, ""]
+    for slug, headline, desc, text, published in notes:
+        full += [f"## Note: {headline}", "", f"Source: {BASE}notes/{slug}/", f"Published: {published}", "", "> " + desc, "", text, ""]
     full += ["## The pattern underneath", "", re.sub(r"^### The pattern underneath\n\n", "", pattern), ""]
     full += ["## About the author", "", about, ""]
     return "\n".join(short), "\n".join(full)

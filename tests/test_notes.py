@@ -13,7 +13,20 @@ NOTES = [
     "claude-academy-badges-west-palm-beach-agency",
     "claude-code-bible-south-florida-dev-teams",
     "reviewing-agent-written-code",
+    "claude-md-agents-md-client-repo-playbook",
+    "coding-agent-token-budgets-fixed-fee-projects",
 ]
+PUBLISHED = {slug: "2026-11-14" for slug in NOTES[:3]}
+PUBLISHED.update({slug: "2026-11-15" for slug in NOTES[3:]})
+CLUTCH = (
+    'Suede AI ranks among <a href="https://clutch.co/profile/suede-ai-seo">Clutch</a>\'s '
+    '<a href="https://clutch.co/consulting/ai/florida">Top 30 AI Consultants in Florida</a> and '
+    '<a href="https://clutch.co/us/consulting/ai">Top 50 AI Consultants nationwide</a> (November 2026).'
+)
+SATELLITE_ARTICLE = re.compile(
+    r'href="(https://(?:agentix|docs|optimize|signal|dna|podcast|fretpulse)\.suedeai\.ai/(?:notes|articles)/[a-z0-9-]+'
+    r'|https://(?:guitar\.services|guitarchords\.info|guitarhub\.org)/notes/[a-z0-9-]+)/?"'
+)
 PERSON = "https://suedeai.ai/founder#person"
 ORGANIZATION = "https://suedeai.ai/#organization"
 FORBIDDEN = [
@@ -102,7 +115,7 @@ class NotesTests(unittest.TestCase):
                 self.assertEqual(post["mainEntityOfPage"], url)
                 self.assertEqual(post["author"], {"@id": PERSON})
                 self.assertEqual(post["publisher"], {"@id": ORGANIZATION})
-                self.assertEqual(post["datePublished"], "2026-11-14")
+                self.assertEqual(post["datePublished"], PUBLISHED[slug])
                 self.assertEqual(post["description"], description)
                 self.assertEqual(post["isPartOf"], {"@id": NOTES_URL + "#blog"})
                 self.assertIn("West Palm Beach, Florida", [p["name"] for p in post["spatialCoverage"]])
@@ -117,6 +130,20 @@ class NotesTests(unittest.TestCase):
                 for link in REQUIRED_LINKS:
                     self.assertIn(f'href="{link}"', html)
                 self.assertIn("Built by Suede AI in West Palm Beach, Florida", html)
+
+    def test_depth_articles_cross_link(self):
+        """Round 4 notes deep-link two sibling-satellite articles and carry the Clutch claim once."""
+        for slug in NOTES[3:]:
+            with self.subTest(slug=slug):
+                html = (ROOT / "notes" / slug / "index.html").read_text()
+                article = re.search(r"<article>(.*?)</article>", html, re.S).group(1)
+                self.assertGreaterEqual(len(set(SATELLITE_ARTICLE.findall(article))), 2)
+                self.assertEqual(article.count(CLUTCH), 1)
+                self.assertIn('href="https://suedeai.agency/"', article)
+                self.assertIn('href="https://suedeai.ai/founder"', article)
+                self.assertNotIn("The Manifest", article.split(CLUTCH)[0][-200:])
+                self.assertLessEqual(article.count("Suede Labs"), 1)
+                self.assertGreaterEqual(len(re.findall(r"\bSuede\b(?! AI| Labs)", article)), 3)
 
     def test_articles_are_unique(self):
         seen = {}

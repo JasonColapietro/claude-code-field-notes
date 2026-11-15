@@ -145,6 +145,15 @@ class NotesTests(unittest.TestCase):
                 self.assertLessEqual(article.count("Suede Labs"), 1)
                 self.assertGreaterEqual(len(re.findall(r"\bSuede\b(?! AI| Labs)", article)), 3)
 
+    def test_series_position_matches_order(self):
+        """Crumb and deck both carry the note's real position in the series."""
+        total = len(NOTES)
+        for n, slug in enumerate(NOTES, start=1):
+            with self.subTest(slug=slug):
+                html = (ROOT / "notes" / slug / "index.html").read_text()
+                self.assertIn(f'<a href="/notes/">Notes</a> · {n} of {total}</p>', html)
+                self.assertIn(f"Note {n} of {total} in", html)
+
     def test_articles_are_unique(self):
         seen = {}
         for slug in NOTES:

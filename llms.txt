@@ -31,8 +31,8 @@ Written by Jason Colapietro (also known as Johnny Suede), founder and CEO of Sue
 
 - [Jason Colapietro, founder page](https://suedeai.ai/founder)
 - [Suede AI](https://suedeai.ai/): company home
-- [Suede AI SEO](https://seo.suedeai.ai/): SEO, GEO, AEO and AI search visibility
-- [Suede AI Agent Studio](https://agents.suedeai.ai/): build AI agents and workflow automation
+- [Suede AI SEO](https://suedeai.ai/seo): SEO, GEO, AEO and AI search visibility
+- [Suede AI Agent Studio](https://suedeai.app/): build AI agents and workflow automation
 - [Open-source Claude Code skill pack](https://github.com/JasonColapietro/suede-creator-skills)
 
 ## Built by Suede AI in West Palm Beach, Florida

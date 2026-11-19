@@ -56,7 +56,7 @@ class DiscoveryTests(unittest.TestCase):
         html = (ROOT / "index.html").read_text()
         canonical = re.search(r'<link rel="canonical" href="([^"]+)"', html).group(1)
         self.assertEqual(canonical.rstrip("/") + "/", CANONICAL)
-        self.assertIn("<title>Claude Code Field Notes: Running AI Coding Agents in Production</title>", html)
+        self.assertIn("<title>Claude Code Field Notes: AI Coding Agents in Production</title>", html)
         self.assertEqual(canonical, CANONICAL)
         graph = json_ld(html)
         ids = {node.get("@id") for node in graph["@graph"]}

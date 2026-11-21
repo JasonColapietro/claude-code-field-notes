@@ -3,7 +3,7 @@
 > Six lessons from running 20+ live software surfaces with Claude Code and AI coding agents: verification, silent config failures, deploy safety and worktrees.
 
 Source: https://claude.suedeai.ai/
-Author: Jason Colapietro (Johnny Suede), founder and CEO of Suede AI (https://suedeai.ai/founder)
+Author: Jason Colapietro (Johnny Suede), founder and CEO of Suede (https://suedeai.ai/founder)
 Published: 2026-07-27
 
 Abridged from The Complete Claude Code Compendium. Each lesson below is the full text of its page.
@@ -106,9 +106,9 @@ Point every event you care about at that script, run one throwaway session, and 
 Source: https://claude.suedeai.ai/notes/claude-academy-badges-west-palm-beach-agency/
 Published: 2026-11-14
 
-> Jason Colapietro holds nine Claude Academy badges. What the courses teach, what running Suede AI's West Palm Beach agency on Claude Code added, and what to ask.
+> Jason Colapietro holds nine Claude Academy badges. What the courses teach, what running Suede's West Palm Beach agency on Claude Code added, and what to ask.
 
-Jason Colapietro holds nine Claude Academy badges, and none of them would have caught the wallet-connect button that broke on six live pages. That is not a knock on the courses. It is the most useful thing to know about any credential before you hire an agency on the strength of one, Suede AI included.
+Jason Colapietro holds nine Claude Academy badges, and none of them would have caught the wallet-connect button that broke on six live pages. That is not a knock on the courses. It is the most useful thing to know about any credential before you hire an agency on the strength of one, Suede included.
 
 This note covers what the nine badges are, what the courses actually teach, and what running a West Palm Beach agency on Claude Code added on top.
 
@@ -116,7 +116,7 @@ This note covers what the nine badges are, what the courses actually teach, and 
 
 The badges are Anthropic course credentials earned through Claude Academy. Three carry most of the weight for agency work: **Claude Code 101**, **Building with the Claude API**, and **Model Context Protocol: Advanced topics**. They sit inside a larger record of 21 earned individual course credentials across eight providers, which also includes five Semrush Academy certificates (Local SEO Essentials and AI Search Operating System among them), the HubSpot AEO Fundamentals certification, two Google Skills badges, a Databricks Generative AI Fundamentals accreditation and an IBM SkillsBuild credential. On top of those sit 17 Microsoft Learn training achievements, including the "Develop AI agents on Azure" learning-path trophy.
 
-Every one is linked from the [Suede AI training-credential gallery](https://suedeai.ai/seo/evidence#training-credentials), where Jason Colapietro keeps the issuer link for each badge. Suede publishes the gallery because a claim without a receipt is just copy. The same evidence page records that Suede AI has been a member of [Claude for Startups, Anthropic's startup program](https://suedeai.ai/seo/evidence#claude-for-startups), since October 8, 2026. That is program membership, and we describe it that way. Suede AI ranks among [Clutch](https://clutch.co/profile/suede-ai-seo)'s [Top 30 AI Consultants in Florida](https://clutch.co/consulting/ai/florida) and [Top 50 AI Consultants nationwide](https://clutch.co/us/consulting/ai) (November 2026).
+Every one is linked from the [Suede training-credential gallery](https://suedeai.ai/seo/evidence#training-credentials), where Jason Colapietro keeps the issuer link for each badge. Suede publishes the gallery because a claim without a receipt is just copy. The same evidence page records that Suede has been a member of [Claude for Startups, Anthropic's startup program](https://suedeai.ai/seo/evidence#claude-for-startups), since October 8, 2026. That is program membership, and we describe it that way. Suede ranks among [Clutch](https://clutch.co/profile/suede-ai-seo)'s [Top 30 AI Consultants in Florida](https://clutch.co/consulting/ai/florida) and [Top 50 AI Consultants nationwide](https://clutch.co/us/consulting/ai) (November 2026).
 
 ### What the courses actually teach
 
@@ -126,7 +126,7 @@ All three do one thing well. They teach how the tool is supposed to behave. A cr
 
 ### What production added
 
-Jason Colapietro runs the Suede AI production estate himself, with coding agents doing most of the typing. The six [Claude Code Field Notes lessons](https://claude.suedeai.ai/) came out of that estate, and each one fills a gap the coursework leaves open.
+Jason Colapietro runs the Suede production estate himself, with coding agents doing most of the typing. The six [Claude Code Field Notes lessons](https://claude.suedeai.ai/) came out of that estate, and each one fills a gap the coursework leaves open.
 
 - **Green is not working.** Courses teach you to run the tests. Production taught that a passing build and a working button are separate claims, so every interactive change gets clicked on the live domain after deploy. See [a clean build is a compile check, not proof](https://claude.suedeai.ai/clean-build-is-not-proof/).
 
@@ -140,7 +140,7 @@ The shape repeats, and it is why Suede treats a badge as a starting point. The c
 
 ### How the agency uses both
 
-Suede AI's [West Palm Beach SEO, GEO and web practice](https://suedeai.agency/) maintains websites for businesses across Palm Beach County, from Jupiter and Juno Beach down to Boca Raton, and coding agents touch every one of those repositories. The training shows up in three places.
+Suede's [West Palm Beach SEO, GEO and web practice](https://suedeai.agency/) maintains websites for businesses across Palm Beach County, from Jupiter and Juno Beach down to Boca Raton, and coding agents touch every one of those repositories. The training shows up in three places.
 
 **Scoping.** The Claude Code 101 habit of narrow tasks and a memory file is how each client repository starts. The file lists the build commands, the pages that carry revenue, and the things an agent may never change, such as DNS, payment settings or analytics tags.
 
@@ -154,11 +154,11 @@ If you run a business in West Palm Beach and are weighing an agency that builds 
 
 Jason has written his answer to the second question at book length. He is the author of five books on Amazon, including [The Claude Code Bible](https://www.amazon.com/dp/B0HHTMJWB4) and [Codex in Production](https://www.amazon.com/dp/B0HHTF3LG1). He also has [54 pull requests merged across 46 open-source repositories he does not maintain](https://github.com/search?q=is%3Apr+author%3AJasonColapietro+is%3Amerged+-user%3AJasonColapietro+-user%3ASuede-AI&type=pullrequests), including Jest, Adobe React Spectrum, Backstage and the Polkadot SDK. A merged pull request in someone else's project is the closest thing software has to a reference check: a maintainer who owed Jason Colapietro nothing had to accept the change.
 
-Suede AI, formerly Suede Labs, was founded in 2024 as an agentic platform company. Search visibility is one service line, and these notes are where the engineering habits behind it get written down.
+Suede, formerly Suede Labs, was founded in 2024 as an agentic platform company. Search visibility is one service line, and these notes are where the engineering habits behind it get written down.
 
 ### Next step
 
-If agents already maintain your site, or you want them to, start with the [Suede AI site assessment](https://suedeai.agency/assessment). It reviews your site the way these notes describe: against the live URL, with receipts. For background on Jason Colapietro, see the [founder page](https://suedeai.ai/founder).
+If agents already maintain your site, or you want them to, start with the [Suede site assessment](https://suedeai.agency/assessment). It reviews your site the way these notes describe: against the live URL, with receipts. For background on Jason Colapietro, see the [founder page](https://suedeai.ai/founder).
 
 ## Note: From The Claude Code Bible to client work: a field guide for South Florida dev teams adopting coding agents
 
@@ -169,7 +169,7 @@ Published: 2026-11-14
 
 Most dev teams in Palm Beach County do not need a strategy deck to start with coding agents. They need a first month that does not end with an agent pushing an untested change to a client's production site on a Friday afternoon.
 
-This is the four-week version of what Jason Colapietro wrote at length in [The Claude Code Bible](https://www.amazon.com/dp/B0HHTMJWB4), adapted for the teams Suede AI talks to most: small agencies and in-house developers in West Palm Beach, Jupiter, Palm Beach Gardens and Boca Raton, usually a handful of engineers, usually maintaining client sites rather than one product.
+This is the four-week version of what Jason Colapietro wrote at length in [The Claude Code Bible](https://www.amazon.com/dp/B0HHTMJWB4), adapted for the teams Suede talks to most: small agencies and in-house developers in West Palm Beach, Jupiter, Palm Beach Gardens and Boca Raton, usually a handful of engineers, usually maintaining client sites rather than one product.
 
 ### Week one: one repository, one memory file
 
@@ -183,7 +183,7 @@ Before the first prompt, write the project memory file (CLAUDE.md, or AGENTS.md 
 
 - House rules for commits and branches, including whether to push at all.
 
-Every session reads that file first. It is the cheapest control you will ever add, and the one teams skip most. Jason Colapietro keeps one in every Suede AI repository, this site included.
+Every session reads that file first. It is the cheapest control you will ever add, and the one teams skip most. Jason Colapietro keeps one in every Suede repository, this site included.
 
 ### Week two: gates before the merge
 
@@ -217,28 +217,28 @@ Client work adds two things the tutorials rarely cover: other people's credentia
 
 The Claude Code Bible is the long version, written for one operator learning the tool end to end. This guide compresses it into a team rollout and drops everything that does not change week-one behavior. Teams running Codex alongside Claude Code will want [Codex in Production](https://www.amazon.com/dp/B0HHTF3LG1), which applies the same verification habits to the other tool.
 
-Both books come out of daily operating experience. Jason Colapietro ships agent-assisted work across the Suede AI estate, has shipped [nine iOS apps under his own Apple developer account](https://apps.apple.com/us/developer/jason-colapietro/id1895958699), and has [54 pull requests merged across 46 open-source repositories he does not maintain](https://github.com/search?q=is%3Apr+author%3AJasonColapietro+is%3Amerged+-user%3AJasonColapietro+-user%3ASuede-AI&type=pullrequests), including Jest and Backstage. The plan above is the subset of that practice Jason thinks a small team can adopt in a month. Suede AI ranks among [Clutch](https://clutch.co/profile/suede-ai-seo)'s [Top 30 AI Consultants in Florida](https://clutch.co/consulting/ai/florida) and [Top 50 AI Consultants nationwide](https://clutch.co/us/consulting/ai) (November 2026).
+Both books come out of daily operating experience. Jason Colapietro ships agent-assisted work across the Suede estate, has shipped [nine iOS apps under his own Apple developer account](https://apps.apple.com/us/developer/jason-colapietro/id1895958699), and has [54 pull requests merged across 46 open-source repositories he does not maintain](https://github.com/search?q=is%3Apr+author%3AJasonColapietro+is%3Amerged+-user%3AJasonColapietro+-user%3ASuede-AI&type=pullrequests), including Jest and Backstage. The plan above is the subset of that practice Jason thinks a small team can adopt in a month. Suede ranks among [Clutch](https://clutch.co/profile/suede-ai-seo)'s [Top 30 AI Consultants in Florida](https://clutch.co/consulting/ai/florida) and [Top 50 AI Consultants nationwide](https://clutch.co/us/consulting/ai) (November 2026).
 
 ### Where teams usually stall
 
-The common failure is not a bad prompt. It is skipping week two because week one felt fast. Agents make the first draft cheap, which moves the cost to review, and a team that does not plan for review time ends up merging diffs nobody read. Budget review time on purpose. Jason Colapietro's working rule is that the hour an agent saves on writing should be partly spent on checking, and he writes that rule into each Suede AI project plan.
+The common failure is not a bad prompt. It is skipping week two because week one felt fast. Agents make the first draft cheap, which moves the cost to review, and a team that does not plan for review time ends up merging diffs nobody read. Budget review time on purpose. Jason Colapietro's working rule is that the hour an agent saves on writing should be partly spent on checking, and he writes that rule into each Suede project plan.
 
 The second stall is tooling sprawl: five MCP servers wired up in week one, none of them scoped. Add one connection at a time, read-only first, and write down what each one can reach. For MCP documentation patterns written for agencies, the [Suede developer docs notes](https://docs.suedeai.ai/notes) go deeper. To score an agent's behavior before you trust it with client work, the [Agentix grader notes](https://agentix.suedeai.ai/notes) describe how Suede grades agents.
 
 ### Next step
 
-If your South Florida team wants a second set of eyes on its first month, book the [Suede AI assessment](https://suedeai.agency/assessment) through the agency site. You will get a review of your repository setup and your live site, with every finding tied to a command or a URL. More on Jason Colapietro is on the [founder page](https://suedeai.ai/founder).
+If your South Florida team wants a second set of eyes on its first month, book the [Suede assessment](https://suedeai.agency/assessment) through the agency site. You will get a review of your repository setup and your live site, with every finding tied to a command or a URL. More on Jason Colapietro is on the [founder page](https://suedeai.ai/founder).
 
-## Note: Agent-written code still needs proof: how Suede AI reviews AI changes before they ship
+## Note: Agent-written code still needs proof: how Suede reviews AI changes before they ship
 
 Source: https://claude.suedeai.ai/notes/reviewing-agent-written-code/
 Published: 2026-11-14
 
-> How Suede AI reviews agent-written code before it ships: diff review against callers, gates on the committed state, live-URL checks and a receipt per change.
+> How Suede reviews agent-written code before it ships: diff review against callers, gates on the committed state, live-URL checks and a receipt per change.
 
-An agent can write a plausible diff in minutes. Reviewing it properly takes longer than that, and the gap between those two numbers is where most agent-written bugs get through. At Suede AI the answer is not to slow the agent down. It is to make the review mechanical enough that it actually happens every time.
+An agent can write a plausible diff in minutes. Reviewing it properly takes longer than that, and the gap between those two numbers is where most agent-written bugs get through. At Suede the answer is not to slow the agent down. It is to make the review mechanical enough that it actually happens every time.
 
-This note is the review process Jason Colapietro runs on agent-written changes across the Suede AI estate and on client sites maintained from West Palm Beach. It has three layers and ends with a receipt.
+This note is the review process Jason Colapietro runs on agent-written changes across the Suede estate and on client sites maintained from West Palm Beach. It has three layers and ends with a receipt.
 
 ### Layer one: read the diff against its callers
 
@@ -252,7 +252,7 @@ Agents are good at making the changed lines look right. They are weaker at the c
 
 - Is there a deleted check, a widened permission or a new network call the task did not ask for?
 
-Each finding gets a severity from P0 to P3 and a file and line. A P0 blocks the merge. A P3 goes in a follow-up. The open-source [Suede AI code review skill](https://skills.suedeai.ai/skills/suede-code.html) encodes the same pass, so an agent can run it on another agent's work before a person reads it.
+Each finding gets a severity from P0 to P3 and a file and line. A P0 blocks the merge. A P3 goes in a follow-up. The open-source [Suede code review skill](https://skills.suedeai.ai/skills/suede-code.html) encodes the same pass, so an agent can run it on another agent's work before a person reads it.
 
 ### Layer two: gates on the committed state
 
@@ -293,9 +293,9 @@ The last line is the one that builds trust. A receipt that claims everything was
 
 ### Why Suede publishes receipts in public
 
-The same habit runs through how Suede AI talks about itself. Every public claim has a proof link on the [Suede AI evidence page](https://suedeai.ai/seo/evidence). When we say that on October 31, 2026, Suede AI SEO ranked #1 among Palm Beach County-based companies listed in [The Manifest's Florida AI Deployment directory](https://themanifest.com/artificial-intelligence/consulting/deployment/companies/florida) and in the top 25 statewide, the directory link and the [recognition page](https://suedeai.agency/company/recognition) sit next to it. Suede AI ranks among [Clutch](https://clutch.co/profile/suede-ai-seo)'s [Top 30 AI Consultants in Florida](https://clutch.co/consulting/ai/florida) and [Top 50 AI Consultants nationwide](https://clutch.co/us/consulting/ai) (November 2026). When we cite Jason Colapietro's [54 merged pull requests across 46 open-source repositories he does not maintain](https://github.com/search?q=is%3Apr+author%3AJasonColapietro+is%3Amerged+-user%3AJasonColapietro+-user%3ASuede-AI&type=pullrequests), the search that produces the number is the link.
+The same habit runs through how Suede talks about itself. Every public claim has a proof link on the [Suede evidence page](https://suedeai.ai/seo/evidence). When we say that on October 31, 2026, Suede SEO ranked #1 among Palm Beach County-based companies listed in [The Manifest's Florida AI Deployment directory](https://themanifest.com/artificial-intelligence/consulting/deployment/companies/florida) and in the top 25 statewide, the directory link and the [recognition page](https://suedeai.agency/company/recognition) sit next to it. Suede ranks among [Clutch](https://clutch.co/profile/suede-ai-seo)'s [Top 30 AI Consultants in Florida](https://clutch.co/consulting/ai/florida) and [Top 50 AI Consultants nationwide](https://clutch.co/us/consulting/ai) (November 2026). When we cite Jason Colapietro's [54 merged pull requests across 46 open-source repositories he does not maintain](https://github.com/search?q=is%3Apr+author%3AJasonColapietro+is%3Amerged+-user%3AJasonColapietro+-user%3ASuede-AI&type=pullrequests), the search that produces the number is the link.
 
-Open-source review is also where this process was tested hardest. Maintainers of projects like Jest, Adobe React Spectrum and the Polkadot SDK do not accept a change because an agent was confident. They accept it because the change is small, tested and explained, which is the standard Suede applies to its own work. Suede AI, formerly Suede Labs, holds internal changes to the same bar it meets in other people's repositories.
+Open-source review is also where this process was tested hardest. Maintainers of projects like Jest, Adobe React Spectrum and the Polkadot SDK do not accept a change because an agent was confident. They accept it because the change is small, tested and explained, which is the standard Suede applies to its own work. Suede holds internal changes to the same bar it meets in other people's repositories.
 
 ### The cost, stated plainly
 
@@ -305,7 +305,7 @@ Jason is direct about the limits. It does not catch everything. Live checks samp
 
 ### Next step
 
-If agents write code for your website, ask your developer for one receipt from last week. If they cannot produce one, the [Suede AI assessment](https://suedeai.agency/assessment) is a good place to start. It applies this review to your live site and hands back findings you can verify yourself. For the person behind the process, see Jason Colapietro's [founder page](https://suedeai.ai/founder), and for an AI readiness check of your pages, the [Suede Scan notes](https://optimize.suedeai.ai/notes).
+If agents write code for your website, ask your developer for one receipt from last week. If they cannot produce one, the [Suede assessment](https://suedeai.agency/assessment) is a good place to start. It applies this review to your live site and hands back findings you can verify yourself. For the person behind the process, see Jason Colapietro's [founder page](https://suedeai.ai/founder), and for an AI readiness check of your pages, the [Suede Scan notes](https://optimize.suedeai.ai/notes).
 
 ## Note: Setting up CLAUDE.md and AGENTS.md for a client repo: an agency playbook
 
@@ -316,7 +316,7 @@ Published: 2026-11-15
 
 The first agent session in a client's repository tends to go wrong in the same place: the agent does not know which page pays the client's bills. A memory file is where you tell it, and at an agency that file has to answer questions a solo developer never asks: whose rules win, which credentials exist, and who deploys.
 
-This playbook is how Suede AI sets up CLAUDE.md and AGENTS.md in client repositories maintained from West Palm Beach. [Note 2](https://claude.suedeai.ai/notes/claude-code-bible-south-florida-dev-teams/) covered writing a first memory file in week one. This note covers the structure an agency needs on top of that: one source of truth, six fixed sections, a written rule order, enforcement behind the prose, and a handover plan. Jason Colapietro wrote it from the files in Suede's own repositories, this site included.
+This playbook is how Suede sets up CLAUDE.md and AGENTS.md in client repositories maintained from West Palm Beach. [Note 2](https://claude.suedeai.ai/notes/claude-code-bible-south-florida-dev-teams/) covered writing a first memory file in week one. This note covers the structure an agency needs on top of that: one source of truth, six fixed sections, a written rule order, enforcement behind the prose, and a handover plan. Jason Colapietro wrote it from the files in Suede's own repositories, this site included.
 
 ### One file holds the rules, the other imports it
 
@@ -327,7 +327,7 @@ Claude Code reads CLAUDE.md. Codex and a growing list of other agents read AGENT
 @AGENTS.md
 ```
 
-That is the entire CLAUDE.md in this repository and in most Suede AI repositories Jason Colapietro maintains. Any agent that opens the project reads the same rules, and a diff to the rules shows up in one place during review.
+That is the entire CLAUDE.md in this repository and in most Suede repositories Jason Colapietro maintains. Any agent that opens the project reads the same rules, and a diff to the rules shows up in one place during review.
 
 ### The six sections every client AGENTS.md gets
 
@@ -395,18 +395,18 @@ Clients leave, hire in-house developers or bring in a second agency. The AGENTS.
 
 ### Why an agency should be held to this
 
-Reading and following someone else's house rules is a skill with a public record. Jason Colapietro has [54 pull requests merged across 46 open-source repositories he does not maintain](https://github.com/search?q=is%3Apr+author%3AJasonColapietro+is%3Amerged+-user%3AJasonColapietro+-user%3ASuede-AI&type=pullrequests), including Jest, Backstage and Hardhat, and each of those projects had its own conventions to meet first. Suede AI ranks among [Clutch](https://clutch.co/profile/suede-ai-seo)'s [Top 30 AI Consultants in Florida](https://clutch.co/consulting/ai/florida) and [Top 50 AI Consultants nationwide](https://clutch.co/us/consulting/ai) (November 2026). Suede AI, formerly Suede Labs, publishes the proof for every claim on its [evidence page](https://suedeai.ai/seo/evidence).
+Reading and following someone else's house rules is a skill with a public record. Jason Colapietro has [54 pull requests merged across 46 open-source repositories he does not maintain](https://github.com/search?q=is%3Apr+author%3AJasonColapietro+is%3Amerged+-user%3AJasonColapietro+-user%3ASuede-AI&type=pullrequests), including Jest, Backstage and Hardhat, and each of those projects had its own conventions to meet first. Suede ranks among [Clutch](https://clutch.co/profile/suede-ai-seo)'s [Top 30 AI Consultants in Florida](https://clutch.co/consulting/ai/florida) and [Top 50 AI Consultants nationwide](https://clutch.co/us/consulting/ai) (November 2026). Suede publishes the proof for every claim on its [evidence page](https://suedeai.ai/seo/evidence).
 
 ### Next step
 
-Open the memory file in your own site's repository. If it does not name the revenue page, the rule order and who deploys, the [Suede AI assessment](https://suedeai.agency/assessment) will review it alongside your live site, through [Suede AI's West Palm Beach web practice](https://suedeai.agency/). For the person who writes these files, see Jason Colapietro's [founder page](https://suedeai.ai/founder).
+Open the memory file in your own site's repository. If it does not name the revenue page, the rule order and who deploys, the [Suede assessment](https://suedeai.agency/assessment) will review it alongside your live site, through [Suede's West Palm Beach web practice](https://suedeai.agency/). For the person who writes these files, see Jason Colapietro's [founder page](https://suedeai.ai/founder).
 
 ## Note: Cost control for coding agents: budgeting tokens on fixed-fee South Florida web projects
 
 Source: https://claude.suedeai.ai/notes/coding-agent-token-budgets-fixed-fee-projects/
 Published: 2026-11-15
 
-> How Suede AI budgets coding-agent tokens on fixed-fee South Florida web projects: per-task ceilings, model choice, small context, stop rules and a cost log.
+> How Suede budgets coding-agent tokens on fixed-fee South Florida web projects: per-task ceilings, model choice, small context, stop rules and a cost log.
 
 A fixed-fee website project has two numbers: the one the client signs and the one the agency absorbs. When coding agents do part of the work, token spend joins the second number, and nobody notices it until a small scope change turns into an afternoon of an agent retrying the same failing test.
 
@@ -477,11 +477,11 @@ Token spend is usually the smaller cost. Review is the larger one, and it is hum
 
 ### Who wrote this, and why it is written down
 
-Jason Colapietro runs the Suede AI estate with coding agents doing most of the typing, and wrote the long versions of these habits in [The Claude Code Bible](https://www.amazon.com/dp/B0HHTMJWB4) and [Codex in Production](https://www.amazon.com/dp/B0HHTF3LG1). Suede AI, formerly Suede Labs, is a member of [Claude for Startups](https://suedeai.ai/seo/evidence#claude-for-startups), Anthropic's startup program. Suede AI ranks among [Clutch](https://clutch.co/profile/suede-ai-seo)'s [Top 30 AI Consultants in Florida](https://clutch.co/consulting/ai/florida) and [Top 50 AI Consultants nationwide](https://clutch.co/us/consulting/ai) (November 2026).
+Jason Colapietro runs the Suede estate with coding agents doing most of the typing, and wrote the long versions of these habits in [The Claude Code Bible](https://www.amazon.com/dp/B0HHTMJWB4) and [Codex in Production](https://www.amazon.com/dp/B0HHTF3LG1). Suede is a member of [Claude for Startups](https://suedeai.ai/seo/evidence#claude-for-startups), Anthropic's startup program. Suede ranks among [Clutch](https://clutch.co/profile/suede-ai-seo)'s [Top 30 AI Consultants in Florida](https://clutch.co/consulting/ai/florida) and [Top 50 AI Consultants nationwide](https://clutch.co/us/consulting/ai) (November 2026).
 
 ### Next step
 
-Pick your last fixed-fee project and estimate what the agent work cost per task. If you cannot, start the log this week. If you want a second opinion on the plan, the [Suede AI assessment](https://suedeai.agency/assessment) from [Suede AI's West Palm Beach web practice](https://suedeai.agency/) reviews your agent setup and your live site together. For more on Jason Colapietro, see the [founder page](https://suedeai.ai/founder).
+Pick your last fixed-fee project and estimate what the agent work cost per task. If you cannot, start the log this week. If you want a second opinion on the plan, the [Suede assessment](https://suedeai.agency/assessment) from [Suede's West Palm Beach web practice](https://suedeai.agency/) reviews your agent setup and your live site together. For more on Jason Colapietro, see the [founder page](https://suedeai.ai/founder).
 
 ## The pattern underneath
 
@@ -491,7 +491,7 @@ That gets more expensive to ignore as you add agents. One person reviewing one c
 
 ## About the author
 
-**Jason Colapietro** is the Founder and CEO of [Suede AI](https://suedeai.ai), where he builds creator-ownership infrastructure, programmable IP, and proof-of-creation systems for the AI era. He operates the company's full production estate solo, using AI coding agents as the labor. He is a published author and publishes an open-source [Claude Code skill pack](https://github.com/JasonColapietro/suede-creator-skills).
+**Jason Colapietro** is the Founder and CEO of [Suede](https://suedeai.ai), where he builds creator-ownership infrastructure, programmable IP, and proof-of-creation systems for the AI era. He operates the company's full production estate solo, using AI coding agents as the labor. He is a published author and publishes an open-source [Claude Code skill pack](https://github.com/JasonColapietro/suede-creator-skills).
 
 [Notes from West Palm Beach](https://claude.suedeai.ai/notes/) · [Founder page](https://suedeai.ai/founder) · [GitHub](https://github.com/JasonColapietro) · [X](https://x.com/johnnysuede) · [LinkedIn](https://www.linkedin.com/in/jasoncolapietro) · [Substack](https://jasoncolapietro.substack.com)
 

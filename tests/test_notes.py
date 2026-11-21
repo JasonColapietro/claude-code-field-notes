@@ -19,7 +19,7 @@ NOTES = [
 PUBLISHED = {slug: "2026-11-14" for slug in NOTES[:3]}
 PUBLISHED.update({slug: "2026-11-15" for slug in NOTES[3:]})
 CLUTCH = (
-    'Suede AI ranks among <a href="https://clutch.co/profile/suede-ai-seo">Clutch</a>\'s '
+    'Suede ranks among <a href="https://clutch.co/profile/suede-ai-seo">Clutch</a>\'s '
     '<a href="https://clutch.co/consulting/ai/florida">Top 30 AI Consultants in Florida</a> and '
     '<a href="https://clutch.co/us/consulting/ai">Top 50 AI Consultants nationwide</a> (November 2026).'
 )
@@ -129,7 +129,7 @@ class NotesTests(unittest.TestCase):
                 self.assertIn("https://suedeai.agency/assessment", article)
                 for link in REQUIRED_LINKS:
                     self.assertIn(f'href="{link}"', html)
-                self.assertIn("Built by Suede AI in West Palm Beach, Florida", html)
+                self.assertIn("Built by Suede in West Palm Beach, Florida", html)
 
     def test_depth_articles_cross_link(self):
         """Round 4 notes deep-link two sibling-satellite articles and carry the Clutch claim once."""
@@ -186,6 +186,26 @@ class NotesTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class BrandNameTests(unittest.TestCase):
+    """The company is "Suede" (owner direction, 2026-11-21). "Suede AI" and "Suede Labs"
+    appear only as schema alternateName entries and one "formerly" alias line per file."""
+
+    OLD_NAME = re.compile(r"(?i:\bsuede[ \t]+(?:ai|labs)\b)|\bSuede(?:AI|Labs)\b(?![.\-/@])")
+    ALIAS_LIST = re.compile(r'"alternateName": \[[^\]]*\]', re.S)
+    ALIAS_LINE = re.compile(r"formerly (known as )?Suede (AI|Labs)")
+
+    def test_public_copy_says_suede(self):
+        files = list(ROOT.glob("*/index.html")) + list(ROOT.glob("notes/*/index.html"))
+        files += [ROOT / "index.html", ROOT / "llms.txt", ROOT / "llms-full.txt", ROOT / "README.md"]
+        for path in files:
+            text = self.ALIAS_LIST.sub("", path.read_text(encoding="utf-8"))
+            for n, line in enumerate(text.splitlines(), start=1):
+                if self.ALIAS_LINE.search(line):
+                    continue
+                with self.subTest(path=str(path.relative_to(ROOT)), line=n):
+                    self.assertIsNone(self.OLD_NAME.search(line), line[:120])
 
 
 class SiteWideBannedFactsTests(unittest.TestCase):

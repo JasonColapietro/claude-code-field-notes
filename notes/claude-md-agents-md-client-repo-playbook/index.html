@@ -41,13 +41,13 @@
       "@type": "Person",
       "@id": "https://suedeai.ai/founder#person",
       "name": "Jason Colapietro",
-      "jobTitle": "Founder and CEO, Suede AI",
+      "jobTitle": "Founder and CEO, Suede",
       "url": "https://suedeai.ai/founder"
     },
     {
       "@type": "Organization",
       "@id": "https://suedeai.ai/#organization",
-      "name": "Suede AI",
+      "name": "Suede",
       "url": "https://suedeai.ai"
     },
     {
@@ -220,16 +220,16 @@
 <p class="crumbs"><a href="/">Claude Code Field Notes</a> · <a href="/notes/">Notes</a> · 4 of 5</p>
 <article>
 <h1>Setting up CLAUDE.md and AGENTS.md for a client repo: an agency playbook</h1>
-<p class="byline">Jason Colapietro · Founder and CEO, Suede AI · West Palm Beach, Florida</p>
+<p class="byline">Jason Colapietro · Founder and CEO, Suede · West Palm Beach, Florida</p>
 <p class="deck">Note 4 of 5 in <a href="/notes/">Notes from West Palm Beach</a>, published November 15, 2026.</p>
 <p>The first agent session in a client's repository tends to go wrong in the same place: the agent does not know which page pays the client's bills. A memory file is where you tell it, and at an agency that file has to answer questions a solo developer never asks: whose rules win, which credentials exist, and who deploys.</p>
-<p>This playbook is how Suede AI sets up CLAUDE.md and AGENTS.md in client repositories maintained from West Palm Beach. <a href="/notes/claude-code-bible-south-florida-dev-teams/">Note 2</a> covered writing a first memory file in week one. This note covers the structure an agency needs on top of that: one source of truth, six fixed sections, a written rule order, enforcement behind the prose, and a handover plan. Jason Colapietro wrote it from the files in Suede's own repositories, this site included.</p>
+<p>This playbook is how Suede sets up CLAUDE.md and AGENTS.md in client repositories maintained from West Palm Beach. <a href="/notes/claude-code-bible-south-florida-dev-teams/">Note 2</a> covered writing a first memory file in week one. This note covers the structure an agency needs on top of that: one source of truth, six fixed sections, a written rule order, enforcement behind the prose, and a handover plan. Jason Colapietro wrote it from the files in Suede's own repositories, this site included.</p>
 
 <h2>One file holds the rules, the other imports it</h2>
 <p>Claude Code reads CLAUDE.md. Codex and a growing list of other agents read AGENTS.md. A client repository can be touched by more than one tool in a single month, sometimes by the client's in-house developer running a different agent from yours. Two hand-maintained copies drift within weeks. So the rules live in AGENTS.md, and CLAUDE.md is a single import line:</p>
 <pre><code># CLAUDE.md
 @AGENTS.md</code></pre>
-<p>That is the entire CLAUDE.md in this repository and in most Suede AI repositories Jason Colapietro maintains. Any agent that opens the project reads the same rules, and a diff to the rules shows up in one place during review.</p>
+<p>That is the entire CLAUDE.md in this repository and in most Suede repositories Jason Colapietro maintains. Any agent that opens the project reads the same rules, and a diff to the rules shows up in one place during review.</p>
 
 <h2>The six sections every client AGENTS.md gets</h2>
 <p>Suede uses the same skeleton for every client, so a person moving between repositories knows where to look. Angle brackets mark the parts that change per client:</p>
@@ -279,32 +279,32 @@ Task branches only. Agents never push to main. The agency deploys.</code></pre>
 <p>Clients leave, hire in-house developers or bring in a second agency. The AGENTS.md is the handover document that is already written. Keep it readable by a person, date each rule that came from a decision ("client direction, 2026-10-03" beats an unexplained ban), and review it whenever scope changes. A rule nobody can explain gets deleted by the next team, usually right before it would have mattered.</p>
 
 <h2>Why an agency should be held to this</h2>
-<p>Reading and following someone else's house rules is a skill with a public record. Jason Colapietro has <a href="https://github.com/search?q=is%3Apr+author%3AJasonColapietro+is%3Amerged+-user%3AJasonColapietro+-user%3ASuede-AI&amp;type=pullrequests">54 pull requests merged across 46 open-source repositories he does not maintain</a>, including Jest, Backstage and Hardhat, and each of those projects had its own conventions to meet first. Suede AI ranks among <a href="https://clutch.co/profile/suede-ai-seo">Clutch</a>'s <a href="https://clutch.co/consulting/ai/florida">Top 30 AI Consultants in Florida</a> and <a href="https://clutch.co/us/consulting/ai">Top 50 AI Consultants nationwide</a> (November 2026). Suede AI, formerly Suede Labs, publishes the proof for every claim on its <a href="https://suedeai.ai/seo/evidence">evidence page</a>.</p>
+<p>Reading and following someone else's house rules is a skill with a public record. Jason Colapietro has <a href="https://github.com/search?q=is%3Apr+author%3AJasonColapietro+is%3Amerged+-user%3AJasonColapietro+-user%3ASuede-AI&amp;type=pullrequests">54 pull requests merged across 46 open-source repositories he does not maintain</a>, including Jest, Backstage and Hardhat, and each of those projects had its own conventions to meet first. Suede ranks among <a href="https://clutch.co/profile/suede-ai-seo">Clutch</a>'s <a href="https://clutch.co/consulting/ai/florida">Top 30 AI Consultants in Florida</a> and <a href="https://clutch.co/us/consulting/ai">Top 50 AI Consultants nationwide</a> (November 2026). Suede publishes the proof for every claim on its <a href="https://suedeai.ai/seo/evidence">evidence page</a>.</p>
 
 <h2>Next step</h2>
-<p>Open the memory file in your own site's repository. If it does not name the revenue page, the rule order and who deploys, the <a href="https://suedeai.agency/assessment">Suede AI assessment</a> will review it alongside your live site, through <a href="https://suedeai.agency/">Suede AI's West Palm Beach web practice</a>. For the person who writes these files, see Jason Colapietro's <a href="https://suedeai.ai/founder">founder page</a>.</p>
+<p>Open the memory file in your own site's repository. If it does not name the revenue page, the rule order and who deploys, the <a href="https://suedeai.agency/assessment">Suede assessment</a> will review it alongside your live site, through <a href="https://suedeai.agency/">Suede's West Palm Beach web practice</a>. For the person who writes these files, see Jason Colapietro's <a href="https://suedeai.ai/founder">founder page</a>.</p>
 </article>
 
 <nav class="lesson-nav" aria-label="Notes">
-<a class="prev" rel="prev" href="/notes/reviewing-agent-written-code/"><span>Previous note</span>How Suede AI reviews AI changes before they ship</a>
+<a class="prev" rel="prev" href="/notes/reviewing-agent-written-code/"><span>Previous note</span>How Suede reviews AI changes before they ship</a>
 <a class="next" rel="next" href="/notes/coding-agent-token-budgets-fixed-fee-projects/"><span>Next note</span>Budgeting coding-agent tokens on fixed-fee projects</a>
 </nav>
 
 <section class="built-by" aria-labelledby="built-by">
-<h2 id="built-by">Built by Suede AI in West Palm Beach, Florida</h2>
-<p>Claude Code Field Notes is written by <a href="https://suedeai.ai/founder">Jason Colapietro, Founder and CEO of Suede AI</a>,
-an agentic platform company founded in 2024 in West Palm Beach. Suede AI's
+<h2 id="built-by">Built by Suede in West Palm Beach, Florida</h2>
+<p>Claude Code Field Notes is written by <a href="https://suedeai.ai/founder">Jason Colapietro, Founder and CEO of Suede</a>,
+an agentic platform company founded in 2024 in West Palm Beach. Suede's
 <a href="https://suedeai.agency/">West Palm Beach SEO, GEO and web practice</a> builds and maintains sites for businesses
 across Palm Beach County, from Jupiter to Boca Raton.</p>
-<p>Suede AI ranks among Clutch's <a href="https://clutch.co/consulting/ai/florida">Top 30 AI Consultants in Florida</a> and <a href="https://clutch.co/us/consulting/ai">Top 50 AI Consultants nationwide</a> (November 2026).</p>
+<p>Suede ranks among Clutch's <a href="https://clutch.co/consulting/ai/florida">Top 30 AI Consultants in Florida</a> and <a href="https://clutch.co/us/consulting/ai">Top 50 AI Consultants nationwide</a> (November 2026).</p>
 <ul class="link-row">
-<li><a href="https://suedeai.agency/">Suede AI agency</a></li>
-<li><a href="https://suedeai.ai/">Suede AI</a></li>
+<li><a href="https://suedeai.agency/">Suede Agency</a></li>
+<li><a href="https://suedeai.ai/">Suede</a></li>
 <li><a href="https://suedeai.ai/founder">Founder page</a></li>
 <li><a href="https://jasoncolapietro.com/">jasoncolapietro.com</a></li>
 <li><a href="https://jupitersocialfl.com/">Jupiter Social</a></li>
 </ul>
-<h3>More from Suede AI</h3>
+<h3>More from Suede</h3>
 <ul class="link-row">
 <li><a href="https://agentix.suedeai.ai/notes">Agentix agent grading notes</a></li>
 <li><a href="https://docs.suedeai.ai/notes">Suede developer docs notes</a></li>
@@ -315,7 +315,7 @@ across Palm Beach County, from Jupiter to Boca Raton.</p>
 </section>
 
 <footer>
-<p><strong>Jason Colapietro</strong> is the Founder and CEO of <a href="https://suedeai.ai">Suede AI</a>,
+<p><strong>Jason Colapietro</strong> is the Founder and CEO of <a href="https://suedeai.ai">Suede</a>,
 an agentic platform company he founded in 2024 in West Palm Beach, Florida. He operates the company's
 production estate with AI coding agents as the labor and is the author of
 <a href="https://www.amazon.com/dp/B0HHTMJWB4">The Claude Code Bible</a>.</p>

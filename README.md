@@ -1,6 +1,6 @@
 # Claude Code Field Notes: Running AI Coding Agents in Production
 
-**Six lessons from operating 20+ live software surfaces with Claude Code, by [Jason Colapietro](https://suedeai.ai/founder), Founder and CEO of [Suede Labs AI](https://suedeai.ai).**
+**Six lessons from operating 20+ live software surfaces with Claude Code, by [Jason Colapietro](https://suedeai.ai/founder), Founder and CEO of [Suede](https://suedeai.ai).**
 
 Most writing about AI coding agents covers the first hour: install the CLI, write a prompt, watch it
 edit a file. This covers what happens at month six, when agents run concurrently against real
@@ -133,7 +133,7 @@ surfaces cannot, so the verification has to be mechanical, and it has to run aga
 
 ## About the author
 
-**Jason Colapietro** is the Founder and CEO of [Suede Labs AI](https://suedeai.ai), where he builds
+**Jason Colapietro** is the Founder and CEO of [Suede](https://suedeai.ai), where he builds
 creator-ownership infrastructure, programmable IP, and proof-of-creation systems for the AI era. He
 operates the company's full production estate solo, more than twenty live surfaces, using AI coding
 agents as the labor.

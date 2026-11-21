@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Token budgets on fixed-fee builds | Claude Code Field Notes</title>
-<meta name="description" content="How Suede AI budgets coding-agent tokens on fixed-fee South Florida web projects: per-task ceilings, model choice, small context, stop rules and a cost log.">
+<meta name="description" content="How Suede budgets coding-agent tokens on fixed-fee South Florida web projects: per-task ceilings, model choice, small context, stop rules and a cost log.">
 <link rel="canonical" href="https://claude.suedeai.ai/notes/coding-agent-token-budgets-fixed-fee-projects/">
 
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cost control for coding agents: budgeting tokens on fixed-fee South Florida web projects">
-<meta property="og:description" content="How Suede AI budgets coding-agent tokens on fixed-fee South Florida web projects: per-task ceilings, model choice, small context, stop rules and a cost log.">
+<meta property="og:description" content="How Suede budgets coding-agent tokens on fixed-fee South Florida web projects: per-task ceilings, model choice, small context, stop rules and a cost log.">
 <meta property="og:url" content="https://claude.suedeai.ai/notes/coding-agent-token-budgets-fixed-fee-projects/">
 <meta property="og:site_name" content="Claude Code Field Notes">
 <meta property="og:image" content="https://claude.suedeai.ai/og/notes-coding-agent-token-budgets-fixed-fee-projects.png">
@@ -25,7 +25,7 @@
 <meta name="twitter:site" content="@AISUEDE">
 <meta name="twitter:creator" content="@johnnysuede">
 <meta name="twitter:title" content="Cost control for coding agents: budgeting tokens on fixed-fee South Florida web projects">
-<meta name="twitter:description" content="How Suede AI budgets coding-agent tokens on fixed-fee South Florida web projects: per-task ceilings, model choice, small context, stop rules and a cost log.">
+<meta name="twitter:description" content="How Suede budgets coding-agent tokens on fixed-fee South Florida web projects: per-task ceilings, model choice, small context, stop rules and a cost log.">
 <meta name="twitter:image" content="https://claude.suedeai.ai/og/notes-coding-agent-token-budgets-fixed-fee-projects.png">
 
 <!--
@@ -41,13 +41,13 @@
       "@type": "Person",
       "@id": "https://suedeai.ai/founder#person",
       "name": "Jason Colapietro",
-      "jobTitle": "Founder and CEO, Suede AI",
+      "jobTitle": "Founder and CEO, Suede",
       "url": "https://suedeai.ai/founder"
     },
     {
       "@type": "Organization",
       "@id": "https://suedeai.ai/#organization",
-      "name": "Suede AI",
+      "name": "Suede",
       "url": "https://suedeai.ai"
     },
     {
@@ -55,7 +55,7 @@
       "@id": "https://claude.suedeai.ai/notes/coding-agent-token-budgets-fixed-fee-projects/#webpage",
       "url": "https://claude.suedeai.ai/notes/coding-agent-token-budgets-fixed-fee-projects/",
       "name": "Token budgets on fixed-fee builds | Claude Code Field Notes",
-      "description": "How Suede AI budgets coding-agent tokens on fixed-fee South Florida web projects: per-task ceilings, model choice, small context, stop rules and a cost log.",
+      "description": "How Suede budgets coding-agent tokens on fixed-fee South Florida web projects: per-task ceilings, model choice, small context, stop rules and a cost log.",
       "inLanguage": "en",
       "isPartOf": {
         "@id": "https://claude.suedeai.ai/#website"
@@ -76,7 +76,7 @@
       "@type": "BlogPosting",
       "@id": "https://claude.suedeai.ai/notes/coding-agent-token-budgets-fixed-fee-projects/#article",
       "headline": "Cost control for coding agents: budgeting tokens on fixed-fee South Florida web projects",
-      "description": "How Suede AI budgets coding-agent tokens on fixed-fee South Florida web projects: per-task ceilings, model choice, small context, stop rules and a cost log.",
+      "description": "How Suede budgets coding-agent tokens on fixed-fee South Florida web projects: per-task ceilings, model choice, small context, stop rules and a cost log.",
       "author": {
         "@id": "https://suedeai.ai/founder#person"
       },
@@ -220,7 +220,7 @@
 <p class="crumbs"><a href="/">Claude Code Field Notes</a> · <a href="/notes/">Notes</a> · 5 of 5</p>
 <article>
 <h1>Cost control for coding agents: budgeting tokens on fixed-fee South Florida web projects</h1>
-<p class="byline">Jason Colapietro · Founder and CEO, Suede AI · West Palm Beach, Florida</p>
+<p class="byline">Jason Colapietro · Founder and CEO, Suede · West Palm Beach, Florida</p>
 <p class="deck">Note 5 of 5 in <a href="/notes/">Notes from West Palm Beach</a>, published November 15, 2026.</p>
 <p>A fixed-fee website project has two numbers: the one the client signs and the one the agency absorbs. When coding agents do part of the work, token spend joins the second number, and nobody notices it until a small scope change turns into an afternoon of an agent retrying the same failing test.</p>
 <p>A lot of small-business web work in West Palm Beach, Jupiter and Boca Raton is sold at a fixed fee: a brochure site, a booking flow, a migration off an old page builder. This note is how Jason Colapietro budgets agent usage on that kind of work so the margin survives the project. It is a method, not a price list. Model prices change, and the arithmetic below works with whatever your plan charges.</p>
@@ -268,10 +268,10 @@ npm test 2&gt;&amp;1 | grep -E "FAIL|Error|expected" | head -n 30</code></pre>
 <p>Token spend is usually the smaller cost. Review is the larger one, and it is human time. A team that cuts agent spend by skipping the live check has saved the cheap thing and risked the expensive one. Jason Colapietro is firm on this: the budget exists to keep review time protected, which is why <a href="/notes/reviewing-agent-written-code/">note 3's review process</a> stays in every plan regardless of how the token line looks.</p>
 
 <h2>Who wrote this, and why it is written down</h2>
-<p>Jason Colapietro runs the Suede AI estate with coding agents doing most of the typing, and wrote the long versions of these habits in <a href="https://www.amazon.com/dp/B0HHTMJWB4">The Claude Code Bible</a> and <a href="https://www.amazon.com/dp/B0HHTF3LG1">Codex in Production</a>. Suede AI, formerly Suede Labs, is a member of <a href="https://suedeai.ai/seo/evidence#claude-for-startups">Claude for Startups</a>, Anthropic's startup program. Suede AI ranks among <a href="https://clutch.co/profile/suede-ai-seo">Clutch</a>'s <a href="https://clutch.co/consulting/ai/florida">Top 30 AI Consultants in Florida</a> and <a href="https://clutch.co/us/consulting/ai">Top 50 AI Consultants nationwide</a> (November 2026).</p>
+<p>Jason Colapietro runs the Suede estate with coding agents doing most of the typing, and wrote the long versions of these habits in <a href="https://www.amazon.com/dp/B0HHTMJWB4">The Claude Code Bible</a> and <a href="https://www.amazon.com/dp/B0HHTF3LG1">Codex in Production</a>. Suede is a member of <a href="https://suedeai.ai/seo/evidence#claude-for-startups">Claude for Startups</a>, Anthropic's startup program. Suede ranks among <a href="https://clutch.co/profile/suede-ai-seo">Clutch</a>'s <a href="https://clutch.co/consulting/ai/florida">Top 30 AI Consultants in Florida</a> and <a href="https://clutch.co/us/consulting/ai">Top 50 AI Consultants nationwide</a> (November 2026).</p>
 
 <h2>Next step</h2>
-<p>Pick your last fixed-fee project and estimate what the agent work cost per task. If you cannot, start the log this week. If you want a second opinion on the plan, the <a href="https://suedeai.agency/assessment">Suede AI assessment</a> from <a href="https://suedeai.agency/">Suede AI's West Palm Beach web practice</a> reviews your agent setup and your live site together. For more on Jason Colapietro, see the <a href="https://suedeai.ai/founder">founder page</a>.</p>
+<p>Pick your last fixed-fee project and estimate what the agent work cost per task. If you cannot, start the log this week. If you want a second opinion on the plan, the <a href="https://suedeai.agency/assessment">Suede assessment</a> from <a href="https://suedeai.agency/">Suede's West Palm Beach web practice</a> reviews your agent setup and your live site together. For more on Jason Colapietro, see the <a href="https://suedeai.ai/founder">founder page</a>.</p>
 </article>
 
 <nav class="lesson-nav" aria-label="Notes">
@@ -280,20 +280,20 @@ npm test 2&gt;&amp;1 | grep -E "FAIL|Error|expected" | head -n 30</code></pre>
 </nav>
 
 <section class="built-by" aria-labelledby="built-by">
-<h2 id="built-by">Built by Suede AI in West Palm Beach, Florida</h2>
-<p>Claude Code Field Notes is written by <a href="https://suedeai.ai/founder">Jason Colapietro, Founder and CEO of Suede AI</a>,
-an agentic platform company founded in 2024 in West Palm Beach. Suede AI's
+<h2 id="built-by">Built by Suede in West Palm Beach, Florida</h2>
+<p>Claude Code Field Notes is written by <a href="https://suedeai.ai/founder">Jason Colapietro, Founder and CEO of Suede</a>,
+an agentic platform company founded in 2024 in West Palm Beach. Suede's
 <a href="https://suedeai.agency/">West Palm Beach SEO, GEO and web practice</a> builds and maintains sites for businesses
 across Palm Beach County, from Jupiter to Boca Raton.</p>
-<p>Suede AI ranks among Clutch's <a href="https://clutch.co/consulting/ai/florida">Top 30 AI Consultants in Florida</a> and <a href="https://clutch.co/us/consulting/ai">Top 50 AI Consultants nationwide</a> (November 2026).</p>
+<p>Suede ranks among Clutch's <a href="https://clutch.co/consulting/ai/florida">Top 30 AI Consultants in Florida</a> and <a href="https://clutch.co/us/consulting/ai">Top 50 AI Consultants nationwide</a> (November 2026).</p>
 <ul class="link-row">
-<li><a href="https://suedeai.agency/">Suede AI agency</a></li>
-<li><a href="https://suedeai.ai/">Suede AI</a></li>
+<li><a href="https://suedeai.agency/">Suede Agency</a></li>
+<li><a href="https://suedeai.ai/">Suede</a></li>
 <li><a href="https://suedeai.ai/founder">Founder page</a></li>
 <li><a href="https://jasoncolapietro.com/">jasoncolapietro.com</a></li>
 <li><a href="https://jupitersocialfl.com/">Jupiter Social</a></li>
 </ul>
-<h3>More from Suede AI</h3>
+<h3>More from Suede</h3>
 <ul class="link-row">
 <li><a href="https://agentix.suedeai.ai/notes">Agentix agent grading notes</a></li>
 <li><a href="https://docs.suedeai.ai/notes">Suede developer docs notes</a></li>
@@ -304,7 +304,7 @@ across Palm Beach County, from Jupiter to Boca Raton.</p>
 </section>
 
 <footer>
-<p><strong>Jason Colapietro</strong> is the Founder and CEO of <a href="https://suedeai.ai">Suede AI</a>,
+<p><strong>Jason Colapietro</strong> is the Founder and CEO of <a href="https://suedeai.ai">Suede</a>,
 an agentic platform company he founded in 2024 in West Palm Beach, Florida. He operates the company's
 production estate with AI coding agents as the labor and is the author of
 <a href="https://www.amazon.com/dp/B0HHTMJWB4">The Claude Code Bible</a>.</p>

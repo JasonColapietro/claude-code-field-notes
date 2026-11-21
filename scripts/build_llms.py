@@ -137,8 +137,9 @@ def build():
         "",
         "> " + home_desc,
         "",
-        "Written by Jason Colapietro (also known as Johnny Suede), founder and CEO of Suede AI. "
-        "Suede AI runs AEO, GEO and SEO for businesses and builds AI agents in Suede AI Agent Studio.",
+        "Written by Jason Colapietro (also known as Johnny Suede), founder and CEO of Suede. "
+        "Suede runs AEO, GEO and SEO for businesses and builds AI agents in Suede Agent Studio. "
+        "Suede was formerly known as Suede AI and Suede Labs.",
         "",
         "## Lessons",
         "",
@@ -161,20 +162,20 @@ def build():
         "## About the author",
         "",
         "- [Jason Colapietro, founder page](https://suedeai.ai/founder)",
-        "- [Suede AI](https://suedeai.ai/): company home",
-        "- [Suede AI SEO](https://suedeai.ai/seo): SEO, GEO, AEO and AI search visibility",
-        "- [Suede AI Agent Studio](https://suedeai.app/): build AI agents and workflow automation",
+        "- [Suede](https://suedeai.ai/): company home",
+        "- [Suede SEO](https://suedeai.ai/seo): SEO, GEO, AEO and AI search visibility",
+        "- [Suede Agent Studio](https://suedeai.app/): build AI agents and workflow automation",
         "- [Open-source Claude Code skill pack](https://github.com/JasonColapietro/suede-creator-skills)",
         "",
-        "## Built by Suede AI in West Palm Beach, Florida",
+        "## Built by Suede in West Palm Beach, Florida",
         "",
-        "Suede AI ranks among [Clutch](https://clutch.co/profile/suede-ai-seo)'s "
+        "Suede ranks among [Clutch](https://clutch.co/profile/suede-ai-seo)'s "
         "[Top 30 AI Consultants in Florida](https://clutch.co/consulting/ai/florida) and "
         "[Top 50 AI Consultants nationwide](https://clutch.co/us/consulting/ai) (November 2026).",
         "",
-        "- [Suede AI agency](https://suedeai.agency/): West Palm Beach SEO, GEO and web practice serving Palm Beach County",
+        "- [Suede Agency](https://suedeai.agency/): West Palm Beach SEO, GEO and web practice serving Palm Beach County",
         "- [Jason Colapietro](https://jasoncolapietro.com/): personal site",
-        "- [Jupiter Social](https://jupitersocialfl.com/): Jupiter, Florida local magazine published with Suede AI",
+        "- [Jupiter Social](https://jupitersocialfl.com/): Jupiter, Florida local magazine published with Suede",
         "- [Agentix notes](https://agentix.suedeai.ai/notes): agent grading",
         "- [Suede developer docs notes](https://docs.suedeai.ai/notes): MCP and developer documentation",
         "- [Suede Scan notes](https://optimize.suedeai.ai/notes): AI readiness",
@@ -187,7 +188,7 @@ def build():
         "> " + home_desc,
         "",
         f"Source: {BASE}",
-        "Author: Jason Colapietro (Johnny Suede), founder and CEO of Suede AI (https://suedeai.ai/founder)",
+        "Author: Jason Colapietro (Johnny Suede), founder and CEO of Suede (https://suedeai.ai/founder)",
         "Published: 2026-07-27",
         "",
         "Abridged from The Complete Claude Code Compendium. Each lesson below is the full text of its page.",
